@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="w-full p-5 flex justify-center items-start">
       <Navbar />
-      <div className="flex-1 bg-white rounded-[20px] border border-black/10 flex flex-col gap-16">
+      <div className="flex-1 bg-white dark:bg-[#121212] rounded-[20px] border border-[#323232] flex flex-col gap-16 transition-colors duration-500">
         <Hero />
         <FeaturedWork />
         <Experience />

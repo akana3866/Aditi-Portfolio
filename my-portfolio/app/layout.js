@@ -1,19 +1,29 @@
 import './globals.css'
+import { Playfair_Display, Rethink_Sans } from 'next/font/google'
 
 export const metadata = {
   title: 'Aditi Kanaujia - Portfolio',
   description: 'Product Designer Portfolio',
 }
 
+// Load fonts using Next.js font optimization
+const playfair = Playfair_Display({ 
+  subsets: ['latin'],
+  style: ['normal', 'italic'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-playfair',
+})
+
+const rethink = Rethink_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-rethink',
+})
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Rethink+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-      </head>
-      <body className="bg-desktop-background">
+    <html lang="en" className={`${playfair.variable} ${rethink.variable}`}>
+      <body className="bg-gray-50">
         {children}
       </body>
     </html>

@@ -2,7 +2,7 @@ export default function Navbar() {
     return (
       <div className="w-40 pb-7 flex flex-col gap-6">
         <div className="pl-8 pr-5 py-7 flex flex-col gap-2.5">
-          <div className="text-black text-4xl font-serif leading-10">AK</div>
+        <div className="text-4xl font-mtry leading-10 text-black dark:text-white">AK</div>
         </div>
         <nav className="pl-8 pr-5 pb-7 flex flex-col gap-2.5">
           <a href="#about" className="main-text text-base font-medium hover:opacity-60 transition-opacity">
@@ -25,10 +25,11 @@ export default function Navbar() {
           </a>
         </nav>
         <div className="pl-8 pr-5 flex flex-col">
-          <button className="main-text text-base font-medium hover:opacity-60 transition-opacity">
-            Let&apos;s Chat ☕️
-          </button>
-        </div>
+          <a href="mailto:ak9138@gmail.com" 
+            className="text-base font-playfair italic leading-tight hover:opacity-60 transition-opacity">
+            Let’s Chat ☕️
+          </a>
+          </div>
       </div>
     );
   }
