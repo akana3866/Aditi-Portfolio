@@ -1,5 +1,6 @@
 import './globals.css'
 import { Playfair_Display, Rethink_Sans } from 'next/font/google'
+import { ThemeProvider } from '../components/ThemeProvider'
 
 export const metadata = {
   title: 'Aditi Kanaujia - Portfolio',
@@ -23,8 +24,10 @@ const rethink = Rethink_Sans({
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${playfair.variable} ${rethink.variable}`}>
-      <body className="bg-gray-50">
-        {children}
+      <body className="bg-[#f8f8f8] dark:bg-[#0c0c0c] transition-colors duration-300">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

@@ -11,24 +11,28 @@
 :root {
   --background: #fafafa;
   --foreground: #000000;
+  --column-bg: #FFFFFF;
+  --stroke: #D5D5D5;
+}
+
+.dark {
+  --background: #0C0C0C;
+  --foreground: #fafafa;
+  --column-bg: #121212;
+  --stroke: #323232;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-column-bg: var(--column-bg);
+  --color-stroke: var(--stroke);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-playfair: var(--font-playfair), serif;
   --font-rethink: var(--font-rethink), system-ui, sans-serif;
   --font-montreal: "Neue Montreal", system-ui, sans-serif;
   --font-mtry: 'MTRY', serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0C0C0C;
-    --foreground: #fafafa;
-  }
 }
 
 body {

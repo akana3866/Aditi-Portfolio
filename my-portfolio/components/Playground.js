@@ -1,21 +1,21 @@
 // Recognition Item Component
 function RecognitionItem({ publication, title, year, description, icon }) {
     return (
-      <div className="w-full min-w-80 p-6 bg-gray-50 rounded-2xl flex flex-col gap-4">
+      <div className="w-full min-w-80 p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl flex flex-col gap-4">
         <div className="flex items-center gap-3">
           {/* Icon placeholder */}
           <div className="w-6 h-6 flex items-center justify-center">
-            {icon && <div className="w-4 h-4 bg-gray-400 rounded-full"></div>}
+            {icon && <div className="w-4 h-4 bg-gray-400 dark:bg-gray-500 rounded-full"></div>}
           </div>
           <div className="flex-1 flex flex-col gap-1">
             <div className="flex items-center gap-4">
-              <span className="text-black text-xs font-medium">{publication}</span>
-              <span className="text-black/30 text-xs">{year}</span>
+              <span className="text-black dark:text-white text-xs font-medium">{publication}</span>
+              <span className="text-black/30 dark:text-white/30 text-xs">{year}</span>
             </div>
-            <h3 className="text-black text-xl font-medium">{title}</h3>
+            <h3 className="text-black dark:text-white text-xl font-medium">{title}</h3>
           </div>
         </div>
-        <p className="text-gray-500 text-lg">{description}</p>
+        <p className="text-gray-500 dark:text-gray-300 text-lg">{description}</p>
       </div>
     );
   }
@@ -48,10 +48,10 @@ function RecognitionItem({ publication, title, year, description, icon }) {
     return (
       <div className="px-12 py-9 flex flex-col gap-12">
         <div className="flex items-center gap-1.5">
-          <h2 className="text-black text-3xl font-medium">
+          <h2 className="text-black dark:text-white text-3xl font-medium">
             Featured Work & Industry Recognition
           </h2>
-          <div className="w-4 h-4 bg-black rounded-sm"></div>
+          <div className="w-4 h-4 bg-black dark:bg-white rounded-sm"></div>
         </div>
         <div className="flex flex-col gap-4">
           {recognitions.map((item, i) => (

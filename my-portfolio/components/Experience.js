@@ -1,21 +1,21 @@
 // Experience Item Component
 function ExperienceItem({ company, role, duration, description, logo }) {
   return (
-    <div className="px-2.5 bg-white rounded-2xl flex flex-col gap-6">
+    <div className="px-2.5 bg-white dark:bg-gray-800 rounded-2xl flex flex-col gap-6">
       <div className="flex items-center gap-4">
         {/* Placeholder for company logo */}
-        <div className="w-12 h-12 rounded-lg bg-gray-200 flex items-center justify-center">
-          <span className="text-gray-400 text-xs">{company[0]}</span>
+        <div className="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+          <span className="text-gray-400 dark:text-gray-300 text-xs">{company[0]}</span>
         </div>
         <div className="flex-1 flex flex-col gap-1">
           <div className="flex items-center gap-4">
-            <span className="text-black text-xs font-medium">{company}</span>
-            <span className="text-black/30 text-xs">{duration}</span>
+            <span className="text-black dark:text-white text-xs font-medium">{company}</span>
+            <span className="text-black/30 dark:text-white/30 text-xs">{duration}</span>
           </div>
-          <h3 className="text-black text-xl font-medium">{role}</h3>
+          <h3 className="text-black dark:text-white text-xl font-medium">{role}</h3>
         </div>
       </div>
-      <p className="text-gray-500 text-lg">{description}</p>
+      <p className="text-gray-500 dark:text-gray-300 text-lg">{description}</p>
     </div>
   );
 }
@@ -52,10 +52,10 @@ export default function Experience() {
     <div className="px-12 py-9 flex flex-col gap-9">
       <div className="flex flex-col gap-4">
         <div className="flex items-center gap-1.5">
-          <h2 className="text-black text-3xl font-medium">My Work Experience</h2>
-          <div className="w-4 h-4 bg-black rounded-sm"></div>
+          <h2 className="text-black dark:text-white text-3xl font-medium">My Work Experience</h2>
+          <div className="w-4 h-4 bg-black dark:bg-white rounded-sm"></div>
         </div>
-        <p className="text-gray-500 text-lg">
+        <p className="text-gray-500 dark:text-gray-300 text-lg">
           I&apos;m a product designer with technical fluency, startup speed, and a passion for building
         </p>
       </div>
