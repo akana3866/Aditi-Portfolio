@@ -159,8 +159,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      <div className="w-7 h-0.5 bg-black dark:bg-white"></div>
     </div>
   );
 }
