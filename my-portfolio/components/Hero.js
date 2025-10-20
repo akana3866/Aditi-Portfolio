@@ -1,12 +1,12 @@
 export default function Hero() {
   return (
-    <div className="px-12 py-16 flex flex-col justify-center items-center gap-16 min-h-[700px]">
-      <div className="w-full flex flex-col justify-center items-end gap-9">
+    <div className="px-12 py-16 flex flex-col justify-end items-center gap-16 min-h-[700px]">
+      <div className="w-full flex flex-col justify-center items-end gap-12">
         <div className="w-full flex justify-start items-center gap-3">
           <h1 className="text-7xl md:text-8xl font-playfair italic capitalize leading-tight">
             Hello, I&apos;m Aditi
           </h1>
-          <div className="w-9 h-9 bg-black dark:bg-white rounded-sm"></div>
+          <img src="/icons/star.svg" alt="Star" className="w-10 h-10" />
         </div>
 
         <div className="w-full flex justify-end">
