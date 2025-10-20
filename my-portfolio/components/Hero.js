@@ -10,7 +10,7 @@ export default function Hero() {
         </div>
 
         <div className="w-full flex justify-end">
-          <div className="flex flex-col gap-6 max-w-3xl">
+          <div className="flex flex-col gap-6 max-w-lg">
             <p className="text-2xl md:text-3xl font-medium leading-relaxed">
               I love creating things that change the way people interact with the world.
             </p>

@@ -2,7 +2,7 @@ import ThemeToggle from './ThemeToggle'
 
 export default function Navbar() {
     return (
-      <div className="w-40 h-screen pb-7 flex flex-col gap-6 relative">
+      <div className="w-40 h-screen pb-7 flex flex-col gap-6 relative sticky top-0">
         <div className="pl-8 pr-5 py-7 flex flex-col gap-2.5">
         <div className="text-4xl font-mtry leading-10">AK</div>
         </div>
