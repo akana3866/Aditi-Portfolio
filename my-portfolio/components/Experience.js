@@ -1,21 +1,21 @@
 // Experience Item Component
 function ExperienceItem({ company, role, duration, description, logo }) {
   return (
-    <div className="px-2.5 bg-white dark:bg-gray-800 rounded-2xl flex flex-col gap-6">
+    <div className="px-2.5 rounded-2xl flex flex-col gap-6">
       <div className="flex items-center gap-4">
         {/* Placeholder for company logo */}
-        <div className="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-          <span className="text-gray-400 dark:text-gray-300 text-xs">{company[0]}</span>
+        <div className="w-12 h-12 rounded-lg flex items-center justify-center">
+          <span className="text-xs">{company[0]}</span>
         </div>
         <div className="flex-1 flex flex-col gap-1">
           <div className="flex items-center gap-4">
-            <span className="text-black dark:text-white text-xs font-medium">{company}</span>
-            <span className="text-black/30 dark:text-white/30 text-xs">{duration}</span>
+            <span className="text-xs font-medium">{company}</span>
+            <span className="text-xs">{duration}</span>
           </div>
-          <h3 className="text-black dark:text-white text-xl font-medium">{role}</h3>
+          <h3 className="text-xl font-medium">{role}</h3>
         </div>
       </div>
-      <p className="text-gray-500 dark:text-gray-300 text-lg">{description}</p>
+      <p className="text-lg">{description}</p>
     </div>
   );
 }
