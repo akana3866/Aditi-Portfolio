@@ -49,7 +49,7 @@ function ProjectCard({ header, title, impact, impactPoints, imageUrl, buttonText
           </div>
           
           {/* Button */}
-          <button className="w-fit px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2 font-medium text-sm">
+          <button className="w-fit px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2 font-medium text-medium">
             <span>{buttonText}</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
