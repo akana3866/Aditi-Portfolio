@@ -11,21 +11,28 @@
 :root {
   --background: #fafafa;
   --foreground: #000000;
+  --card-bg: #FFFFFF;
+  --secondary-card-bg: #F2F2F2;
+  --secondary-text: #737373;
   --column-bg: #FFFFFF;
   --stroke: #D5D5D5;
-  --tag: #868686;
 }
 
 .dark {
   --background: #0C0C0C;
   --foreground: #fafafa;
+  --card-bg: #242424;
+  --secondary-card-bg: #242424;
+  --secondary-text: #949494;
   --column-bg: #121212;
   --stroke: #323232;
-  --tag: #D0D0D0;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-card-bg: var(--card-bg);
+  --color-secondary-card-bg: var(--secondary-card-bg);
+  --color-secondary-text: var(--secondary-text);
   --color-foreground: var(--foreground);
   --color-column-bg: var(--column-bg);
   --color-stroke: var(--stroke);
@@ -35,6 +42,10 @@
   --font-rethink: var(--font-rethink), system-ui, sans-serif;
   --font-montreal: "Neue Montreal", system-ui, sans-serif;
   --font-mtry: 'MTRY', serif;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {

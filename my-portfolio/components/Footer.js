@@ -2,45 +2,45 @@ export default function Footer() {
     return (
       <div className="pt-32 pb-8 flex flex-col gap-8">
         <div className="px-10 flex justify-between items-end">
-          <div className="text-black dark:text-white text-7xl font-serif leading-tight">AK</div>
+        <div className="text-6xl font-mtry leading-10">AK</div>
           <div className="flex gap-12">
             <a 
-              href="https://dribbble.com" 
+              href="https://dribbble.com/aditi-kanaujia" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-black dark:text-white text-base font-medium hover:opacity-60 transition-opacity"
+              className="text-foreground text-base font-medium hover:opacity-60 transition-opacity"
             >
               Dribble
             </a>
             <a 
-              href="https://linkedin.com" 
+              href="https://www.linkedin.com/in/aditi-kanaujia-b6a06053/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-black dark:text-white text-base font-medium hover:opacity-60 transition-opacity"
+              className="text-foreground text-base font-medium hover:opacity-60 transition-opacity"
             >
               LinkedIn
             </a>
             <a 
-              href="https://github.com" 
+              href="https://github.com/akana3866" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-black dark:text-white text-base font-medium hover:opacity-60 transition-opacity"
+              className="text-foreground text-base font-medium hover:opacity-60 transition-opacity"
             >
               GitHub
             </a>
           </div>
-          <div className="text-black dark:text-white text-xs font-medium">
+          <div className="text-foreground text-xs font-medium">
             © Aditi Kanaujia 2025
           </div>
         </div>
-        <div className="px-10 pt-10 pb-5 border-t border-black/10 dark:border-white/10">
-          <div className="text-black dark:text-white text-[10px] leading-relaxed">
+        <div className="px-10 pt-10 pb-5 border-t border-stroke">
+          <div className="text-foreground text-[10px] leading-relaxed">
             This website was designed & developed by me, using Figma and Cursor.
             <br />
-            Typefaces: <span className="underline">Inclusive Sans</span> and{' '}
-            <span className="underline">Sunshower Dreams</span>
+            Typefaces: <a href="https://fontsinuse.com/typefaces/106391/neue-montreal"className="underline">Neue Montreal</a> ,{' '}
+            <a href="https://elements.envato.com/mtry-geometric-experimental-J4U3M2V"className="underline">MTRY</a> , and {' '} <a href="https://fontsinuse.com/typefaces/7709/playfair-display"className="underline">Playfair Display</a>
             <br />
-            Site last edited on May 6, 2025.
+            Site last edited on Nov 3, 2025.
           </div>
         </div>
       </div>

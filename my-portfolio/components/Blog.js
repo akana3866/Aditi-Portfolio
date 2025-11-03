@@ -37,7 +37,7 @@ function BlogPostCard({ title, subtitle }) {
     ];
   
     return (
-      <div className="px-12 py-9 flex flex-col gap-8">
+      <div id="blog" className="px-12 py-9 flex flex-col gap-8">
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-1.5">
             <h2 className="text-3xl font-medium">Blog</h2>
