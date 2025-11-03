@@ -1,4 +1,5 @@
 import ThemeToggle from './ThemeToggle'
+import MusicToggle from './MusicToggle'
 
 export default function Navbar() {
     return (
@@ -29,6 +30,9 @@ export default function Navbar() {
         <div className="pl-8 pr-5 flex flex-col gap-4">
           <div className="flex items-center">
             <ThemeToggle />
+          </div>
+          <div className="flex items-center">
+            <MusicToggle />
           </div>
         </div>
         <div className="flex-1"></div>
