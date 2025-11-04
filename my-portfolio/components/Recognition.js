@@ -1,19 +1,34 @@
 // Recognition Item Component
-function RecognitionItem({ publication, title, year, description, icon }) {
-  return (
-      <div className="w-full min-w-80 p-6 bg-secondary-card-bg rounded-2xl flex flex-col gap-4">
-        <div className="flex items-center gap-3">
-          <div className="flex-1 flex flex-col gap-1">
-            <div className="flex items-center gap-4">
-              <span className="text-xs font-medium">{publication}</span>
-              <span className="text-xs text-secondary-text">{year}</span>
-            </div>
-            <h3 className="text-xl font-medium">{title}</h3>
+function RecognitionItem({ publication, title, year, description, icon, url }) {
+  const content = (
+    <div className="w-full min-w-80 p-6 bg-secondary-card-bg rounded-2xl flex flex-col gap-4 hover:opacity-80 transition-opacity">
+      <div className="flex items-center gap-3">
+        <div className="flex-1 flex flex-col gap-1">
+          <div className="flex items-center gap-4">
+            <span className="text-xs font-medium">{publication}</span>
+            <span className="text-xs text-secondary-text">{year}</span>
           </div>
+          <h3 className="text-xl font-medium">{title}</h3>
         </div>
-        <p className="text-lg text-secondary-text">{description}</p>
       </div>
+      <p className="text-lg text-secondary-text">{description}</p>
+    </div>
   );
+
+  if (url) {
+    return (
+      <a 
+        href={url} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="block"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return content;
 }
 
 export default function Recognition() {
@@ -23,21 +38,24 @@ export default function Recognition() {
       title: "Gone Are Startup Fears Of Sharing Products Pre-Launch",
       year: "2025",
       description: "Who would have thought that right out of grad I would get to see my design work in a Forbes article? So so happy to be working on such a great team :)",
-      icon: true
+      icon: true,
+      url: "https://www.forbes.com/sites/michellegreenwald/2025/08/31/gone-are-startup-fears-of-sharing-products-pre-launch/?"
     },
     {
       publication: "Washington Square News",
       title: "The NYU student-founded startup helping international students roam through college",
       year: "2024",
       description: "How we design and build experience's at roam that help an underserved sector right now.",
-      icon: false
+      icon: false,
+      url: "https://nyunews.com/culture/2024/12/13/roam-start-up/"
     },
     {
       publication: "Cisco Outshift",
       title: "Interning at Cisco ET&I",
       year: "2022",
       description: "Curious about my time here? Read all about it on Cisco's site!",
-      icon: true
+      icon: true,
+      url: "https://outshift.cisco.com/blog/interning-at-cisco-eti"
     }
   ];
 

@@ -1,5 +1,5 @@
 // Blog Post Card Component
-function BlogPostCard({ title, subtitle }) {
+function BlogPostCard({ title, subtitle, url }) {
     return (
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-2">
@@ -7,7 +7,9 @@ function BlogPostCard({ title, subtitle }) {
           <p className="text-xl">{subtitle}</p>
         </div>
         <a 
-          href="#" 
+          href={url} 
+          target="_blank" 
+          rel="noopener noreferrer"
           className="text-base font-medium hover:opacity-60 transition-opacity"
         >
           Read Now →
@@ -20,19 +22,23 @@ function BlogPostCard({ title, subtitle }) {
     const blogPosts = [
       {
         title: "The Silent Killer of Product Growth",
-        subtitle: "Solving feature awareness as a product designer"
+        subtitle: "Solving feature awareness as a product designer",
+        url: "https://quicknotes.substack.com/p/how-to-fix-one-of-the-key-issues"
       },
       {
         title: "Not Just a Nice-to-Have",
-        subtitle: "How Wishlist Features Secure Sales Longterm"
+        subtitle: "How Wishlist Features Secure Sales Longterm",
+        url: "https://quicknotes.substack.com/p/not-just-a-nice-to-have-how-wishlist"
       },
       {
         title: "Design Systems at Scale",
-        subtitle: "Building consistent experiences across platforms"
+        subtitle: "Building consistent experiences across platforms",
+        url: "#"
       },
       {
         title: "AI in Product Design",
-        subtitle: "Exploring the future of design tools and workflows"
+        subtitle: "Exploring the future of design tools and workflows",
+        url: "#"
       }
     ];
   
