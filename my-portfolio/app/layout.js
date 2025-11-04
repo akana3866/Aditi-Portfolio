@@ -1,6 +1,7 @@
 import './globals.css'
 import { Playfair_Display, Rethink_Sans } from 'next/font/google'
 import { ThemeProvider } from '../components/ThemeProvider'
+import CustomCursor from '../components/CustomCursor'
 
 export const metadata = {
   title: 'Aditi Kanaujia - Portfolio',
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${playfair.variable} ${rethink.variable}`}>
       <body className="bg-[#f8f8f8] dark:bg-[#0c0c0c] transition-colors duration-300">
         <ThemeProvider>
+          <CustomCursor />
           {children}
         </ThemeProvider>
       </body>

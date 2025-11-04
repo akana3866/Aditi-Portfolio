@@ -120,9 +120,9 @@ export default function Hero() {
                 style={{
                   left: dot.x,
                   top: dot.y,
-                  width: isClosest ? '10px' : isSurrounding ? '6px' : '2px',
-                  height: isClosest ? '10px' : isSurrounding ? '6px' : '2px',
-                  backgroundColor: isHovered ? 'rgba(59, 130, 246, 0.9)' : isDark ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
+                  width: isClosest ? '12px' : isSurrounding ? '8px' : '2px',
+                  height: isClosest ? '12px' : isSurrounding ? '8px' : '2px',
+                  backgroundColor: isHovered ? (isDark ? '#FFFFFF' : '#000000') : isDark ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
                   opacity: isHovered ? 1 : 0.6,
                   animationDelay: isHovered ? 'none' : `${dot.delay}s`,
                   animation: isHovered ? 'none' : `randomPulse ${dot.duration}s ease-in-out infinite`

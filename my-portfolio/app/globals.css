@@ -1,10 +1,81 @@
 @import "tailwindcss";
 
+/* MTRY Font */
 @font-face {
   font-family: 'MTRY';
-  src: url('/fonts/MTRY-Regular.otf') format('opentype');
+  src: url('/fonts/MTRY.otf') format('opentype'),
+       url('/fonts/MTRY - Round.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Neue Montreal Font Family */
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/fonts/NeueMontreal-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/fonts/NeueMontreal-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/fonts/NeueMontreal-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/fonts/NeueMontreal-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/fonts/NeueMontreal-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/fonts/NeueMontreal-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/fonts/NeueMontreal-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue Montreal';
+  src: url('/fonts/NeueMontreal-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
   font-display: swap;
 }
 
@@ -16,6 +87,7 @@
   --secondary-text: #737373;
   --column-bg: #FFFFFF;
   --stroke: #D5D5D5;
+  --dots: #000000;
 }
 
 .dark {
@@ -26,10 +98,12 @@
   --secondary-text: #949494;
   --column-bg: #121212;
   --stroke: #323232;
+  --dots: #FFFFFF;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-dots: var(--dots);
   --color-card-bg: var(--card-bg);
   --color-secondary-card-bg: var(--secondary-card-bg);
   --color-secondary-text: var(--secondary-text);
@@ -52,6 +126,19 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Neue Montreal', Arial, Helvetica, sans-serif;
+  /* Hide default cursor - custom cursor will be used */
+  cursor: none;
+}
+
+/* Hide cursor on interactive elements too */
+a,
+button,
+[role="button"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.cursor-pointer {
+  cursor: none;
 }
 
 /* Slower clump oscillation animation for dots */
