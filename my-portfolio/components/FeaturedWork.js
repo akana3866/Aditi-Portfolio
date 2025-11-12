@@ -1,5 +1,7 @@
+import Link from 'next/link'
+
 // Project Card Component
-function ProjectCard({ header, title, impact, impactPoints, imageUrl, buttonText = "View project overview" }) {
+function ProjectCard({ header, title, impact, impactPoints, imageUrl, buttonText = "View project overview", link }) {
     return (
       <div className="bg-card-bg w-full rounded-2xl shadow-sm flex flex-col md:flex-row overflow-hidden border border-stroke">
         {/* Left Section - Image */}
@@ -49,12 +51,24 @@ function ProjectCard({ header, title, impact, impactPoints, imageUrl, buttonText
           </div>
           
           {/* Button */}
-          <button className="w-fit px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2 font-medium text-medium">
-            <span>{buttonText}</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+          {link ? (
+            <Link 
+              href={link}
+              className="w-fit px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2 font-medium text-sm hover:opacity-60"
+            >
+              <span>{buttonText}</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          ) : (
+            <button className="w-fit px-5 py-2.5 rounded-lg transition-colors flex items-center gap-2 font-medium text-sm">
+              <span>{buttonText}</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          )}
         </div>
       </div>
     );
@@ -72,7 +86,8 @@ function ProjectCard({ header, title, impact, impactPoints, imageUrl, buttonText
           "More users staying on the site longer"
         ],
         imageUrl: "/images/Phone.png",
-        buttonText: "Read case study"
+        buttonText: "Read case study",
+        link: "/henry"
       },
       {
         header: "Roam",
@@ -84,7 +99,8 @@ function ProjectCard({ header, title, impact, impactPoints, imageUrl, buttonText
           "Increased activation rate across 3 key markets"
         ],
         imageUrl: "/images/Roam.png",
-        buttonText: "Read case study"
+        buttonText: "See Live Website",
+        link: "https://roam.college/"
       },
       {
         header: "Spotify",
