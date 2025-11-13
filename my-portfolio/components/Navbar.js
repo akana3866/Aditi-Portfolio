@@ -11,24 +11,24 @@ export default function Navbar() {
           </Link>
         </div>
         <nav className="pl-8 pr-5 pb-7 flex flex-col gap-2.5">
-          <a href="/#work" className="text-base font-medium hover:opacity-60 transition-opacity">
+          <Link href="/#work" className="text-base font-medium hover:opacity-60 transition-opacity">
             Work
-          </a>
-          <a href="/#experience" className="text-base font-medium hover:opacity-60 transition-opacity">
+          </Link>
+          <Link href="/#experience" className="text-base font-medium hover:opacity-60 transition-opacity">
             Experience
-          </a>
-          <a href="/#playground" className="text-base font-medium hover:opacity-60 transition-opacity">
+          </Link>
+          <Link href="/#playground" className="text-base font-medium hover:opacity-60 transition-opacity">
             Playground
-          </a>
-          <a href="/#featured" className="text-base font-medium hover:opacity-60 transition-opacity">
+          </Link>
+          <Link href="/#featured" className="text-base font-medium hover:opacity-60 transition-opacity">
             Featured
-          </a>
-          <a href="/#blog" className="text-base font-medium hover:opacity-60 transition-opacity">
+          </Link>
+          <Link href="/#blog" className="text-base font-medium hover:opacity-60 transition-opacity">
             Blog
-          </a>
-          <a href="/#about-me" className="text-base font-medium hover:opacity-60 transition-opacity">
+          </Link>
+          <Link href="/#about-me" className="text-base font-medium hover:opacity-60 transition-opacity">
             About
-          </a>
+          </Link>
         </nav>
         <div className="pl-8 pr-5 flex flex-col gap-4">
           <div className="flex items-center">
