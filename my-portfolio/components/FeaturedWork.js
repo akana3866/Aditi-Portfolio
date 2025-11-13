@@ -39,8 +39,8 @@ function ProjectCard({ header, title, impact, impactPoints, imageUrl, buttonText
                   {impactPoints && impactPoints.length > 0 && (
                     <ul className="flex flex-col gap-2">
                       {impactPoints.map((point, i) => (
-                        <li key={i} className="text-sm flex items-start gap-2">
-                          <span className="mt-1">•</span>
+                        <li key={i} className="text-sm flex items-center gap-2">
+                          <span>•</span>
                           <span>{point}</span>
                         </li>
                       ))}

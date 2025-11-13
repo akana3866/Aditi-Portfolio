@@ -61,11 +61,14 @@ export default function Recognition() {
 
   return (
     <div id="featured" className="px-4 sm:px-8 md:px-12 py-6 sm:py-8 md:py-9 flex flex-col gap-8 sm:gap-10 md:gap-12">
-        <div className="flex items-center gap-1.5">
-          <h2 className="text-2xl sm:text-3xl font-medium">
+        <div className="flex items-center gap-0.5 sm:gap-1.5 flex-wrap">
+          <h2 className="text-2xl sm:text-3xl font-medium whitespace-nowrap sm:hidden">
+            Featured Work
+          </h2>
+          <h2 className="text-2xl sm:text-3xl font-medium whitespace-nowrap hidden sm:block">
             Featured Work & Industry Recognition
           </h2>
-          <div className="transition-background-color duration-500">
+          <div className="transition-background-color duration-500 flex-shrink-0">
               <svg 
                 width="33" 
                 height="32" 
