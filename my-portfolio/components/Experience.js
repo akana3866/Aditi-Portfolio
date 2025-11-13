@@ -12,10 +12,10 @@ function ExperienceItem({ logoUrl,company, role, duration, description}) {
             <span className="text-sm font-medium">{company}</span>
             <span className="text-xs text-secondary-text">{duration}</span>
           </div>
-          <h3 className="text-xl font-medium">{role}</h3>
+          <h3 className="text-lg sm:text-xl font-medium">{role}</h3>
         </div>
       </div>
-      <p className="text-lg text-secondary-text font-regular">{description}</p>
+      <p className="text-base sm:text-lg text-secondary-text font-regular">{description}</p>
     </div>
   );
 }
@@ -53,10 +53,10 @@ export default function Experience() {
   ];
 
   return (
-    <div id="experience" className="px-12 py-9 flex flex-col gap-9">
-      <div className="flex flex-col gap-4">
+    <div id="experience" className="px-4 sm:px-8 md:px-12 py-6 sm:py-8 md:py-9 flex flex-col gap-6 sm:gap-9">
+      <div className="flex flex-col gap-3 sm:gap-4">
         <div className="flex items-center gap-1.5">
-          <h2 className="text-3xl font-medium">My Work Experience</h2>
+          <h2 className="text-2xl sm:text-3xl font-medium">My Work Experience</h2>
           <div className="transition-background-color duration-500">
               <svg 
                 width="33" 
@@ -73,11 +73,11 @@ export default function Experience() {
               </svg>
             </div>
         </div>
-        <p className="text-lg text-secondary-text">
+        <p className="text-base sm:text-lg text-secondary-text">
           I&apos;m a product designer & manager with technical fluency, startup speed, and a passion for building consumer products
         </p>
       </div>
-      <div className="flex flex-col gap-16">
+      <div className="flex flex-col gap-8 sm:gap-12 md:gap-16">
         {experiences.map((exp, i) => (
           <ExperienceItem key={i} {...exp} />
         ))}

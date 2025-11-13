@@ -51,11 +51,11 @@ export default function About() {
     <div 
       id="about-me" 
       ref={sectionRef}
-      className="px-12 py-9 flex flex-col gap-9"
+      className="px-4 sm:px-8 md:px-12 py-6 sm:py-8 md:py-9 flex flex-col gap-6 sm:gap-9"
     >
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3 sm:gap-4">
         <div className="flex items-center gap-1.5">
-          <h2 className="text-3xl font-medium">About Me</h2>
+          <h2 className="text-2xl sm:text-3xl font-medium">About Me</h2>
           <div className="transition-background-color duration-500">
             <svg 
               width="33" 
@@ -72,12 +72,12 @@ export default function About() {
             </svg>
           </div>
         </div>
-        <p className="text-lg text-secondary-text">
+        <p className="text-base sm:text-lg text-secondary-text">
           A product designer and manager specializing in e-commerce and AI experiences, with a passion for fashion, consumer social apps, music, and health.
         </p>
       </div>
 
-      <div className="flex flex-col gap-12">
+      <div className="flex flex-col gap-8 sm:gap-10 md:gap-12">
         {/* Main Content with Avatar */}
         <div 
           className={`flex flex-col md:flex-row gap-8 items-start transition-all duration-1000 ${
@@ -88,7 +88,7 @@ export default function About() {
         >
           {/* Avatar */}
           <div className="flex-shrink-0 w-full md:w-auto">
-            <div className="w-48 h-48 md:w-64 md:h-64 mx-auto md:mx-0 rounded-full overflow-hidden">
+            <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-64 md:h-64 mx-auto md:mx-0 rounded-full overflow-hidden">
               <img 
                 src="/images/avatar-aditi.png" 
                 alt="Aditi" 
@@ -98,7 +98,7 @@ export default function About() {
           </div>
 
           {/* Text Content */}
-          <div className="flex-1 flex flex-col gap-4 text-lg leading-relaxed">
+          <div className="flex-1 flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
             <p>
               With a background in design, engineering, and product management, I bring a unique perspective to every project. I love solving complex problems with simple, elegant solutions that drive measurable impact, especially when they change how people interact with the world.
             </p>
@@ -109,8 +109,8 @@ export default function About() {
         </div>
 
         {/* Skills & Tools Section */}
-        <div className="flex flex-col gap-6">
-          <h3 className="text-2xl font-medium">Skills & Tools</h3>
+        <div className="flex flex-col gap-4 sm:gap-6">
+          <h3 className="text-xl sm:text-2xl font-medium">Skills & Tools</h3>
           <div className="flex flex-wrap gap-3">
             {skillsAndTools.map((item, index) => (
               <div

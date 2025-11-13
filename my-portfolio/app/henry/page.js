@@ -5,10 +5,10 @@ import Navbar from 'components/Navbar'
 
 export default function HenryCaseStudy() {
   return (
-    <div className="w-full p-5 flex justify-center items-start">
+    <div className="w-full p-3 sm:p-5 flex flex-col lg:flex-row justify-center items-start gap-0 lg:gap-0">
       <Navbar />
-      <div className="flex-1 rounded-[20px] bg-column-bg border border-stroke transition-all duration-500 font-montreal">
-        <div className="px-12 py-16 flex flex-col gap-16 max-w-5xl mx-auto">
+      <div className="w-full lg:flex-1 rounded-[20px] bg-column-bg border border-stroke transition-all duration-500 font-montreal mt-24 sm:mt-28 lg:mt-0">
+        <div className="px-4 sm:px-8 md:px-12 py-8 sm:py-12 md:py-16 flex flex-col gap-8 sm:gap-12 md:gap-16 max-w-5xl mx-auto">
           {/* Header */}
           <div className="flex flex-col gap-8">
             <div className="flex items-center gap-4 text-sm text-secondary-text">
@@ -17,16 +17,16 @@ export default function HenryCaseStudy() {
               <p>henry</p>
             </div>
             
-            <div className="flex flex-col gap-6">
-              <h1 className="text-5xl md:text-6xl font-medium leading-tight">
+            <div className="flex flex-col gap-4 sm:gap-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">
                 Henry AI Shopping Flow
               </h1>
               <div className="rounded-[20px] overflow-hidden">
             <img src="/images/henry-header.png" alt="Henry" width="100%" height="100%" />
             </div>
             {/* Project Details and Buttons */}
-            <div className="flex flex-row items-center justify-between gap-6 flex-wrap">
-              <div className="flex flex-wrap gap-6 text-sm">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
+              <div className="flex flex-wrap gap-4 sm:gap-6 text-sm">
                 <div className="flex flex-col gap-1">
                   <span className="text-secondary-text">Date</span>
                   <span className="font-medium">February 2025</span>
@@ -46,7 +46,7 @@ export default function HenryCaseStudy() {
               </div>
 
               {/* Buttons */}
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 w-full sm:w-auto">
                 <a href="https://www.loom.com/share/71a6de0ba6074da8be46a03675395023?sid=ceff2271-6c23-4f3a-a535-d0c3950b44cd" target="_blank" rel="noopener noreferrer" className="w-fit px-5 py-2.5 rounded-lg border border-stroke transition-colors flex items-center gap-2 font-medium text-sm hover:opacity-60">
                   <span>For lazy readers</span>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,7 +62,7 @@ export default function HenryCaseStudy() {
               </div>
             </div>
 
-              <p className="text-xl text-secondary-text leading-relaxed">
+              <p className="text-lg sm:text-xl text-secondary-text leading-relaxed">
               Are users able to discover products on Henry? When users landed on the platform, most didn&apos;t stay long. With high cart abandonment and low session times, something was off. This case study explores how a redesigned discovery experience focused on the homepage and AI search helped turn passive browsing into confident buying.
               </p>
             </div>
@@ -70,8 +70,8 @@ export default function HenryCaseStudy() {
 
           {/* Problem Discovery Section */}
           <section className="flex flex-col gap-6">
-            <h2 className="text-3xl font-medium">Problem Discovery</h2>
-            <div className="flex flex-col gap-4 text-lg leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl font-medium">Problem Discovery</h2>
+            <div className="flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
               <p>
                 What happens when a platform offers great rewards, but users struggle to find what they&apos;re looking for?
               </p>
@@ -88,8 +88,8 @@ export default function HenryCaseStudy() {
 
           {/* Initial Mobile Metrics */}
           <section className="flex flex-col gap-6">
-            <h3 className="text-2xl font-medium">Initial Mobile Metrics</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <h3 className="text-xl sm:text-2xl font-medium">Initial Mobile Metrics</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
               <div className="p-6 bg-secondary-card-bg rounded-2xl flex flex-col gap-2">
                 <div className="text-4xl font-bold">&lt;2</div>
                 <p className="text-sm text-secondary-text">minutes were spent on the app on average</p>
@@ -103,7 +103,7 @@ export default function HenryCaseStudy() {
                 <p className="text-sm text-secondary-text">of carts that are abandoned</p>
               </div>
             </div>
-            <div className="flex flex-col gap-4 text-lg leading-relaxed">
+            <div className="flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
             <p>
               This shows Henry was experiencing low user engagement, impacting the rate of interactions and purchases within the app. Why were users not engaging with the app that much?
               </p>
@@ -144,8 +144,8 @@ export default function HenryCaseStudy() {
             </div>
           {/* Testing Section*/}
           <section className="flex flex-col gap-6">
-            <h2 className="text-3xl font-medium">Finding and testing a solution</h2>
-            <div className="flex flex-col gap-4 text-lg leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl font-medium">Finding and testing a solution</h2>
+            <div className="flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
               <p>
               To tackle this, I led a brainstorming session with engineers and founders using Crazy Eights and FigJam, coming up with different solutions to tackle the user and business problem. From there, I prototyped and tested multiple ideas, with a focus on simplifying the user journey and reducing the time it takes to find and explore products.</p>
               <img src="/images/testing-crazy8.png" alt="Crazy Eights" className="w-full h-auto rounded-lg" />
@@ -212,8 +212,8 @@ export default function HenryCaseStudy() {
 
             {/* Results Section */}
           <section className="flex flex-col gap-6" id="design">
-            <h2 className="text-3xl font-medium">The result and impact</h2>
-            <div className="flex flex-col gap-4 text-lg leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl font-medium">The result and impact</h2>
+            <div className="flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
               <p>
               Another challenge was optimizing the AI search interface. We tested horizontal vs. vertical product layouts.</p>
               <p>
@@ -232,7 +232,7 @@ export default function HenryCaseStudy() {
             </div>
             <img src="/images/solution-ai.png" alt="AI Solution" className="w-full h-auto rounded-lg" />
             </div>
-            <div className="flex flex-col gap-4 text-lg leading-relaxed">
+            <div className="flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
             <p>
             100% of tested users felt more informed when making purchase decisions. These results came from testing with both original and new users. The new experience allowed users to interact more fluidly with products while being supported by AI, reducing the effort needed to browse, compare, and commit.</p>
               <p>

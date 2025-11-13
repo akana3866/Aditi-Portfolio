@@ -5,7 +5,7 @@ function ProjectCard({ header, title, impact, impactPoints, imageUrl, buttonText
     return (
       <div className="bg-card-bg w-full rounded-2xl shadow-sm flex flex-col md:flex-row overflow-hidden border border-stroke">
         {/* Left Section - Image */}
-        <div className="w-full md:w-1/2 flex items-center justify-center p-6">
+        <div className="w-full md:w-1/2 flex items-center justify-center p-4 sm:p-6">
           {imageUrl ? (
             <div className="w-full aspect-[4/3] rounded-lg overflow-hidden">
               <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
@@ -16,7 +16,7 @@ function ProjectCard({ header, title, impact, impactPoints, imageUrl, buttonText
         </div>
         
         {/* Right Section - Text Content */}
-        <div className="w-full md:w-1/2 px-6 md:px-10 py-6 md:py-8 flex flex-col justify-between gap-6">
+        <div className="w-full md:w-1/2 px-4 sm:px-6 md:px-10 py-4 sm:py-6 md:py-8 flex flex-col justify-between gap-4 sm:gap-6">
           <div className="flex flex-col gap-4">
             {/* Header */}
             {header && (
@@ -26,7 +26,7 @@ function ProjectCard({ header, title, impact, impactPoints, imageUrl, buttonText
             )}
             
             {/* Title */}
-            <h3 className="text-2xl font-medium leading-tight">
+            <h3 className="text-xl sm:text-2xl font-medium leading-tight">
               {title}
             </h3>
             
@@ -118,10 +118,10 @@ function ProjectCard({ header, title, impact, impactPoints, imageUrl, buttonText
     ];
   
     return (
-      <div id="work" className="px-12 py-9 flex flex-col gap-8">
-        <div className="flex flex-col gap-4">
+      <div id="work" className="px-4 sm:px-8 md:px-12 py-6 sm:py-8 md:py-9 flex flex-col gap-6 sm:gap-8">
+        <div className="flex flex-col gap-3 sm:gap-4">
           <div className="flex items-center gap-1.5">
-            <h2 className="text-3xl font-medium">Featured Work</h2>
+            <h2 className="text-2xl sm:text-3xl font-medium">Featured Work</h2>
             <div className="transition-background-color duration-500">
               <svg 
                 width="33" 
@@ -138,11 +138,11 @@ function ProjectCard({ header, title, impact, impactPoints, imageUrl, buttonText
               </svg>
             </div>
           </div>
-          <p className="text-lg text-secondary-text">
+          <p className="text-base sm:text-lg text-secondary-text">
             Design Case studies and live work that I have designed.
           </p>
         </div>
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-6 sm:gap-8">
           {projects.map((project, i) => (
             <ProjectCard key={i} {...project} />
           ))}

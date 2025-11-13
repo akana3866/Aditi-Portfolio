@@ -1,17 +1,17 @@
 // Recognition Item Component
 function RecognitionItem({ publication, title, year, description, icon, url }) {
   const content = (
-    <div className="w-full min-w-80 p-6 bg-secondary-card-bg rounded-2xl flex flex-col gap-4 hover:opacity-80 transition-opacity">
+    <div className="w-full p-4 sm:p-6 bg-secondary-card-bg rounded-2xl flex flex-col gap-3 sm:gap-4 hover:opacity-80 transition-opacity">
       <div className="flex items-center gap-3">
         <div className="flex-1 flex flex-col gap-1">
           <div className="flex items-center gap-4">
             <span className="text-xs font-medium">{publication}</span>
             <span className="text-xs text-secondary-text">{year}</span>
           </div>
-          <h3 className="text-xl font-medium">{title}</h3>
+          <h3 className="text-lg sm:text-xl font-medium">{title}</h3>
         </div>
       </div>
-      <p className="text-lg text-secondary-text">{description}</p>
+      <p className="text-base sm:text-lg text-secondary-text">{description}</p>
     </div>
   );
 
@@ -60,9 +60,9 @@ export default function Recognition() {
   ];
 
   return (
-    <div id="featured" className="px-12 py-9 flex flex-col gap-12">
+    <div id="featured" className="px-4 sm:px-8 md:px-12 py-6 sm:py-8 md:py-9 flex flex-col gap-8 sm:gap-10 md:gap-12">
         <div className="flex items-center gap-1.5">
-          <h2 className="text-3xl font-medium">
+          <h2 className="text-2xl sm:text-3xl font-medium">
             Featured Work & Industry Recognition
           </h2>
           <div className="transition-background-color duration-500">

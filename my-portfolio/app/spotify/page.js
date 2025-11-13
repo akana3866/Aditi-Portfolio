@@ -5,10 +5,10 @@ import Navbar from 'components/Navbar'
 
 export default function SpotifyCaseStudy() {
   return (
-    <div className="w-full p-5 flex justify-center items-start">
+    <div className="w-full p-3 sm:p-5 flex flex-col lg:flex-row justify-center items-start gap-0 lg:gap-0">
       <Navbar />
-      <div className="flex-1 rounded-[20px] bg-column-bg border border-stroke transition-all duration-500 font-montreal">
-        <div className="px-12 py-16 flex flex-col gap-16 max-w-5xl mx-auto">
+      <div className="w-full lg:flex-1 rounded-[20px] bg-column-bg border border-stroke transition-all duration-500 font-montreal mt-24 sm:mt-28 lg:mt-0">
+        <div className="px-4 sm:px-8 md:px-12 py-8 sm:py-12 md:py-16 flex flex-col gap-8 sm:gap-12 md:gap-16 max-w-5xl mx-auto">
           {/* Header */}
           <div className="flex flex-col gap-8">
             <div className="flex items-center gap-4 text-sm text-secondary-text">
@@ -17,16 +17,16 @@ export default function SpotifyCaseStudy() {
               <p>spotify</p>
             </div>
             
-            <div className="flex flex-col gap-6">
-              <h1 className="text-5xl md:text-6xl font-medium leading-tight">
+            <div className="flex flex-col gap-4 sm:gap-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">
                 Spotify Feature Discovery
               </h1>
               <div className="rounded-[20px] overflow-hidden">
             <img src="/images/spotify-header.png" alt="Spotify" width="100%" height="100%" />
             </div>
             {/* Project Details and Buttons */}
-            <div className="flex flex-row items-center justify-between gap-6 flex-wrap">
-              <div className="flex flex-wrap gap-6 text-sm">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
+              <div className="flex flex-wrap gap-4 sm:gap-6 text-sm">
                 <div className="flex flex-col gap-1">
                   <span className="text-secondary-text">Date</span>
                   <span className="font-medium">March 2024</span>
@@ -42,7 +42,7 @@ export default function SpotifyCaseStudy() {
               </div>
 
               {/* Buttons */}
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 w-full sm:w-auto">
                 <a href="https://www.figma.com/proto/gT8D9sLmBexJ7dpWmIEygA/Spotify-User-Research?page-id=0%3A1&node-id=4-13053&p=f&viewport=396%2C109%2C0.11&t=NxVpL9RHHrwVtJuT-1&scaling=contain&content-scaling=fixed" target="_blank" rel="noopener noreferrer" className="w-fit px-5 py-2.5 rounded-lg border border-stroke transition-colors flex items-center gap-2 font-medium text-sm hover:opacity-60">
                   <span>For lazy readers</span>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,18 +58,18 @@ export default function SpotifyCaseStudy() {
               </div>
             </div>
 
-              <p className="text-xl text-secondary-text leading-relaxed">
+              <p className="text-lg sm:text-xl text-secondary-text leading-relaxed">
               Are Spotify&apos;s best features going unnoticed? Many users stick to familiar playlists, missing Spotify&apos;s unique features hidden in plain sight. This case study explores how a simple design tweak could drive discovery and boost engagement.
               </p>
             </div>
           </div>
 
           {/* Problem Discovery Section */}
-          <section className="flex flex-col gap-6">
-            <h2 className="text-3xl font-medium">Problem Discovery</h2>
-            <div className="flex flex-col gap-4 text-lg leading-relaxed">
+          <section className="flex flex-col gap-4 sm:gap-6">
+            <h2 className="text-2xl sm:text-3xl font-medium">Problem Discovery</h2>
+            <div className="flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
               <p>
-              Ever felt like you’ve been using Spotify for years, only to stumble upon a feature that&pos;s been there all along? Spotify has so much to offer, but are users actually seeing it?
+              Ever felt like you&apos;ve been using Spotify for years, only to stumble upon a feature that&apos;s been there all along? Spotify has so much to offer, but are users actually seeing it?
               </p>
               <p>
                 Spotify&apos;s personalized features drive loyalty, but not all of them are equally visible. While popular tools like Discover Weekly are front and center, others like Blend and AI-generated playlists stay hidden in the background.
@@ -82,9 +82,9 @@ export default function SpotifyCaseStudy() {
           </section>
 
           {/* Preliminary User Empathy Research */}
-          <section className="flex flex-col gap-6">
-            <h3 className="text-2xl font-medium">Preliminary User Empathy Research</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <section className="flex flex-col gap-4 sm:gap-6">
+            <h3 className="text-xl sm:text-2xl font-medium">Preliminary User Empathy Research</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
               <div className="p-6 bg-secondary-card-bg rounded-2xl flex flex-col gap-2">
                 <div className="text-4xl font-bold">60%</div>
                 <p className="text-sm text-secondary-text">of users choose Spotify over others for its unique features</p>
@@ -114,15 +114,15 @@ export default function SpotifyCaseStudy() {
               
               <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-3">
-                  <h4 className="text-xl font-normal">User Problem</h4>
-                  <p className="text-lg font-light leading-relaxed">
+                  <h4 className="text-lg sm:text-xl font-normal">User Problem</h4>
+                  <p className="text-base sm:text-lg font-light leading-relaxed">
                     Spotify users struggle to discover and access advanced features like Blend, Daylist, and Smart Shuffle due to low feature awareness and an unintuitive interface. This leads to a limited user experience and missed opportunities for personalization and exploration.
                   </p>
                 </div>
                 
                 <div className="flex flex-col gap-3">
-                  <h4 className="text-xl font-normal">Business Problem</h4>
-                  <p className="text-lg font-light leading-relaxed">
+                  <h4 className="text-lg sm:text-xl font-normal">Business Problem</h4>
+                  <p className="text-base sm:text-lg font-light leading-relaxed">
                     Advanced features are key differentiators that drive engagement, loyalty, and potential conversions to Premium. When these features go unnoticed, Spotify risks losing its competitive edge, reducing user retention, and missing out on growth opportunities across its user base.
                   </p>
                 </div>
@@ -131,8 +131,8 @@ export default function SpotifyCaseStudy() {
 
           {/* User Research Section */}
           <section className="flex flex-col gap-6">
-            <h2 className="text-3xl font-medium">What the music lovers have to say</h2>
-            <div className="flex flex-col gap-4 text-lg leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl font-medium">What the music lovers have to say</h2>
+            <div className="flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
               <p>
                 To validate my hypothesis, I began with user research by sending out a Qualtrics survey that combined demographic, quantitative, and qualitative questions. I wanted to understand who Spotify&apos;s users were, how many features they actually used, and where the gaps in awareness might be.
               </p>
@@ -144,10 +144,10 @@ export default function SpotifyCaseStudy() {
 
           {/* Survey Results Section */}
           <section className="flex flex-col gap-6">
-            <h3 className="text-2xl font-medium">Here are the results:</h3>
-            <div className="flex flex-row items-center justify-between gap-6">
-              <img src="/images/popular-features.webp" alt="Survey Results" className="w-1/2 h-96 object-contain rounded-xl" />
-              <img src="/images/known-features.webp" alt="Survey Results" className="w-1/2 h-96 object-contain rounded-xl" />
+            <h3 className="text-xl sm:text-2xl font-medium">Here are the results:</h3>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+              <img src="/images/popular-features.webp" alt="Survey Results" className="w-full sm:w-1/2 h-auto sm:h-96 object-contain rounded-xl" />
+              <img src="/images/known-features.webp" alt="Survey Results" className="w-full sm:w-1/2 h-auto sm:h-96 object-contain rounded-xl" />
           </div>
             {/* User Research Card */}
           <div className="bg-foreground text-background rounded-2xl p-8 md:p-12 flex flex-col gap-8 relative">
@@ -158,19 +158,19 @@ export default function SpotifyCaseStudy() {
               
               <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-3">
-                  <p className="text-lg font-light leading-relaxed">
+                  <p className="text-base sm:text-lg font-light leading-relaxed">
                   87 % of people that discovered features from in-app pop-ups, knew more than 60% of Spotify’s features 
                   </p>
                 </div>
                 
                 <div className="flex flex-col gap-3">
-                  <p className="text-lg font-light leading-relaxed">
+                  <p className="text-base sm:text-lg font-light leading-relaxed">
                   Only 33% of Spotify’s features are used, with the primary demographic being Gen-Z Less than half of Spotify’s features are known and even fewer are used across their key age demographic 
                   </p>
                 </div>
 
                 <div className="flex flex-col gap-3">
-                  <p className="text-lg font-light leading-relaxed">
+                  <p className="text-base sm:text-lg font-light leading-relaxed">
                   In-app pop-ups are the most effective at feature discovery, while the most popular are word of mouth, accidental discovery, and social media platforms
 
                   </p>
@@ -187,8 +187,8 @@ export default function SpotifyCaseStudy() {
 
           {/* Finding and Testing Solution Section */}
           <section className="flex flex-col gap-6">
-            <h2 className="text-3xl font-medium">Finding and testing a solution</h2>
-            <div className="flex flex-col gap-4 text-lg leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl font-medium">Finding and testing a solution</h2>
+            <div className="flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
               <p>
                 After analyzing the data, three possible solutions came to mind in which I mocked up and tested:
               </p>
@@ -197,23 +197,23 @@ export default function SpotifyCaseStudy() {
 
           {/* Features on Homepage Section */}
           <section className="flex flex-col gap-6">
-            <div className="flex-1 flex flex-col gap-4 text-lg leading-relaxed">
-              <h3 className="text-2xl font-medium">Features on Homepage</h3>
-              <div className="flex flex-row items-center justify-between gap-8">
+            <div className="flex-1 flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
+              <h3 className="text-xl sm:text-2xl font-medium">Features on Homepage</h3>
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-8">
               <p>
                 Why not place advanced features front and center? While this boosts visibility, it risks visual overload. The Baymard Institute notes that cluttered homepages confuse users, and Hick&apos;s Law shows that more choices lead to more friction. Greater visibility could come at the cost of usability.
               </p>
-              <img src="/images/features-homepage.webp" alt="Homepage Features" className="w-1/2 h-96 object-contain rounded-xl" />
+              <img src="/images/features-homepage.webp" alt="Homepage Features" className="w-full sm:w-1/2 h-auto sm:h-96 object-contain rounded-xl" />
               </div>
             </div>
           </section>
 
           {/* In-App Popups Section */}
           <section className="flex flex-col gap-6">
-            <div className="flex-1 flex flex-col gap-4 text-lg leading-relaxed">
-              <h3 className="text-2xl font-medium">In-App Popups</h3>
-              <div className="flex flex-row items-center justify-between gap-8">
-              <img src="/images/app-popups.webp" alt="In-App Popups" className="w-1/2 h-96 object-contain rounded-xl" />
+            <div className="flex-1 flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
+              <h3 className="text-xl sm:text-2xl font-medium">In-App Popups</h3>
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-8">
+              <img src="/images/app-popups.webp" alt="In-App Popups" className="w-full sm:w-1/2 h-auto sm:h-96 object-contain rounded-xl" />
               <p>
                 Spotify uses pop-ups sparingly for things like Wrapped and new releases, and it works because they&apos;re minimal and unobtrusive. But using them more often could disrupt that experience. Nielsen Norman Group ranks pop-ups among the most disliked patterns, making them a poor fit for Spotify&apos;s smooth, immersive design.
               </p>
@@ -223,13 +223,13 @@ export default function SpotifyCaseStudy() {
 
           {/* Weekly Feature Highlight Section */}
           <section className="flex flex-col gap-6">
-            <div className="flex-1 flex flex-col gap-4 text-lg leading-relaxed">
-              <h3 className="text-2xl font-medium">Weekly Feature Highlight</h3>
-              <div className="flex flex-row items-center justify-between gap-8">
+            <div className="flex-1 flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
+              <h3 className="text-xl sm:text-2xl font-medium">Weekly Feature Highlight</h3>
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-8">
               <p>
                 This idea involved placing a small, scrollable banner just above the &quot;Made For You&quot; section on the home screen. It uses visual hierarchy and placement rooted in UX principles like the F-pattern and Gestalt. It&apos;s subtle, non-invasive, and blends into the listening experience—without getting in the way.
               </p>
-              <img src="/images/weekly-highlights.webp" alt="Weekly Feature Highlight" className="w-1/2 h-96 object-contain rounded-xl" />
+              <img src="/images/weekly-highlights.webp" alt="Weekly Feature Highlight" className="w-full sm:w-1/2 h-auto sm:h-96 object-contain rounded-xl" />
               </div>
             </div>
           </section>
@@ -266,7 +266,7 @@ export default function SpotifyCaseStudy() {
               
               <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-3">
-                  <p className="text-lg font-light leading-relaxed">
+                  <p className="text-base sm:text-lg font-light leading-relaxed">
                     The weekly feature highlight clearly stood out as the most effective and least disruptive solution, blending awareness with a seamless user experience.
                   </p>
                 </div>
@@ -275,8 +275,8 @@ export default function SpotifyCaseStudy() {
 
             {/* Results Section */}
           <section className="flex flex-col gap-6" id="design">
-            <h2 className="text-3xl font-medium">The result and impact</h2>
-            <div className="flex flex-col gap-4 text-lg leading-relaxed">
+            <h2 className="text-2xl sm:text-3xl font-medium">The result and impact</h2>
+            <div className="flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
               <p>
                 After rounds of research, prototyping, and testing, the solution became clear. I finalized the idea of In-App Weekly Feature Highlights, a simple and non-intrusive way to surface Spotify&apos;s most overlooked tools. It aligned perfectly with user behavior, design principles, and business goals.
               </p>
@@ -292,7 +292,7 @@ export default function SpotifyCaseStudy() {
           <section className="flex flex-col gap-6">
             
             <div className="flex flex-col gap-4 text-lg leading-relaxed">
-              <p className="text-xl font-medium">Why Weekly Feature Highlight works:</p>
+              <p className="text-lg sm:text-xl font-medium">Why Weekly Feature Highlight works:</p>
               <ul className="list-disc list-inside space-y-2">
                 <li>Grounded in proven design psychology: improve visibility with Gestalt and the F-pattern.</li>
                 <li>Boosts Engagement: Weekly rotation keeps things fresh and encourages users to explore more features.</li>
@@ -313,7 +313,7 @@ export default function SpotifyCaseStudy() {
               
               <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-3">
-                  <p className="text-lg font-light leading-relaxed">
+                  <p className="text-base sm:text-lg font-light leading-relaxed">
                     The weekly feature highlight increased awareness, boosted engagement, and proved to be the most intuitive and non-disruptive solution through user testing.
                   </p>
                 </div>

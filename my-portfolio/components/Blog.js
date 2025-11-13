@@ -1,10 +1,10 @@
 // Blog Post Card Component
 function BlogPostCard({ title, subtitle, url }) {
     return (
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-4 sm:gap-6">
         <div className="flex flex-col gap-2">
-          <h3 className="text-2xl font-medium">{title}</h3>
-          <p className="text-xl">{subtitle}</p>
+          <h3 className="text-xl sm:text-2xl font-medium">{title}</h3>
+          <p className="text-lg sm:text-xl">{subtitle}</p>
         </div>
         <a 
           href={url} 
@@ -33,10 +33,10 @@ function BlogPostCard({ title, subtitle, url }) {
     ];
   
     return (
-      <div id="blog" className="px-12 py-9 flex flex-col gap-8">
-        <div className="flex flex-col gap-4">
+      <div id="blog" className="px-4 sm:px-8 md:px-12 py-6 sm:py-8 md:py-9 flex flex-col gap-6 sm:gap-8">
+        <div className="flex flex-col gap-3 sm:gap-4">
           <div className="flex items-center gap-1.5">
-            <h2 className="text-3xl font-medium">Blog</h2>
+            <h2 className="text-2xl sm:text-3xl font-medium">Blog</h2>
             <div className="transition-background-color duration-500">
               <svg 
                 width="33" 
@@ -53,11 +53,11 @@ function BlogPostCard({ title, subtitle, url }) {
               </svg>
             </div>
           </div>
-          <p className="text-lg">
+          <p className="text-base sm:text-lg">
             Quick notes is an educational blog/space to rant about random musings :)
           </p>
         </div>
-        <div className="flex gap-8">
+        <div className="flex flex-col sm:flex-row gap-6 sm:gap-8">
             <BlogPostCard {...blogPosts[0]} />
             <BlogPostCard {...blogPosts[1]} />
         </div>

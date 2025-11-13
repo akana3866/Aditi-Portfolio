@@ -1,9 +1,9 @@
 export default function Footer() {
     return (
-      <div className="pt-32 pb-8 flex flex-col gap-8">
-        <div className="px-10 flex justify-between items-end">
-        <div className="text-6xl font-mtry leading-10">AK</div>
-          <div className="flex gap-12">
+      <div className="pt-16 sm:pt-24 md:pt-32 pb-6 sm:pb-8 flex flex-col gap-6 sm:gap-8">
+        <div className="px-4 sm:px-8 md:px-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 sm:gap-0">
+        <div className="text-4xl sm:text-5xl md:text-6xl font-mtry leading-10">AK</div>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 md:gap-12">
             <a 
               href="https://dribbble.com/aditi-kanaujia" 
               target="_blank" 
@@ -33,8 +33,8 @@ export default function Footer() {
             © Aditi Kanaujia 2025
           </div>
         </div>
-        <div className="px-10 pt-10 pb-5 border-t border-stroke">
-          <div className="text-foreground text-[10px] leading-relaxed">
+        <div className="px-4 sm:px-8 md:px-10 pt-6 sm:pt-8 md:pt-10 pb-4 sm:pb-5 border-t border-stroke">
+          <div className="text-foreground text-[10px] sm:text-xs leading-relaxed">
             I developed and designed this website with {'<3'} using Figma, Vercel, and Cursor.
             <br />
             Song used in the background: <a href="https://www.youtube.com/watch?v=YEEgTdnnzAo" className="underline">You Hate Jazz? ft. Jaleel Shaw</a> , {' '}

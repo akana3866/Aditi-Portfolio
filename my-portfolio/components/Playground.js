@@ -18,11 +18,11 @@ export default function Playground() {
   ];
 
   return (
-    <div id="playground" className="px-12 py-9 flex flex-col gap-12">
+    <div id="playground" className="px-4 sm:px-8 md:px-12 py-6 sm:py-8 md:py-9 flex flex-col gap-8 sm:gap-10 md:gap-12">
       {/* Section Header */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3 sm:gap-4">
           <div className="flex items-center gap-1.5">
-            <h2 className="text-3xl font-medium">My Playground</h2>
+            <h2 className="text-2xl sm:text-3xl font-medium">My Playground</h2>
             <div className="transition-background-color duration-500">
               <svg 
                 width="33" 
@@ -39,13 +39,13 @@ export default function Playground() {
               </svg>
             </div>
           </div>
-          <p className="text-lg text-secondary-text">
+          <p className="text-base sm:text-lg text-secondary-text">
             Just some fun projects because I truly love designing and learning!
           </p>
         </div>
 
       {/* Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
         {projects.map((proj, i) => (
           <div
             key={i}
