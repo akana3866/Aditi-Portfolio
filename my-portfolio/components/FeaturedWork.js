@@ -112,7 +112,8 @@ function ProjectCard({ header, title, impact, impactPoints, imageUrl, buttonText
           "Increased active session time by 17%"
         ],
         imageUrl: "/images/Spotify.png",
-        buttonText: "Read case study"
+        buttonText: "Read case study",
+        link: "/spotify"
       }
     ];
   

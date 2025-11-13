@@ -2,6 +2,7 @@
 
 import Navbar from 'components/Navbar'
 import Hero from 'components/Hero'
+import About from 'components/About'
 import FeaturedWork from 'components/FeaturedWork'
 import Experience from 'components/Experience'
 import Playground from 'components/Playground'
@@ -20,6 +21,7 @@ export default function Home() {
         <Playground />
         <Recognition />
         <Blog />
+        <About />
         <Footer />
       </div>
     </div>

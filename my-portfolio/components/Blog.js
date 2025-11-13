@@ -29,16 +29,6 @@ function BlogPostCard({ title, subtitle, url }) {
         title: "Not Just a Nice-to-Have",
         subtitle: "How Wishlist Features Secure Sales Longterm",
         url: "https://quicknotes.substack.com/p/not-just-a-nice-to-have-how-wishlist"
-      },
-      {
-        title: "Design Systems at Scale",
-        subtitle: "Building consistent experiences across platforms",
-        url: "#"
-      },
-      {
-        title: "AI in Product Design",
-        subtitle: "Exploring the future of design tools and workflows",
-        url: "#"
       }
     ];
   
@@ -68,16 +58,8 @@ function BlogPostCard({ title, subtitle, url }) {
           </p>
         </div>
         <div className="flex gap-8">
-          {/* Left column */}
-          <div className="w-1/2 flex flex-col gap-8">
             <BlogPostCard {...blogPosts[0]} />
             <BlogPostCard {...blogPosts[1]} />
-          </div>
-          {/* Right column */}
-          <div className="w-[466px] flex flex-col gap-8">
-            <BlogPostCard {...blogPosts[2]} />
-            <BlogPostCard {...blogPosts[3]} />
-          </div>
         </div>
       </div>
     );

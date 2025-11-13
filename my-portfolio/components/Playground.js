@@ -39,7 +39,7 @@ export default function Playground() {
               </svg>
             </div>
           </div>
-          <p className="text-lg">
+          <p className="text-lg text-secondary-text">
             Just some fun projects because I truly love designing and learning!
           </p>
         </div>
