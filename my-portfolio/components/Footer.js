@@ -35,7 +35,9 @@ export default function Footer() {
         </div>
         <div className="px-10 pt-10 pb-5 border-t border-stroke">
           <div className="text-foreground text-[10px] leading-relaxed">
-            This website was designed & developed by me, using Figma and Cursor.
+            I developed and designed this website with {'<3'} using Figma, Vercel, and Cursor.
+            <br />
+            Song used in the background: <a href="https://www.youtube.com/watch?v=YEEgTdnnzAo"className="underline">You Hate Jazz? ft. Jaleel Shaw</a> , {' '}
             <br />
             Typefaces: <a href="https://fontsinuse.com/typefaces/106391/neue-montreal"className="underline">Neue Montreal</a> ,{' '}
             <a href="https://elements.envato.com/mtry-geometric-experimental-J4U3M2V"className="underline">MTRY</a> , and {' '} <a href="https://fontsinuse.com/typefaces/7709/playfair-display"className="underline">Playfair Display</a>
