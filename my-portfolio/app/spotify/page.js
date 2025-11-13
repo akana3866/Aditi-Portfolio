@@ -59,7 +59,7 @@ export default function SpotifyCaseStudy() {
             </div>
 
               <p className="text-xl text-secondary-text leading-relaxed">
-              Are Spotify’s best features going unnoticed? Many users stick to familiar playlists, missing Spotify's unique features hidden in plain sight. This case study explores how a simple design tweak could drive discovery and boost engagement.
+              Are Spotify&apos;s best features going unnoticed? Many users stick to familiar playlists, missing Spotify&apos;s unique features hidden in plain sight. This case study explores how a simple design tweak could drive discovery and boost engagement.
               </p>
             </div>
           </div>

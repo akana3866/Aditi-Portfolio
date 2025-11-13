@@ -73,7 +73,7 @@ export default function HenryCaseStudy() {
             <h2 className="text-3xl font-medium">Problem Discovery</h2>
             <div className="flex flex-col gap-4 text-lg leading-relaxed">
               <p>
-                What happens when a platform offers great rewards, but users struggle to find what they're looking for?
+                What happens when a platform offers great rewards, but users struggle to find what they&apos;re looking for?
               </p>
               <p>
                 Henry is built to give users up to 50% crypto cashback on purchases but that value only matters if users can actually discover products. Research showed that core pages like the homepage and search experience created too much friction.
@@ -137,7 +137,7 @@ export default function HenryCaseStudy() {
                 <div className="flex flex-col gap-3">
                   <h4 className="text-xl font-normal">Business Problem</h4>
                   <p className="text-lg font-light leading-relaxed">
-                    Henry's value lies in its cashback rewards, but poor product discovery led to low engagement, short session times, and high cart abandonment. This limited the platform's ability to convert users and generate revenue.
+                    Henry&apos;s value lies in its cashback rewards, but poor product discovery led to low engagement, short session times, and high cart abandonment. This limited the platform&apos;s ability to convert users and generate revenue.
                   </p>
                 </div>
               </div>

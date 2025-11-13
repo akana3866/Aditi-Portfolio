@@ -7,6 +7,9 @@ export default function About() {
   const sectionRef = useRef(null)
 
   useEffect(() => {
+    const currentRef = sectionRef.current
+    if (!currentRef) return
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -18,13 +21,11 @@ export default function About() {
       { threshold: 0.1 }
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
+    observer.observe(currentRef)
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
+      if (currentRef) {
+        observer.unobserve(currentRef)
       }
     }
   }, [])
