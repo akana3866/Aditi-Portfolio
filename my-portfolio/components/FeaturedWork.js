@@ -139,7 +139,7 @@ function ProjectCard({ header, title, impact, impactPoints, imageUrl, buttonText
             </div>
           </div>
           <p className="text-base sm:text-lg text-secondary-text">
-            Design Case studies and live work that I have designed.
+            Design case studies and live work that I have designed.
           </p>
         </div>
         <div className="flex flex-col gap-6 sm:gap-8">

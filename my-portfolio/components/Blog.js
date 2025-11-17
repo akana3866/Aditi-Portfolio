@@ -53,7 +53,7 @@ function BlogPostCard({ title, subtitle, url }) {
               </svg>
             </div>
           </div>
-          <p className="text-base sm:text-lg">
+          <p className="text-base sm:text-lg text-secondary-text">
             Quick notes is an educational blog/space to rant about random musings :)
           </p>
         </div>

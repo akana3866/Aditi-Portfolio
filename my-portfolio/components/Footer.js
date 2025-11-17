@@ -42,7 +42,7 @@ export default function Footer() {
             Typefaces: <a href="https://fontsinuse.com/typefaces/106391/neue-montreal" className="underline">Neue Montreal</a> ,{' '}
             <a href="https://elements.envato.com/mtry-geometric-experimental-J4U3M2V" className="underline">MTRY</a> , and {' '} <a href="https://fontsinuse.com/typefaces/7709/playfair-display" className="underline">Playfair Display</a>
             <br />
-            Site last edited on Nov 12, 2025.
+            Site last edited on Nov 13, 2025.
           </div>
         </div>
       </div>
