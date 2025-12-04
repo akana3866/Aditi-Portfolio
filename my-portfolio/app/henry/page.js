@@ -147,7 +147,7 @@ export default function HenryCaseStudy() {
             <h2 className="text-2xl sm:text-3xl font-medium">Finding and testing a solution</h2>
             <div className="flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
               <p>
-              To tackle this, I led a brainstorming session with engineers and founders using Crazy Eights and FigJam, coming up with different solutions to tackle the user and business problem. From there, I prototyped and tested multiple ideas, with a focus on simplifying the user journey and reducing the time it takes to find and explore products.</p>
+              To tackle this, I led a brainstorming session with engineers and founders using Crazy Eights and FigJam, coming up with different solutions to tackle the user and business problem.</p>
               <img src="/images/testing-crazy8.png" alt="Crazy Eights" className="w-full h-auto rounded-lg" />
               <p>
               From there, I prototyped and tested multiple ideas, with a focus on simplifying the user journey and reducing the time it takes to find and explore products.</p>
