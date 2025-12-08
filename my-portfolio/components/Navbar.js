@@ -103,7 +103,7 @@ export default function Navbar() {
           
           {/* Let's Chat - positioned at bottom right of navbar */}
           <div className="absolute bottom-8 right-8">
-            <a href="mailto:ak9138@gmail.com" 
+            <a href="https://calendly.com/ak9138/30min" 
               className="text-base font-playfair italic leading-tight hover:opacity-60 transition-opacity">
               Let&apos;s Chat ☕️
             </a>

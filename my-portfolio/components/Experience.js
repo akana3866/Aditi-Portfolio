@@ -74,7 +74,7 @@ export default function Experience() {
             </div>
         </div>
         <p className="text-base sm:text-lg text-secondary-text">
-          I&apos;m a product designer & manager with technical fluency, startup speed, and a passion for building consumer products
+          I&apos;m a product designer & manager with technical fluency, startup speed, and a passion for building consumer products.
         </p>
       </div>
       <div className="flex flex-col gap-8 sm:gap-12 md:gap-16">
