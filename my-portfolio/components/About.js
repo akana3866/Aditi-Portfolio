@@ -103,7 +103,7 @@ export default function About() {
               With a background in design, engineering, and product management, I bring a unique perspective to every project. I love solving complex problems with simple, elegant solutions that drive measurable impact, especially when they change how people interact with the world.
             </p>
             <p>
-              Outside of work, you&apos;ll find me discovering new music, following F1 & tennis, rewatching Friends, playing Marvel Rivals (I main as Hela), traveling Europe, or exploring new work cafes. I also recently learned to knit and travel everywhere with my knitting kit.
+              Outside of work, you&apos;ll find me discovering new music, following F1 & tennis, rewatching Friends, playing Marvel Rivals (I main as Hela), traveling Europe (and scuba diving in the ocean), or exploring new work cafes. I also recently learned to knit and travel everywhere with my knitting kit.
             </p>
           </div>
         </div>
