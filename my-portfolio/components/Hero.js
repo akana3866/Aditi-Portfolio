@@ -1,180 +1,70 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { useTheme } from './ThemeProvider'
+import Link from 'next/link'
+import { useMemo } from 'react'
 
 export default function Hero() {
-  const { theme } = useTheme()
-  const containerRef = useRef(null)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [dots, setDots] = useState([])
-  const isDark = theme === 'dark'
+  const heroSentenceWords = useMemo(() => {
+    const sentence =
+      'I love creating things that change the way people interact with the world.'
+    const words = sentence.split(' ')
 
-  useEffect(() => {
-    // Generate dots in a perfect grid pattern
-    const generateDots = () => {
-      const newDots = []
-      const containerWidth = window.innerWidth
-      const containerHeight = 900 // increased height for dots to extend further down
-      const spacing = 30
-      
-        // Create circular clumps by defining clump centers
-        const clumpCenters = []
-        
-        // Generate clump centers in a grid pattern
-        for (let centerX = 60; centerX < containerWidth; centerX += 120) {
-          for (let centerY = 60; centerY < containerHeight; centerY += 120) {
-            clumpCenters.push({
-              x: centerX + (Math.random() - 0.5) * 40, // slight randomness
-              y: centerY + (Math.random() - 0.5) * 40,
-              radius: Math.random() * 40 + 30, // random radius between 30-70px
-              id: clumpCenters.length
-            })
-          }
-        }
-        
-        for (let x = 0; x < containerWidth; x += spacing) {
-          for (let y = 0; y < containerHeight; y += spacing) {
-            // Find the closest clump center
-            let closestClump = clumpCenters[0]
-            let minDistance = Math.sqrt(Math.pow(x - closestClump.x, 2) + Math.pow(y - closestClump.y, 2))
-            
-            for (const center of clumpCenters) {
-              const distance = Math.sqrt(Math.pow(x - center.x, 2) + Math.pow(y - center.y, 2))
-              if (distance < minDistance) {
-                minDistance = distance
-                closestClump = center
-              }
-            }
-            
-            // Only add dots that are within the clump radius
-            if (minDistance <= closestClump.radius) {
-              newDots.push({
-                id: `${x}-${y}`,
-                x: x,
-                y: y,
-                clumpId: closestClump.id,
-                delay: (closestClump.id % 3) * 2, // Clumps have staggered delays (0, 2, 4s)
-                duration: 8 + (closestClump.id % 4) * 2 // Slower duration 8-14s
-              })
-            }
-          }
-        }
-      setDots(newDots)
-    }
-
-    generateDots()
-
-    // Handle mouse movement
-    const handleMouseMove = (e) => {
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect()
-        setMousePosition({
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top
-        })
-      }
-    }
-
-    const container = containerRef.current
-    if (container) {
-      container.addEventListener('mousemove', handleMouseMove)
-      return () => container.removeEventListener('mousemove', handleMouseMove)
-    }
+    return words.map((word, index) => (
+      <span
+        key={`${word}-${index}`}
+        className="hero-intro-word"
+        style={{ animationDelay: `${index * 0.12}s` }}
+      >
+        {word}
+        {index < words.length - 1 ? ' ' : ''}
+      </span>
+    ))
   }, [])
 
   return (
-    <div 
+    <div
       id="about"
-      ref={containerRef}
-      className="px-4 sm:px-8 md:px-12 py-8 sm:py-12 md:py-16 flex flex-col justify-center items-center gap-8 sm:gap-12 md:gap-16 min-h-[600px] sm:min-h-[700px] md:min-h-[800px] relative overflow-hidden rounded-[20px]"
+      className="relative px-4 sm:px-8 md:px-12 pt-10 pb-6 sm:pt-12 sm:pb-8 md:pt-14 md:pb-10 flex flex-col items-start min-h-[260px] sm:min-h-[300px] md:min-h-[340px] rounded-[20px] overflow-hidden"
     >
-      {/* Interactive Dots Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        {(() => {
-          // Find the 3 closest dots to mouse position
-          const dotsWithDistance = dots.map(dot => ({
-            ...dot,
-            distance: Math.sqrt(
-              Math.pow(dot.x - mousePosition.x, 2) + Math.pow(dot.y - mousePosition.y, 2)
-            )
-          }))
-          
-          const closestDots = dotsWithDistance
-            .sort((a, b) => a.distance - b.distance)
-            .slice(0, 7)
-            .filter(dot => dot.distance < 200) // increased radius from ~100 to 120
-          
-          const closestDotId = closestDots[0]?.id
-          const surroundingDotIds = closestDots.slice(1).map(dot => dot.id)
-          
-          return dots.map((dot) => {
-            const isClosest = dot.id === closestDotId
-            const isSurrounding = surroundingDotIds.includes(dot.id)
-            const isHovered = isClosest || isSurrounding
-            
-            return (
-              <div
-                key={dot.id}
-                className="absolute rounded-full transition-all duration-200 ease-out"
-                style={{
-                  left: dot.x,
-                  top: dot.y,
-                  width: isClosest ? '12px' : isSurrounding ? '8px' : '2px',
-                  height: isClosest ? '12px' : isSurrounding ? '8px' : '2px',
-                  backgroundColor: isHovered ? (isDark ? '#FFFFFF' : '#000000') : isDark ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
-                  opacity: isHovered ? 1 : 0.6,
-                  animationDelay: isHovered ? 'none' : `${dot.delay}s`,
-                  animation: isHovered ? 'none' : `randomPulse ${dot.duration}s ease-in-out infinite`
-                }}
-              />
-            )
-          })
-        })()}
-      </div>
-      <div className="w-full flex flex-col justify-center items-start sm:items-end gap-6 sm:gap-8 md:gap-12 relative z-10">
-        <div className="w-full flex justify-start items-center gap-2 sm:gap-3">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-playfair italic capitalize leading-tight">
-            Hello, I&apos;m Aditi
-          </h1>
-          <div className="transition-background-color duration-500 hidden sm:block">
-            <svg 
-              width="33" 
-              height="32" 
-              viewBox="0 0 33 32" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-foreground"
-            >
-              <path 
-                d="M15.3597 0.840218C15.7172 -0.101328 17.2628 -0.101329 17.6203 0.840217C18.6837 3.64049 20.4479 7.53723 22.7003 9.78966C24.9528 12.0421 28.8495 13.8063 31.6498 14.8697C32.5913 15.2272 32.5913 16.7728 31.6498 17.1303C28.8495 18.1937 24.9528 19.9579 22.7003 22.2103C20.4479 24.4628 18.6837 28.3595 17.6203 31.1598C17.2628 32.1013 15.7172 32.1013 15.3597 31.1598C14.2963 28.3595 12.5321 24.4628 10.2797 22.2103C8.02722 19.9579 4.13049 18.1937 1.33022 17.1303C0.388669 16.7728 0.388669 15.2272 1.33021 14.8697C4.13049 13.8063 8.02722 12.0421 10.2797 9.78966C12.5321 7.53723 14.2963 3.64049 15.3597 0.840218Z" 
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-        </div>
+      <div className="relative z-20 w-full max-w-3xl flex flex-col gap-8 sm:gap-10 rounded-2xl px-4 sm:px-6 pb-3 sm:pb-4">
 
-        <div className="w-full flex justify-start sm:justify-end">
-          <div className="flex flex-col gap-4 sm:gap-6 w-full sm:max-w-lg transition-background-color duration-600">
-            <p className="text-xl sm:text-2xl md:text-3xl font-medium leading-relaxed">
-              I love creating things that change the way people interact with the world.
-            </p>
+        {/* Body copy */}
+        <div className="flex flex-col gap-4 sm:gap-5 max-w-xl text-base sm:text-lg leading-relaxed">
+          <p className="text-xl sm:text-2xl md:text-3xl font-medium leading-relaxed">
+            {heroSentenceWords}
+          </p>
 
-            <div className="flex flex-col gap-1.5">
-              <p className="text-base sm:text-lg leading-snug">
-                💻 Currently leading product design @roam & @henry<br className="hidden sm:block" />
-                <span className="sm:hidden"><br /></span>
-                📍 Based in New York, NY
-              </p>
-            </div>
-
-            <div>
-              <span className="text-xs">pronunciation: </span>
-              <span className="text-xs font-medium">uh·thi·thee</span>
-            </div>
-          </div>
         </div>
       </div>
+      <div className="flex flex-col gap-4 sm:gap-5 rounded-2xl px-4 sm:px-6 pt-0 pb-5 sm:pb-6">
+
+          <p className="text-base sm:text-lg leading-snug">
+            Aditi Kanaujia - AI Design @henry
+            <br />
+            Product Designer and Developer — New York
+
+          </p>
+
+          <p className="text-xs sm:text-sm">
+            <span className="text-secondary-text">pronunciation:</span>{' '}
+            <span className="font-medium">uh·thi·thee</span>
+          </p>
+          {/* CTA row */}
+        <div className="flex flex-wrap gap-3 sm:gap-3">
+          <Link
+            href="/#work"
+            className="px-5 py-2.5 rounded-full border border-stroke bg-foreground text-background text-sm sm:text-base font-medium hover:opacity-80 transition-opacity"
+          >
+            View work
+          </Link>
+          <a
+            href="mailto:ak9138@gmail.com"
+            className="px-5 py-2.5 rounded-full border border-stroke text-sm sm:text-base font-medium hover:opacity-80 transition-opacity"
+          >
+            Get in touch
+          </a>
+        </div>
+        </div>
     </div>
-  );
+  )
 }

@@ -176,9 +176,9 @@ export default function SpotifyCaseStudy() {
                   </p>
                 </div>
               </div>
-            </div>
+          </div>
             <div className="flex flex-col gap-4 text-lg leading-relaxed">
-            <p>
+              <p>
               As I analyzed the survey results, a clear pattern emerged. Most users discovered Spotify features through word of mouth or social media, not from the app itself. While younger users aged 18 to 24 were more aware of advanced features, older users aged 25 and up—Spotify’s key demographic—were not.
               </p>
               <p>Since this group uses social media less frequently, they rely more on in-app guidance. Yet Spotify was not addressing them, missing a major opportunity to connect users to its most powerful tools.</p>

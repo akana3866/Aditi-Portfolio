@@ -53,28 +53,8 @@ export default function About() {
       ref={sectionRef}
       className="px-4 sm:px-8 md:px-12 py-6 sm:py-8 md:py-9 flex flex-col gap-6 sm:gap-9"
     >
-      <div className="flex flex-col gap-3 sm:gap-4">
-        <div className="flex items-center gap-1.5">
-          <h2 className="text-2xl sm:text-3xl font-medium">About Me</h2>
-          <div className="transition-background-color duration-500">
-            <svg 
-              width="33" 
-              height="32" 
-              viewBox="0 0 33 32" 
-              fill="none" 
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-6 h-6 text-foreground"
-            >
-              <path 
-                d="M15.3597 0.840218C15.7172 -0.101328 17.2628 -0.101329 17.6203 0.840217C18.6837 3.64049 20.4479 7.53723 22.7003 9.78966C24.9528 12.0421 28.8495 13.8063 31.6498 14.8697C32.5913 15.2272 32.5913 16.7728 31.6498 17.1303C28.8495 18.1937 24.9528 19.9579 22.7003 22.2103C20.4479 24.4628 18.6837 28.3595 17.6203 31.1598C17.2628 32.1013 15.7172 32.1013 15.3597 31.1598C14.2963 28.3595 12.5321 24.4628 10.2797 22.2103C8.02722 19.9579 4.13049 18.1937 1.33022 17.1303C0.388669 16.7728 0.388669 15.2272 1.33021 14.8697C4.13049 13.8063 8.02722 12.0421 10.2797 9.78966C12.5321 7.53723 14.2963 3.64049 15.3597 0.840218Z" 
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-        </div>
-        <p className="text-base sm:text-lg text-secondary-text">
-          A product designer and manager specializing in e-commerce and AI experiences, with a passion for fashion, consumer social apps, music, and health.
-        </p>
+      <div className="flex flex-col">
+        <h2 className="text-2xl sm:text-3xl font-medium">About Me</h2>
       </div>
 
       <div className="flex flex-col gap-8 sm:gap-10 md:gap-12">
