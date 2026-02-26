@@ -39,7 +39,7 @@ export default function Hero() {
       <div className="flex flex-col gap-4 sm:gap-5 rounded-2xl px-4 sm:px-6 pt-0 pb-5 sm:pb-6">
 
           <p className="text-base sm:text-lg leading-snug">
-            Aditi Kanaujia - AI Design @henry
+            Aditi Kanaujia - Product Designer @Fermàt
             <br />
             Product Designer and Developer — New York
 
