@@ -3,31 +3,34 @@ import { ThemeProvider } from '../components/ThemeProvider'
 import CustomCursor from '../components/CustomCursor'
 
 export const metadata = {
-  title: 'Aditi Kanaujia - Portfolio',
+  title: 'Aditi Kanaujia — Portfolio',
   description: 'Product Designer Portfolio',
   icons: {
-    icon: '/images/logo.png',
-    shortcut: '/images/logo.png',
-    apple: '/images/logo.png',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/og-image.png', sizes: '512x512', type: 'image/png' },
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/og-image.png',
   },
   openGraph: {
-    title: 'Aditi Kanaujia - Portfolio',
+    title: 'Aditi Kanaujia — Portfolio',
     description: 'Product Designer Portfolio',
     images: [
       {
-        url: '/images/logo.png',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Aditi Kanaujia - Product Designer',
+        alt: 'Aditi Kanaujia — Product Designer',
       },
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Aditi Kanaujia - Portfolio',
+    title: 'Aditi Kanaujia — Portfolio',
     description: 'Product Designer Portfolio',
-    images: ['/images/logo.png'],
+    images: ['/og-image.png'],
   },
 }
 
