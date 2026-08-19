@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Neue Montreal';src:url('/fonts/NeueMontreal-Regular.otf') format('opentype');font-weight:400;font-display:swap}
+@font-face{font-family:'Neue Montreal';src:url('/fonts/NeueMontreal-Light.otf') format('opentype');font-weight:300;font-display:swap}
+@font-face{font-family:'Neue Montreal';src:url('/fonts/NeueMontreal-Medium.otf') format('opentype');font-weight:500;font-display:swap}
+html,body{margin:0;padding:0;background:#FBFAF6;color:#1A1A17;font-family:'Neue Montreal',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='24' viewBox='0 0 14 18'><path d='M1 1L1 15.2L5.1 11.4L7.6 16.9L10 15.8L7.5 10.4L12.8 10.1Z' fill='%23D93E11' stroke='%23FFFFFF' stroke-width='1.1'/></svg>") 2 2, auto}
+a,button,[role="button"],input,textarea,select,[onclick],[onClick],[onPointerDown],[onMouseDown]{cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='26' viewBox='0 0 14 18'><path d='M1 1L1 15.2L5.1 11.4L7.6 16.9L10 15.8L7.5 10.4L12.8 10.1Z' fill='%23D93E11' stroke='%23FFFFFF' stroke-width='1.4'/></svg>") 2 2, pointer}
+input[type="text"],textarea{cursor:text}
+body.has-name,body.has-name *{cursor:none!important}
+body.has-name input[type="text"],body.has-name textarea{cursor:text!important}
+*{box-sizing:border-box}
+a{color:inherit;text-decoration:none}
+a:hover{color:#C0380E}
+[data-theme="dark"] [data-work-logo][src*="/henry"]{filter:brightness(1) invert(1)!important}
+input{font-family:inherit}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:900px){
+  [data-ring]{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:22px!important;min-height:0!important;padding:0 20px}
+  [data-ring]>*{position:static!important;transform:none!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;width:auto!important;max-width:none!important}
+  [data-ring]>[data-order="1"]{order:1;align-self:flex-start;min-width:200px}
+  [data-ring]>[data-order="2"]{order:2;align-self:flex-end;min-width:220px;max-width:66%!important}
+  [data-ring]>[data-order="4"]{order:3;align-self:stretch}
+  [data-ring]>[data-order="6"]{order:4;align-self:flex-start;margin-top:10px;min-width:88px}
+  [data-ring]>[data-order="3"]{order:5;align-self:flex-end;margin-top:-52px}
+  /* shrink theme toggle icons */
+  [data-ring]>[data-order="3"] > div:last-child{padding:3px!important;gap:1px!important}
+  [data-ring]>[data-order="3"] > div:last-child > div{width:22px!important;height:18px!important}
+  [data-ring]>[data-order="3"] > div:last-child > div span{width:7px!important;height:7px!important;border-width:1.5px!important}
+  /* shrink dev mode rows */
+  [data-ring]>[data-order="6"] > div:last-child{gap:6px!important}
+  [data-ring]>[data-order="6"] > div:last-child > div{gap:6px!important}
+  [data-ring]>[data-order="6"] > div:last-child > div > span:first-child{font-size:10.5px!important}
+  [data-ring]>[data-order="6"] > div:last-child > div > span:last-child{flex:0 0 12px!important;width:12px!important;height:12px!important;border-width:1.5px!important}
+  /* shrink text input + font size (top row) */
+  [data-ring]>[data-order="1"]{min-width:170px!important}
+  [data-ring]>[data-order="1"] > div:nth-child(2){padding:6px 9px!important;gap:6px!important}
+  [data-ring]>[data-order="1"] > div:nth-child(2) > span:first-child{width:7px!important;height:7px!important}
+  [data-ring]>[data-order="1"] input[type="text"]{font-size:11px!important}
+  [data-ring]>[data-order="2"]{min-width:180px!important}
+  [data-ring]>[data-order="2"] > div:nth-child(2){height:22px!important;padding:0 8px!important;gap:7px!important}
+  [data-ring]>[data-order="2"] > div:nth-child(2) > span:first-child,
+  [data-ring]>[data-order="2"] > div:nth-child(2) > span:last-child{font-size:9px!important}
+  [data-ring]>[data-order="2"] > div:nth-child(2) > span:last-child{font-size:13px!important}
+  [data-ring]>[data-order="2"] > div:nth-child(2) > span:nth-child(2) > span:last-child{width:11px!important;height:11px!important;margin:-5.5px 0 0 -5.5px!important;border-width:1.5px!important}
+  /* shrink mono chip labels */
+  [data-ring]>*[data-order] > span:first-child{font-size:9px!important;padding:3px 6px!important;letter-spacing:.08em!important}
+  /* push hero further down under the sticky nav */
+  #top{padding-top:96px!important}
+  [data-ring]>[data-order="5"]{order:6;align-self:flex-end;min-width:220px;max-width:66%!important;margin-top:10px}
+  [data-ring]>[data-order="7"]{order:7;align-self:flex-start;min-width:180px!important;max-width:200px!important}
+  /* shrink now-playing card chrome */
+  [data-ring]>[data-order="7"] > div:nth-child(2){padding:8px 10px 10px!important;gap:8px!important;border-radius:12px!important}
+  [data-ring]>[data-order="7"] > div:nth-child(2) > div:nth-child(1){padding:2px!important;gap:2px!important;border-radius:6px!important}
+  [data-ring]>[data-order="7"] > div:nth-child(2) > div:nth-child(1) > div{height:18px!important;font-size:9px!important;border-radius:4px!important}
+  [data-ring]>[data-order="7"] > div:nth-child(2) > div:nth-child(2){gap:8px!important}
+  [data-ring]>[data-order="7"] > div:nth-child(2) > div:nth-child(2) > div:first-child{flex:0 0 32px!important;width:32px!important;height:32px!important;border-radius:5px!important}
+  [data-ring]>[data-order="7"] > div:nth-child(2) > div:nth-child(2) span{font-size:11px!important}
+  [data-ring]>[data-order="7"] > div:nth-child(2) > div:nth-child(2) span:last-child{font-size:10px!important}
+  [data-ring]>[data-order="7"] > div:nth-child(2) > div:nth-child(3) span{font-size:9px!important}
+  [data-ring]>[data-order="7"] > div:nth-child(2) > div:nth-child(3) > div{height:3px!important}
+  [data-ring]>[data-order="7"] > div:nth-child(2) > div:nth-child(4){gap:4px!important}
+  [data-ring]>[data-order="7"] > div:nth-child(2) > div:nth-child(4) > div{padding:2px!important}
+  [data-ring]>[data-order="7"] > div:nth-child(2) > div:nth-child(4) > div > span{border-width:5px 7px 5px 0!important}
+  [data-ring]>[data-order="7"] > div:nth-child(2) > div:nth-child(4) > div:nth-child(3) > span{border-width:5px 0 5px 7px!important}
+  [data-ring]>[data-order="7"] > div:nth-child(2) > div:nth-child(4) > div:nth-child(2) > sc-if > span{border-width:8px 0 8px 12px!important}
+  [data-ring]>[data-order="7"] > div:nth-child(2) > div:nth-child(4) > div:nth-child(2) > sc-if > span > span{width:4px!important;height:16px!important}
+  [data-frame]{padding:14px 18px!important}
+  /* hide dev-mode measurement chips on mobile even when dev mode is on */
+  [data-ring]>[data-order="4"]>div:first-child>span:nth-child(2),
+  [data-ring]>[data-order="4"]>div:last-child{display:none!important}
+  [data-ring]>[data-order="4"]{gap:8px!important}
+}
+@media (max-width:640px){
+  [data-nav-wrap]{justify-content:center!important;padding:12px 16px!important}
+  [data-nav-pill]{padding:4px!important;gap:2px!important;pointer-events:auto}
+  [data-nav-logo]{padding:0 12px!important;gap:8px!important;height:36px!important}
+  [data-nav-logo] [data-logo-label]{max-width:none!important;opacity:1!important;font-size:16px!important}
+  [data-nav-logo] svg{width:22px!important;height:22px!important;flex:0 0 22px!important}
+  [data-nav-indicator]{display:none!important}
+  [data-nav-link]{padding:0 11px!important;font-size:14px!important;height:36px!important}
+}
+@media (max-width:400px){
+  [data-nav-link]{padding:0 9px!important;font-size:13.5px!important}
+  [data-nav-logo] [data-logo-label]{font-size:15px!important}
+  [data-nav-logo]{padding:0 10px!important}
+}
+@keyframes funWave{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-.1em) rotate(var(--fr,0deg))}}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes photoDrop{from{opacity:0;transform:translateY(-24px) rotate(var(--r,0deg)) scale(.94)}to{opacity:1;transform:translateY(0) rotate(var(--r,0deg)) scale(1)}}
+[data-anim]{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1);will-change:opacity,transform}
+[data-anim][data-anim-in="1"]{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  [data-anim]{opacity:1!important;transform:none!important;transition:none!important}
+}
+@media (max-width:900px){
+  [data-about-grid]{display:flex!important;flex-direction:column!important;gap:28px!important}
+  [data-about-left]{display:contents!important}
+  [data-about-left] > [data-anim-scope]{order:1;max-width:none!important;font-size:clamp(28px,7.5vw,42px)!important}
+  [data-about-right]{order:2}
+  [data-about-folders]{order:3;flex-direction:row!important;align-items:flex-start!important;justify-content:space-around!important;gap:12px!important;margin-top:14px!important;flex-wrap:nowrap!important}
+  [data-about-folders] > div{flex:1 1 0!important;flex-direction:column!important;align-items:center!important;gap:9px!important;min-width:0}
+  [data-scatter]{height:auto!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:14px!important;padding:0!important}
+  [data-scatter] > div{position:static!important;width:auto!important;max-width:none!important;left:auto!important;top:auto!important;padding:9px 9px 24px!important;--r:0deg!important;transform:none!important}
+  [data-work-header]{flex-direction:column!important;align-items:flex-start!important;gap:10px!important;min-height:0!important}
+  [data-work-logo]{height:22px!important;max-width:60vw;object-fit:contain}
+  [data-work-logo][src*="/henry"]{height:18px!important}
+  [data-work-logo][src*="/roam"]{height:12px!important}
+  [data-exp-row]{grid-template-columns:1fr auto!important;gap:4px 14px!important;padding:20px 0!important;align-items:baseline!important}
+  [data-exp-row] > span:first-child{grid-column:2!important;grid-row:1!important;justify-self:end!important}
+  [data-exp-row] > div{grid-column:1!important;grid-row:1!important}
+  [data-exp-row] > p{grid-column:1 / -1!important;grid-row:2!important;margin-top:8px!important;font-size:15px!important;line-height:1.5!important}
+}
+@media (max-width:400px){
+  [data-work-logo]{height:19px!important;max-width:52vw}
+}
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+<div data-theme="{{ themeName }}" style="--bg: {{ t.bg }};--panel: {{ t.panel }};--surf: {{ t.surf }};--surf2: {{ t.surf2 }};--chrome: {{ t.chrome }};--line: {{ t.line }};--line3: {{ t.line3 }};--line2: {{ t.line2 }};--ink: {{ t.ink }};--text2: {{ t.text2 }};--text3: {{ t.text3 }};--text4: {{ t.text4 }};--accent: {{ t.accent }};--accentText: {{ t.accentText }};--accentSoft: {{ t.accentSoft }};--dot: {{ t.dot }};--navShell: {{ t.navShell }};--navActive: {{ t.navActive }};--cardGlass: {{ t.cardGlass }};--paper1: {{ t.paper1 }};--paper2: {{ t.paper2 }};--paper3: {{ t.paper3 }};--chip: {{ chipOpacity }};background:var(--bg,#FBFAF6);color:var(--ink,#1A1A17);background-image:radial-gradient(var(--dot,rgba(26,26,23,.10)) 1px, transparent 1px);background-size:22px 22px;background-position:-1px -1px;min-height:100vh;font-family:'Neue Montreal',Helvetica,Arial,sans-serif">
+
+<div style="position:fixed;top:0;left:0;right:0;height:2px;z-index:90;background:transparent">
+  <div style="width:{{ scrollPct }};height:100%;background:var(--accent,#D93E11)"></div>
+</div>
+
+<div data-nav-wrap style="position:fixed;top:0;left:0;right:0;z-index:80;display:flex;justify-content:center;padding:14px 16px;pointer-events:none">
+  <div data-nav-pill onMouseLeave="{{ navLeave }}" style="position:relative;display:flex;align-items:center;gap:4px;padding:5px;border-radius:16px;background:var(--navShell,#EFEDE3);pointer-events:auto;box-shadow:0 1px 2px rgba(60,50,35,.04)">
+    <span data-nav-indicator style="position:absolute;top:5px;left:0;height:40px;width:{{ navPillW }};border-radius:12px;background:{{ navPillBg }};opacity:{{ navPillO }};transform:translateX({{ navPillX }});transition:transform .3s cubic-bezier(.22,.61,.36,1),width .3s cubic-bezier(.22,.61,.36,1),opacity .18s ease-out;pointer-events:none"></span>
+    <a data-nav-logo href="#top" title="Aditi Kanaujia" onMouseEnter="{{ navEnter0 }}" style="position:relative;z-index:1;flex:0 0 auto;display:flex;align-items:center;gap:{{ logoGap }};height:40px;padding:0 14px;border-radius:12px;background:{{ navBg0 }};color:#1E1E1E;transition:background .18s ease-out" data-comment-anchor="d10a5ed073-a">
+      <svg viewBox="298 275 714 714" aria-hidden="true" style="width:26px;height:26px;display:block;flex:0 0 26px">
+        <path d="M568.214 626.712C575.34 627.637 590.553 626.828 598.294 627.055C602.425 627.177 618.519 627.177 621.697 626.724L621.134 847.76C634.721 847.558 648.308 847.515 661.895 847.632C661.809 825.827 661.491 802.15 661.987 780.419C676.786 780.413 693.288 780.015 707.934 780.407L708.026 728.067C718.025 728.006 744.642 727.014 753.135 727.896L753.122 709.526C768.265 709.477 784.374 709.159 799.462 709.637C799.394 714.774 798.727 749.724 799.504 752.786C797.79 753.153 787.424 753.031 784.981 753.024C774.473 753.049 763.972 752.957 753.465 752.755C753.22 758.694 753.606 765.454 753.692 771.516C753.876 784.626 753.784 796.908 753.012 809.987C743.007 809.95 733.002 809.975 723.003 810.055C722.415 824.076 722.691 838.992 722.807 853.087C717.756 852.934 712.692 853.424 707.842 853.302C698.027 853.051 690.349 852.965 680.625 853.736C681.054 863.343 681.115 878.529 680.466 887.866L621.03 887.787L621.042 933.244L716.292 933.232L716.396 870.605C724.852 869.76 755.694 870.293 765.179 870.673L765.258 846.15C775.698 846.034 786.138 846.046 796.571 846.18C797.661 863.172 796.204 884.48 795.99 901.619C795.843 912.934 797.398 920.851 796.559 933.122L740.876 933.109C740.791 949.054 740.803 964.998 740.907 980.943L504.855 980.888C504.479 966.486 504.629 951.503 504.596 937.047C511.979 937.273 566.067 937.628 568.299 936.342L568.193 934.965C565.747 932.534 559.741 932.883 556.416 933.03C535.746 933.942 514.958 933.495 494.269 933.079C485.396 932.901 476.481 933.844 467.669 933.514C467.295 921.286 467.597 906.284 467.843 894.008C455.763 893.977 428.012 893.224 416.921 894.62C416.516 875.106 416.867 854.465 416.936 834.896C404.076 834.884 384.866 835.594 372.652 834.559C372.021 825.852 372.373 813.214 372.367 804.238C372.356 789.867 372.159 774.725 372.633 760.403C405.573 759.662 439.478 760.978 472.59 760.195C473.044 778.147 472.183 796.853 472.606 815.075L524.834 815.051C524.55 832.575 524.453 853.1 524.948 870.513C539 870.887 553.994 870.507 568.232 870.691L568.214 626.712Z" fill="#1E1E1E"></path>
+        <path d="M548.751 284.177C565.37 283.54 583.492 284.083 600.237 283.946C607.39 283.887 628.084 283.426 634.103 284.401C635.468 289.173 634.783 299.933 634.862 305.222C635.089 320.224 633.821 336.306 635.034 351.211C653.317 351.942 676.915 351.596 695.382 351.316C696.393 357.639 695.762 366.106 695.805 372.682C695.891 387.1 695.309 401.819 696.086 416.221C717.903 416.73 740.117 416.294 761.983 416.386C762.638 425.548 762.313 437.516 762.32 446.861C762.338 461.794 762.448 477.02 762.258 491.939C740.264 492.242 717.866 491.636 696.05 492.389C695.364 507.728 695.768 523.301 695.67 538.654C695.633 544.53 696.282 553.072 695.738 558.589C675.562 559.802 649.496 558.519 628.231 559.011C627.833 568.104 628.721 621.777 627.282 625.622C624.386 626.927 623.755 626.155 621.698 626.725C618.52 627.178 602.425 627.178 598.295 627.055C590.553 626.829 575.34 627.637 568.215 626.712C564.739 626.112 560.272 626.737 556.628 626.994C556.294 604.322 556.239 581.649 556.461 558.977C538.509 558.605 506.526 557.914 488.957 559.043C488.831 536.541 488.823 514.038 488.933 491.536L421.697 491.612C421.529 475.319 421.506 459.025 421.627 442.731C421.663 434.768 421.424 424.248 421.945 416.453C435.837 416.335 449.729 416.329 463.621 416.435C470.028 416.449 480.681 416.735 486.799 415.988C486.803 395.289 486.258 371.856 486.894 351.393C506.385 351.431 528.788 351.998 548.032 351.208C548.257 337.432 548.304 323.654 548.176 309.877C548.156 302.427 547.835 291.423 548.751 284.177Z" fill="#E8E5DF"></path>
+        <path d="M557.547 420.041L628.262 420.088L628.274 466.189C628.28 473.671 628.605 484.792 628.072 491.989L557.379 492.162C557.47 468.153 557.16 444.009 557.547 420.041Z" fill="var(--accent,#D93E11)"></path>
+        <path d="M797.919 552.947L858.108 552.954C866.503 552.96 880.77 552.549 888.693 553.116C889.593 564.768 888.65 578.414 889.097 590.434C904.197 591.21 924.072 589.384 937.916 590.888C938.492 626.78 938.161 664.516 937.978 700.489C924.201 699.895 902.96 700.036 889.103 700.648C888.859 702.92 888.24 707.071 888.534 709.159C889.299 711.437 888.932 747.795 888.718 752.565L830.628 752.578C821.676 752.578 808.206 752.18 799.505 752.786C798.727 749.724 799.395 714.774 799.462 709.637C784.375 709.159 768.265 709.477 753.123 709.526C752.706 680.215 752.97 650.323 752.908 620.944L798.476 620.828C797.839 614.191 797.815 607.61 797.882 600.952C798.029 584.97 797.711 568.923 797.919 552.947Z" fill="#E8E5DF"></path>
+        <path d="M752.908 620.944L798.476 620.828C799.793 631.488 799.033 653.868 799.217 665.575C814.157 665.551 829.391 665.398 844.307 665.594L844.338 709.324C857.447 709.404 875.792 709.955 888.534 709.159C889.299 711.437 888.932 747.795 888.718 752.565L830.628 752.577C821.676 752.577 808.206 752.18 799.505 752.786C798.727 749.724 799.395 714.774 799.462 709.637C784.375 709.159 768.265 709.477 753.123 709.526C752.706 680.215 752.97 650.323 752.908 620.944Z" fill="var(--accent,#D93E11)"></path>
+      </svg>
+      <span data-logo-label="1" style="max-width:{{ logoW }};overflow:hidden;white-space:nowrap;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:17px;letter-spacing:0;color:#1E1E1E;opacity:{{ logoO }};transition:max-width .22s ease-out,opacity .18s ease-out">Aditi</span>
+    </a>
+    <a data-nav-link href="#work" onMouseEnter="{{ navEnter1 }}" style="position:relative;z-index:1;display:flex;align-items:center;justify-content:center;height:40px;padding:0 14px;border-radius:12px;background:{{ navBg1 }};font-size:15px;letter-spacing:-.012em;color:var(--ink,#1A1A17);transition:background .18s ease-out">Work</a>
+    <a data-nav-link href="#about" onMouseEnter="{{ navEnter2 }}" style="position:relative;z-index:1;display:flex;align-items:center;justify-content:center;height:40px;padding:0 14px;border-radius:12px;background:{{ navBg2 }};font-size:15px;letter-spacing:-.012em;color:var(--ink,#1A1A17);transition:background .18s ease-out">About</a>
+    <a data-nav-link href="#play" onMouseEnter="{{ navEnter3 }}" style="position:relative;z-index:1;display:flex;align-items:center;justify-content:center;height:40px;padding:0 14px;border-radius:12px;background:{{ navBg3 }};font-size:15px;letter-spacing:-.012em;color:var(--ink,#1A1A17);transition:background .18s ease-out">Play</a>
+  </div>
+</div>
+
+<section id="top" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:center;padding:clamp(40px,6vh,72px) clamp(20px,6vw,110px) clamp(96px,14vh,180px);width:100%;max-width:1280px;margin:0 auto">
+  
+
+  <div id="play" data-ring="1" style="position: relative; width: 100%; min-height: clamp(760px,88vh,940px); margin-top: 0">
+
+
+    <div data-order="1" style="position: absolute; left: 19px; top: 115px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; width: clamp(158px,22%,200px)">
+      <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">Text Input</span>
+      <div style="position:relative;display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:6px;background:var(--panel,#FFFEFB);border:1.5px solid {{ nameBorder }};box-shadow:{{ nameGlow }}">
+        <span style="width:9px;height:9px;border-radius:2px;background:var(--accent,#D93E11)"></span>
+        <input type="text" value="{{ nameValue }}" onChange="{{ onName }}" onFocus="{{ nameFocus }}" onBlur="{{ nameBlur }}" placeholder="enter your name" style="width:100%;min-width:0;border:none;outline:none;background:transparent;color:var(--ink,#1A1A17);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;letter-spacing:.01em">
+      </div>
+    </div>
+
+
+
+
+    <div data-order="2" style="position:absolute;top:114px;right:0;display:flex;flex-direction:column;gap:8px;align-items:flex-end;width:clamp(158px,22%,200px)">
+      <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">Font Size</span>
+      <div onPointerDown="{{ sizeDown }}" style="position:relative;display:flex;align-items:center;gap:9px;width:100%;height:28px;padding:0 10px;border-radius:6px;border:1.5px solid var(--line2,#DFDBD0);background:var(--panel,#FFFEFB);cursor:ew-resize;touch-action:none">
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:var(--text4,#85817A)">A</span>
+        <span style="position:relative;flex:1;height:2px;border-radius:2px;background:var(--line3,#CDC8BB);display:block">
+          <span style="position:absolute;left:0;top:0;bottom:0;width:{{ sizePct }};border-radius:2px;background:var(--accent,#D93E11);display:block"></span>
+          <span style="position:absolute;left:{{ sizePct }};top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--panel,#FFFEFB);border:2px solid var(--accent,#D93E11);display:block"></span>
+        </span>
+        <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:15px;color:var(--text3,#6C6862);line-height:1">A</span>
+      </div>
+    </div>
+
+
+    <div data-order="5" style="position: absolute; top: 672px; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; align-items: flex-end; width: clamp(158px,22%,200px); left: 905px">
+      <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">Accent</span>
+      <div onPointerDown="{{ hueDown }}" style="position:relative;display:flex;align-items:center;width:100%;height:28px;padding:0 9px;border-radius:6px;border:1.5px solid var(--line2,#DFDBD0);background:var(--panel,#FFFEFB);cursor:ew-resize;touch-action:none">
+        <span style="width:100%;height:6px;border-radius:3px;background:linear-gradient(90deg,hsl(12 86% 46%),hsl(45 86% 46%),hsl(95 60% 40%),hsl(175 70% 38%),hsl(225 80% 52%),hsl(285 60% 50%),hsl(340 78% 48%),hsl(372 86% 46%))"></span>
+        <span style="position:absolute;left:{{ huePct }};top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--accent,#D93E11);border:2px solid var(--panel,#FFFEFB);box-shadow:0 1px 4px rgba(26,26,23,.3)"></span>
+      </div>
+    </div>
+
+
+
+
+
+
+    <div data-order="6" style="position: absolute; top: 779px; transform: translateY(-100%); display: flex; flex-direction: column; gap: 8px; align-items: flex-end; width: clamp(158px,22%,200px); left: 408px">
+      <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">Dev Mode</span>
+      <div onMouseEnter="{{ specOn }}" onMouseLeave="{{ specOff }}" title="toggle the measurement layer to preview spacing" style="display:flex;flex-direction:column;align-items:flex-end;gap:11px">
+        <div onClick="{{ devOn }}" style="display:flex;align-items:center;gap:11px;cursor:pointer">
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;color:var(--text2,#55534D)">on</span>
+          <span style="flex:0 0 19px;width:19px;height:19px;border-radius:50%;border:1.5px solid var(--line3,#D5D0C4);background:{{ devOnFill }};display:block"></span>
+        </div>
+        <div onClick="{{ devOff }}" style="display:flex;align-items:center;gap:11px;cursor:pointer">
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;color:var(--text2,#55534D)">off</span>
+          <span style="flex:0 0 19px;width:19px;height:19px;border-radius:50%;border:1.5px solid var(--line3,#D5D0C4);background:{{ devOffFill }};display:block"></span>
+        </div>
+      </div>
+    </div>
+
+    <div data-order="3" style="position: absolute; left: 540px; top: 60px; transform: translateX(-50%); display: flex; flex-direction: column; gap: 8px; align-items: center" data-comment-anchor="84b1192469-div">
+      <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">Theme Toggle</span>
+      <div style="display:flex;gap:2px;padding:4px;border-radius:6px;border:1.5px solid var(--line2,#DFDBD0);background:var(--panel,#FFFEFB)">
+        <div onClick="{{ setLight }}" title="light" style="width:32px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:{{ lightFill }}">
+          <span style="width:11px;height:11px;border-radius:50%;border:2px solid var(--text2,#55534D);display:block"></span>
+        </div>
+        <div onClick="{{ setDark }}" title="dark" style="width:32px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:{{ darkFill }}">
+          <span style="width:12px;height:12px;border-radius:50%;border:2px solid var(--text2,#55534D);border-left-color:transparent;border-bottom-color:transparent;display:block;transform:rotate(-40deg)"></span>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div data-order="7" style="position: absolute; left: -32px; top: 820px; transform: translateY(-100%); display: flex; flex-direction: column; gap: 8px; align-items: flex-start; width: clamp(196px,22%,232px)">
+      <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">Now Playing</span>
+
+      <div style="display:flex;flex-direction:column;gap:12px;width:100%;padding:13px 14px 15px;border-radius:16px;background:var(--surf,#F7F5F0);border:1px solid var(--line,#E9E5DB)">
+
+        <div style="display:flex;gap:3px;padding:3px;border-radius:8px;background:var(--surf2,#F2F0E9);border:1px solid var(--line,#E9E5DB)">
+          <div onClick="{{ setVibeJazz }}" title="jazz house" style="flex:1;display:flex;align-items:center;justify-content:center;height:24px;border-radius:6px;background:{{ vibeJazzBg }};font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:.02em;color:{{ vibeJazzColor }};cursor:pointer;transition:background .18s ease-out,color .18s ease-out">jazz house</div>
+          <div onClick="{{ setVibeSynth }}" title="synthwave" style="flex:1;display:flex;align-items:center;justify-content:center;height:24px;border-radius:6px;background:{{ vibeSynthBg }};font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;letter-spacing:.02em;color:{{ vibeSynthColor }};cursor:pointer;transition:background .18s ease-out,color .18s ease-out">synthwave</div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:11px">
+          <div style="flex:0 0 46px;width:46px;height:46px;border-radius:7px;background:{{ coverBg }};box-shadow:0 1px 3px rgba(26,26,23,.2);display:block"></div>
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:1px">
+            <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:15px;font-weight:500;letter-spacing:-.018em;color:var(--ink,#1A1A17)">{{ trackTitle }}</span>
+            <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;letter-spacing:-.012em;color:var(--text3,#6C6862)">{{ trackArtist }}</span>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="flex:0 0 auto;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:var(--text3,#6C6862)">{{ posLabel }}</span>
+          <div onClick="{{ seekTrack }}" style="flex:1;min-width:0;height:5px;border-radius:3px;background:var(--line2,#DFDBD0);cursor:pointer">
+            <span style="width:{{ trackPct }};height:100%;border-radius:3px;background:var(--text2,#55534D);display:block"></span>
+          </div>
+          <span style="flex:0 0 auto;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:var(--text3,#6C6862)">{{ remLabel }}</span>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-around;gap:8px">
+          <div onClick="{{ prevTrack }}" title="previous" style="display:flex;align-items:center;gap:1px;padding:4px;cursor:pointer" style-hover="opacity:.6">
+            <span style="width:0;height:0;border-style:solid;border-width:7px 10px 7px 0;border-color:transparent var(--ink,#1A1A17) transparent transparent;display:block"></span>
+            <span style="width:0;height:0;border-style:solid;border-width:7px 10px 7px 0;border-color:transparent var(--ink,#1A1A17) transparent transparent;display:block"></span>
+          </div>
+          <div onClick="{{ toggleTrack }}" title="play / pause" style="display:flex;align-items:center;justify-content:center;padding:4px;cursor:pointer" style-hover="opacity:.6">
+            <sc-if value="{{ trackPaused }}" hint-placeholder-val="{{ true }}">
+              <span style="width:0;height:0;border-style:solid;border-width:11px 0 11px 17px;border-color:transparent transparent transparent var(--ink,#1A1A17);display:block"></span>
+            </sc-if>
+            <sc-if value="{{ trackPlaying }}" hint-placeholder-val="{{ false }}">
+              <span style="display:flex;gap:5px">
+                <span style="width:6px;height:22px;border-radius:1px;background:var(--ink,#1A1A17);display:block"></span>
+                <span style="width:6px;height:22px;border-radius:1px;background:var(--ink,#1A1A17);display:block"></span>
+              </span>
+            </sc-if>
+          </div>
+          <div onClick="{{ nextTrack }}" title="next" style="display:flex;align-items:center;gap:1px;padding:4px;cursor:pointer" style-hover="opacity:.6">
+            <span style="width:0;height:0;border-style:solid;border-width:7px 0 7px 10px;border-color:transparent transparent transparent var(--ink,#1A1A17);display:block"></span>
+            <span style="width:0;height:0;border-style:solid;border-width:7px 0 7px 10px;border-color:transparent transparent transparent var(--ink,#1A1A17);display:block"></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div data-order="4" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:14px;width:min(1120px,82%)" data-comment-anchor="5df7c9185f-section">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;width:100%">
+        <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--accent,#D93E11);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.06em;color:var(--accentText,#C0380E)">Headline Block</span>
+        <span style="display:flex;flex-wrap:wrap;gap:6px;opacity:var(--chip,0)">
+          <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--accent,#D93E11);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.06em;color:var(--accentText,#C0380E);gap:6px"><span style="opacity:.65">Aa</span>{{ fontSizeLabel }}</span>
+          <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--accent,#D93E11);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.06em;color:var(--accentText,#C0380E);gap:6px"><span style="opacity:.65">↕</span>0.94</span>
+          <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--accent,#D93E11);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.06em;color:var(--accentText,#C0380E);gap:6px"><span style="opacity:.65">↔</span>-0.04em</span>
+          <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--accent,#D93E11);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.06em;color:var(--accentText,#C0380E);gap:6px"><span style="opacity:.65">A</span>text-primary</span>
+        </span>
+      </div>
+
+      <div data-frame="1" style="position: relative; width: 100%; margin-top: 34px; padding: clamp(14px,2vw,26px) clamp(16px,2.4vw,30px); border: 1px solid var(--accent,#D93E11)" data-comment-anchor="f537e675e4-div">
+        <span style="position:absolute;left:-4px;top:-4px;width:7px;height:7px;background:var(--panel,#FFFEFB);border:1.5px solid var(--accent,#D93E11)"></span>
+        <span style="position:absolute;right:-4px;top:-4px;width:7px;height:7px;background:var(--panel,#FFFEFB);border:1.5px solid var(--accent,#D93E11)"></span>
+        <span style="position:absolute;left:-4px;bottom:-4px;width:7px;height:7px;background:var(--panel,#FFFEFB);border:1.5px solid var(--accent,#D93E11)"></span>
+        <span style="position:absolute;right:-4px;bottom:-4px;width:7px;height:7px;background:var(--panel,#FFFEFB);border:1.5px solid var(--accent,#D93E11)"></span>
+        <span data-baseline style="position:absolute;left:0;right:0;bottom:24%;border-top:1px dashed var(--accent,#D93E11);opacity:var(--chip,0)"></span>
+        <span style="position:absolute;left:0;right:0;top:-22px;height:1px;background:var(--accent,#D93E11);opacity:{{ spec }};transition:opacity .16s ease-out"></span>
+        <span style="position:absolute;left:0;top:-27px;width:1px;height:11px;background:var(--accent,#D93E11);opacity:{{ spec }};transition:opacity .16s ease-out"></span>
+        <span style="position:absolute;right:0;top:-27px;width:1px;height:11px;background:var(--accent,#D93E11);opacity:{{ spec }};transition:opacity .16s ease-out"></span>
+        <span style="position:absolute;left:50%;top:-38px;transform:translateX(-50%);padding:2px 6px;border-radius:4px;background:var(--accent,#D93E11);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:9.5px;color:#FFFFFF;white-space:nowrap;opacity:{{ spec }};transition:opacity .16s ease-out">{{ padLabel }}</span>
+        <span style="position:absolute;top:0;bottom:0;right:-22px;width:1px;background:var(--accent,#D93E11);opacity:{{ spec }};transition:opacity .16s ease-out"></span>
+        <span style="position:absolute;right:-27px;top:0;width:11px;height:1px;background:var(--accent,#D93E11);opacity:{{ spec }};transition:opacity .16s ease-out"></span>
+        <span style="position:absolute;right:-27px;bottom:0;width:11px;height:1px;background:var(--accent,#D93E11);opacity:{{ spec }};transition:opacity .16s ease-out"></span>
+        <span style="position:absolute;left:0;right:0;top:0;height:clamp(14px,2vw,26px);background:repeating-linear-gradient(-45deg,var(--accentSoft,#FAE9E1) 0 4px,transparent 4px 8px);opacity:{{ specPad }};transition:opacity .16s ease-out"></span>
+        <span style="position:absolute;left:0;right:0;bottom:0;height:clamp(14px,2vw,26px);background:repeating-linear-gradient(-45deg,var(--accentSoft,#FAE9E1) 0 4px,transparent 4px 8px);opacity:{{ specPad }};transition:opacity .16s ease-out"></span>
+        <div style="margin-bottom: .28em; font-family: 'JetBrains Mono',ui-monospace,monospace; font-size: 14px; letter-spacing: .18em; text-transform: uppercase; color: var(--accentText,#C0380E)">Aditi Kanaujia</div>
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:{{ headlineSize }};line-height:1;font-weight:400;letter-spacing:-.02em;text-wrap:balance">Product designer &amp; developer.</div>
+      </div>
+
+      <div style="display:flex;gap:6px;opacity:var(--chip,0)">
+        <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--accent,#D93E11);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.06em;color:var(--accentText,#C0380E);gap:6px"><span style="opacity:.65">W</span>{{ frameW }}</span>
+        <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--accent,#D93E11);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.06em;color:var(--accentText,#C0380E);gap:6px"><span style="opacity:.65">H</span>{{ frameH }}</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<section id="work" style="padding:0 0 clamp(50px,8vh,100px);width:100%;max-width:1280px;margin:0 auto" data-comment-anchor="2c67b973c9-section">
+  <div style="display:flex;align-items:baseline;gap:14px;padding:0 clamp(20px,6vw,110px);margin-bottom:clamp(22px,3.4vh,40px)">
+    <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">My work</span>
+  </div>
+
+  <sc-for list="{{ rows }}" as="r" hint-placeholder-count="3">
+    <div style="display:flex;flex-direction:column;gap:clamp(16px,1.8vw,22px);margin:0 clamp(20px,6vw,110px) clamp(28px,4vh,52px);padding:clamp(20px,2.4vw,30px) 0 clamp(20px,2.4vw,30px);border-radius:clamp(16px,1.8vw,26px);border:1px solid var(--line2,#DFDBD0);background:var(--panel,#FBFAF7);overflow:hidden">
+
+      <div style="display:flex;flex-direction:column;gap:clamp(12px,1.3vw,18px);padding:0 clamp(22px,2.6vw,36px)">
+
+        <div data-work-header style="display:flex;align-items:center;justify-content:space-between;gap:14px 20px;min-height:{{ r.logoH }}">
+          <sc-if value="{{ r.linked }}" hint-placeholder-val="{{ true }}">
+            <a href="{{ r.href }}" target="_blank" rel="noopener noreferrer" title="{{ r.cta }}" style="display:inline-flex;align-items:center;color:var(--ink,#1A1A17)" style-hover="opacity:.7">
+              <sc-if value="{{ r.hasLogo }}" hint-placeholder-val="{{ true }}">
+                {{ r.logoImg }}
+              </sc-if>
+              <sc-if value="{{ r.noLogo }}" hint-placeholder-val="{{ false }}">
+                <span style="font-family:'Instrument Serif',Georgia,serif;font-size:clamp(26px,3vw,38px);letter-spacing:-.014em;line-height:1">{{ r.name }}</span>
+              </sc-if>
+            </a>
+          </sc-if>
+          <sc-if value="{{ r.plain }}" hint-placeholder-val="{{ false }}">
+            <sc-if value="{{ r.hasLogo }}" hint-placeholder-val="{{ true }}">
+              {{ r.logoImg }}
+            </sc-if>
+            <sc-if value="{{ r.noLogo }}" hint-placeholder-val="{{ false }}">
+              <span style="font-family:'Instrument Serif',Georgia,serif;font-size:clamp(26px,3vw,38px);letter-spacing:-.014em;line-height:1;color:var(--ink,#1A1A17)">{{ r.name }}</span>
+            </sc-if>
+          </sc-if>
+          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text4,#85817A);white-space:nowrap;flex:0 0 auto">{{ r.role }} · {{ r.years }}</span>
+        </div>
+
+        <p style="margin:0;max-width:70ch;font-size:clamp(17px,1.55vw,21px);line-height:1.35;letter-spacing:-.01em;color:var(--ink,#1A1A17);text-wrap:pretty">{{ r.title }}</p>
+
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px">
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <sc-for list="{{ r.tags }}" as="tg" hint-placeholder-count="3">
+              <span style="display:inline-flex;padding:4px 10px;border-radius:99px;border:1px solid var(--line2,#DFDBD0);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text3,#6C6862)">{{ tg.text }}</span>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <div onClick="{{ r.prev }}" title="scroll left" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;border:1px solid var(--line2,#DFDBD0);cursor:pointer" style-hover="border-color:var(--accent,#D93E11)">
+              <span style="width:0;height:0;border-style:solid;border-width:5px 6px 5px 0;border-color:transparent var(--ink,#1A1A17) transparent transparent;display:block"></span>
+            </div>
+            <div onClick="{{ r.next }}" title="scroll right" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;border:1px solid var(--line2,#DFDBD0);cursor:pointer" style-hover="border-color:var(--accent,#D93E11)">
+              <span style="width:0;height:0;border-style:solid;border-width:5px 0 5px 6px;border-color:transparent transparent transparent var(--ink,#1A1A17);display:block"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div data-strip="{{ r.key }}" style="display:flex;gap:clamp(12px,1.4vw,20px);padding:4px clamp(18px,2.2vw,30px);overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none">
+        <sc-for list="{{ r.shots }}" as="sh" hint-placeholder-count="1">
+          <div onClick="{{ sh.open }}" style="flex:0 0 calc((100% - clamp(18px,2.2vw,30px) * 2 - clamp(12px,1.4vw,20px)) / 1.05);width:calc((100% - clamp(18px,2.2vw,30px) * 2 - clamp(12px,1.4vw,20px)) / 1.05);aspect-ratio:1440 / 989;border-radius:clamp(10px,1.2vw,16px);background:{{ sh.bg }};border:1px solid var(--line,#E9E5DB);overflow:hidden;cursor:{{ sh.cursor }}">{{ sh.img }}</div>
+        </sc-for>
+        <sc-for list="{{ r.slots }}" as="sl" hint-placeholder-count="3">
+          <div style="flex:0 0 calc((100% - clamp(18px,2.2vw,30px) * 2 - clamp(12px,1.4vw,20px)) / 1.05);width:calc((100% - clamp(18px,2.2vw,30px) * 2 - clamp(12px,1.4vw,20px)) / 1.05);aspect-ratio:1440 / 989;border-radius:clamp(10px,1.2vw,16px);overflow:hidden">
+            <image-slot id="{{ sl.id }}" shape="rounded" radius="14" style="width:100%;height:100%" placeholder="drop a screenshot"></image-slot>
+          </div>
+        </sc-for>
+      </div>
+
+
+    </div>
+  </sc-for>
+</section>
+
+
+<section id="resume" style="padding:0 clamp(20px,6vw,110px) 170px;width:100%;max-width:1280px;margin:0 auto">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:46px">
+    <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">Experience</span>
+  </div>
+
+  <div style="display:flex;flex-direction:column">
+
+    <div data-exp-row style="display:grid;grid-template-columns:86px minmax(0,.9fr) minmax(0,1.05fr);gap:clamp(16px,3vw,40px);padding:26px 0;border-top:1px solid var(--line,#E9E5DB);align-items:start">
+      <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:var(--text4,#85817A);padding-top:5px">2026</span>
+      <div style="display:flex;flex-direction:column;gap:3px">
+        <span style="font-family:'Instrument Serif',Georgia,serif;font-size:21px;letter-spacing:-.006em">Fermàt</span>
+        <span style="font-family:'Instrument Serif',Georgia,serif;font-size:16.5px;color:var(--text3,#6C6862)">Product Designer</span>
+      </div>
+      <p style="margin:0;font-size:16px;line-height:1.55;color:var(--text2,#55534D);text-wrap:pretty">Leading design for August, our AI digital twins research platform, from zero to one across 13 orgs and 486 trained twins. Shipping agent-native UX, opt-in flows for AI Search funnels, and a marketing site straight to production alongside Claude and Devin.</p>
+    </div>
+
+    <div data-exp-row style="display:grid;grid-template-columns:86px minmax(0,.9fr) minmax(0,1.05fr);gap:clamp(16px,3vw,40px);padding:26px 0;border-top:1px solid var(--line,#E9E5DB);align-items:start">
+      <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:var(--text4,#85817A);padding-top:5px">2025</span>
+      <div style="display:flex;flex-direction:column;gap:3px">
+        <span style="font-family:'Instrument Serif',Georgia,serif;font-size:21px;letter-spacing:-.006em">Fletch</span>
+        <span style="font-family:'Instrument Serif',Georgia,serif;font-size:16.5px;color:var(--text3,#6C6862)">Product Designer, Contract</span>
+      </div>
+      <p style="margin:0;font-size:16px;line-height:1.55;color:var(--text2,#55534D);text-wrap:pretty">Designing a B2B form-builder dashboard for insurers. Mapping end-to-end journeys, making form embedding intuitive for clients, and rebranding decks and product content into a consistent voice.</p>
+    </div>
+
+    <div data-exp-row style="display:grid;grid-template-columns:86px minmax(0,.9fr) minmax(0,1.05fr);gap:clamp(16px,3vw,40px);padding:26px 0;border-top:1px solid var(--line,#E9E5DB);align-items:start">
+      <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:var(--text4,#85817A);padding-top:5px">2025</span>
+      <div style="display:flex;flex-direction:column;gap:3px">
+        <span style="font-family:'Instrument Serif',Georgia,serif;font-size:21px;letter-spacing:-.006em">Henry Labs</span>
+        <span style="font-family:'Instrument Serif',Georgia,serif;font-size:16.5px;color:var(--text3,#6C6862)">Product Designer, Contract</span>
+      </div>
+      <p style="margin:0;font-size:16px;line-height:1.55;color:var(--text2,#55534D);text-wrap:pretty">Redesigning the AI shopping flow end to end. Extending session length by about a minute, cutting time-to-explore ~25% with a streamlined homepage, and running A/B tests on onboarding to clarify the crypto-cashback value.</p>
+    </div>
+
+    <div data-exp-row style="display:grid;grid-template-columns:86px minmax(0,.9fr) minmax(0,1.05fr);gap:clamp(16px,3vw,40px);padding:26px 0;border-top:1px solid var(--line,#E9E5DB);border-bottom:1px solid var(--line,#E9E5DB);align-items:start">
+      <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:var(--text4,#85817A);padding-top:5px">2024</span>
+      <div style="display:flex;flex-direction:column;gap:3px">
+        <span style="font-family:'Instrument Serif',Georgia,serif;font-size:21px;letter-spacing:-.006em">Roam</span>
+        <span style="font-family:'Instrument Serif',Georgia,serif;font-size:16.5px;color:var(--text3,#6C6862)">Product Designer</span>
+      </div>
+      <p style="margin:0;font-size:16px;line-height:1.55;color:var(--text2,#55534D);text-wrap:pretty">Shipped a zero-to-one marketplace for international students. Drove a 17% engagement lift, built a scalable design system, designed insights dashboards, and redesigned CTA hierarchy to grow bundle adoption.</p>
+    </div>
+
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:34px">
+    <span style="padding:7px 13px;border-radius:6px;border:1px solid var(--line2,#DFDBD0);font-size:13.5px;color:var(--text2,#55534D)">UI/UX Design</span>
+    <span style="padding:7px 13px;border-radius:6px;border:1px solid var(--line2,#DFDBD0);font-size:13.5px;color:var(--text2,#55534D)">Agentic Commerce &amp; AI Product Design</span>
+    <span style="padding:7px 13px;border-radius:6px;border:1px solid var(--line2,#DFDBD0);font-size:13.5px;color:var(--text2,#55534D)">Design Systems</span>
+    <span style="padding:7px 13px;border-radius:6px;border:1px solid var(--line2,#DFDBD0);font-size:13.5px;color:var(--text2,#55534D)">User Research</span>
+    <span style="padding:7px 13px;border-radius:6px;border:1px solid var(--line2,#DFDBD0);font-size:13.5px;color:var(--text2,#55534D)">Rapid Prototyping</span>
+    <span style="padding:7px 13px;border-radius:6px;border:1px solid var(--line2,#DFDBD0);font-size:13.5px;color:var(--text2,#55534D)">Visual Design</span>
+    <span style="padding:7px 13px;border-radius:6px;border:1px solid var(--line2,#DFDBD0);font-size:13.5px;color:var(--text2,#55534D)">Design Thinking</span>
+    <span style="padding:7px 13px;border-radius:6px;border:1px solid var(--line2,#DFDBD0);font-size:13.5px;color:var(--text2,#55534D)">Data Visualization</span>
+    <span style="padding:7px 13px;border-radius:6px;border:1px solid var(--line2,#DFDBD0);font-size:13.5px;color:var(--text2,#55534D)">Design Engineering</span>
+  </div>
+</section>
+
+<section id="about" style="position:relative;padding:clamp(40px,7vh,90px) clamp(20px,6vw,110px) 85px;width:100%;max-width:1280px;margin:0 auto" data-comment-anchor="96711904c4-section">
+  <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">About me</span><div style="display:flex;flex-direction:column;gap:clamp(34px,5vh,58px)">
+
+    <div data-about-grid style="display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(26px,4vw,56px);align-items:start">
+      <div data-about-left style="display:flex;flex-direction:column;gap:20px" data-comment-anchor="f087d60ad9-div">
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px">
+        
+      </div>
+  <div data-anim-scope="1" style="max-width:28ch;margin-bottom:0;font-family:'Neue Montreal',Helvetica,Arial,sans-serif;font-size:clamp(30px,4.6vw,66px);font-weight:400;letter-spacing:-.032em;word-spacing:.08em;line-height:1.08;text-wrap:balance" data-comment-anchor="6367328844-div">
+      <span>I like making technology </span>
+      <span style="white-space:nowrap"><span data-ball-track="1" style="position:relative;display:inline-flex;vertical-align:baseline;perspective:600px;cursor:default">
+        <span data-ball-letter="1" style="display:inline-block;padding:0 1px;color:var(--ink,#1A1A17);transform-origin:center 45%;backface-visibility:hidden">f</span>
+        <span data-ball-letter="1" style="display:inline-block;padding:0 1px;color:var(--ink,#1A1A17);transform-origin:center 45%;backface-visibility:hidden">u</span>
+        <span data-ball-letter="1" style="display:inline-block;padding:0 1px;color:var(--ink,#1A1A17);transform-origin:center 45%;backface-visibility:hidden">n</span>
+      </span>,</span>
+      <span style="white-space:nowrap"><span data-hl-wrap="1" style="position:relative;display:inline-block;margin:0 .06em;padding:0 4px" data-comment-anchor="6464792108-span">
+        <span data-hl="1" style="position:absolute;left:0;top:.04em;bottom:.04em;width:0;background:var(--accentSoft,#FAE9E1);transition:width .9s cubic-bezier(.22,.61,.36,1)"></span>
+        <span data-hl-text="1" style="position:relative;color:var(--ink,#1A1A17);transition:color .4s ease-out .18s">approachable</span>
+      </span>,</span> and
+      <span style="display:inline-flex;vertical-align:baseline;margin:0 .06em">
+        <span data-flee="1" style="display:inline-block;padding:0 1px;background:var(--accentSoft,#FAE9E1);color:var(--accentText,#C0380E);transform:translateY(.12em) rotate(6deg)">a</span>
+        <span data-flee="1" style="display:inline-block;padding:0 1px;background:var(--accentSoft,#FAE9E1);color:var(--accentText,#C0380E);transform:translateY(-.1em) rotate(-8deg)">c</span>
+        <span data-flee="1" style="display:inline-block;padding:0 1px;background:var(--accentSoft,#FAE9E1);color:var(--accentText,#C0380E);transform:translateY(.06em) rotate(4deg)">c</span>
+        <span data-flee="1" style="display:inline-block;padding:0 1px;background:var(--accentSoft,#FAE9E1);color:var(--accentText,#C0380E);transform:translateY(-.12em) rotate(-6deg)">e</span>
+        <span data-flee="1" style="display:inline-block;padding:0 1px;background:var(--accentSoft,#FAE9E1);color:var(--accentText,#C0380E);transform:translateY(.1em) rotate(9deg)">s</span>
+        <span data-flee="1" style="display:inline-block;padding:0 1px;background:var(--accentSoft,#FAE9E1);color:var(--accentText,#C0380E);transform:translateY(-.04em) rotate(-3deg)">s</span>
+        <span data-flee="1" style="display:inline-block;padding:0 1px;background:var(--accentSoft,#FAE9E1);color:var(--accentText,#C0380E);transform:translateY(.14em) rotate(5deg)">i</span>
+        <span data-flee="1" style="display:inline-block;padding:0 1px;background:var(--accentSoft,#FAE9E1);color:var(--accentText,#C0380E);transform:translateY(-.08em) rotate(-7deg)">b</span>
+        <span data-flee="1" style="display:inline-block;padding:0 1px;background:var(--accentSoft,#FAE9E1);color:var(--accentText,#C0380E);transform:translateY(.04em) rotate(3deg)">l</span>
+        <span data-flee="1" style="display:inline-block;padding:0 1px;background:var(--accentSoft,#FAE9E1);color:var(--accentText,#C0380E);transform:translateY(-.13em) rotate(-5deg)">e</span>
+      </span>
+      <span> to everyone.</span>
+    </div>
+
+      <div data-about-folders style="display:flex;flex-wrap:wrap;gap:clamp(22px,3vw,40px);margin-top:clamp(56px,9vh,110px)">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:11px">
+            <div onClick="{{ fLife.open }}" onMouseEnter="{{ fLife.enter }}" onMouseLeave="{{ fLife.leave }}" onKeyDown="{{ fLife.key }}" role="button" tabindex="0" aria-label="Open Life photos" title="Open Life photos" style="position:relative;width:92px;height:73px;cursor:pointer;outline:none;transform:{{ fLife.lift }};transition:transform .22s cubic-bezier(.22,.61,.36,1)">
+              <span style="position:absolute;left:0;bottom:99%;width:30px;height:9px;border-radius:5px 5px 0 0;background:{{ fLife.back }}"></span>
+              <span style="position:absolute;inset:0;border-radius:0 10px 10px 10px;background:{{ fLife.back }}"></span>
+              <span style="position:absolute;z-index:2;bottom:10%;left:50%;width:70%;height:80%;border-radius:5px;background:var(--paper1,#E3E0D7);transform:{{ fLife.p1 }};transition:transform .3s cubic-bezier(.22,.61,.36,1)"></span>
+              <span style="position:absolute;z-index:2;bottom:10%;left:50%;width:80%;height:70%;border-radius:5px;background:var(--paper2,#EFEDE5);transform:{{ fLife.p2 }};transition:transform .3s cubic-bezier(.22,.61,.36,1)"></span>
+              <span style="position:absolute;z-index:2;bottom:10%;left:50%;width:90%;height:60%;border-radius:5px;background:var(--paper3,#FFFEFB);transform:{{ fLife.p3 }};transition:transform .3s cubic-bezier(.22,.61,.36,1)"></span>
+              <span style="position:absolute;z-index:3;inset:0;border-radius:5px 10px 10px 10px;background:{{ fLife.front }};transform-origin:bottom;transform:{{ fLife.flapL }};transition:transform .3s cubic-bezier(.22,.61,.36,1)"></span>
+              <span style="position:absolute;z-index:3;inset:0;border-radius:5px 10px 10px 10px;background:{{ fLife.front }};transform-origin:bottom;transform:{{ fLife.flapR }};transition:transform .3s cubic-bezier(.22,.61,.36,1)"></span>
+              <span style="position:absolute;z-index:4;top:-8px;right:-8px;min-width:19px;height:19px;padding:0 5px;border-radius:10px;background:var(--ink,#1A1A17);color:var(--bg,#FBFAF6);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;display:flex;align-items:center;justify-content:center">{{ fLife.count }}</span>
+            </div>
+            <span style="font-size:14.5px;letter-spacing:-.014em;color:var(--ink,#1A1A17)">Life</span>
+          </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:11px">
+            <div onClick="{{ fTravel.open }}" onMouseEnter="{{ fTravel.enter }}" onMouseLeave="{{ fTravel.leave }}" onKeyDown="{{ fTravel.key }}" role="button" tabindex="0" aria-label="Open Travel photos" title="Open Travel photos" style="position:relative;width:92px;height:73px;cursor:pointer;outline:none;transform:{{ fTravel.lift }};transition:transform .22s cubic-bezier(.22,.61,.36,1)">
+              <span style="position:absolute;left:0;bottom:99%;width:30px;height:9px;border-radius:5px 5px 0 0;background:{{ fTravel.back }}"></span>
+              <span style="position:absolute;inset:0;border-radius:0 10px 10px 10px;background:{{ fTravel.back }}"></span>
+              <span style="position:absolute;z-index:2;bottom:10%;left:50%;width:70%;height:80%;border-radius:5px;background:var(--paper1,#E3E0D7);transform:{{ fTravel.p1 }};transition:transform .3s cubic-bezier(.22,.61,.36,1)"></span>
+              <span style="position:absolute;z-index:2;bottom:10%;left:50%;width:80%;height:70%;border-radius:5px;background:var(--paper2,#EFEDE5);transform:{{ fTravel.p2 }};transition:transform .3s cubic-bezier(.22,.61,.36,1)"></span>
+              <span style="position:absolute;z-index:2;bottom:10%;left:50%;width:90%;height:60%;border-radius:5px;background:var(--paper3,#FFFEFB);transform:{{ fTravel.p3 }};transition:transform .3s cubic-bezier(.22,.61,.36,1)"></span>
+              <span style="position:absolute;z-index:3;inset:0;border-radius:5px 10px 10px 10px;background:{{ fTravel.front }};transform-origin:bottom;transform:{{ fTravel.flapL }};transition:transform .3s cubic-bezier(.22,.61,.36,1)"></span>
+              <span style="position:absolute;z-index:3;inset:0;border-radius:5px 10px 10px 10px;background:{{ fTravel.front }};transform-origin:bottom;transform:{{ fTravel.flapR }};transition:transform .3s cubic-bezier(.22,.61,.36,1)"></span>
+              <span style="position:absolute;z-index:4;top:-8px;right:-8px;min-width:19px;height:19px;padding:0 5px;border-radius:10px;background:var(--ink,#1A1A17);color:var(--bg,#FBFAF6);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;display:flex;align-items:center;justify-content:center">{{ fTravel.count }}</span>
+            </div>
+            <span style="font-size:14.5px;letter-spacing:-.014em;color:var(--ink,#1A1A17)">Travel</span>
+          </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:11px">
+            <div onClick="{{ fWork.open }}" onMouseEnter="{{ fWork.enter }}" onMouseLeave="{{ fWork.leave }}" onKeyDown="{{ fWork.key }}" role="button" tabindex="0" aria-label="Open Work photos" title="Open Work photos" style="position:relative;width:92px;height:73px;cursor:pointer;outline:none;transform:{{ fWork.lift }};transition:transform .22s cubic-bezier(.22,.61,.36,1)">
+              <span style="position:absolute;left:0;bottom:99%;width:30px;height:9px;border-radius:5px 5px 0 0;background:{{ fWork.back }}"></span>
+              <span style="position:absolute;inset:0;border-radius:0 10px 10px 10px;background:{{ fWork.back }}"></span>
+              <span style="position:absolute;z-index:2;bottom:10%;left:50%;width:70%;height:80%;border-radius:5px;background:var(--paper1,#E3E0D7);transform:{{ fWork.p1 }};transition:transform .3s cubic-bezier(.22,.61,.36,1)"></span>
+              <span style="position:absolute;z-index:2;bottom:10%;left:50%;width:80%;height:70%;border-radius:5px;background:var(--paper2,#EFEDE5);transform:{{ fWork.p2 }};transition:transform .3s cubic-bezier(.22,.61,.36,1)"></span>
+              <span style="position:absolute;z-index:2;bottom:10%;left:50%;width:90%;height:60%;border-radius:5px;background:var(--paper3,#FFFEFB);transform:{{ fWork.p3 }};transition:transform .3s cubic-bezier(.22,.61,.36,1)"></span>
+              <span style="position:absolute;z-index:3;inset:0;border-radius:5px 10px 10px 10px;background:{{ fWork.front }};transform-origin:bottom;transform:{{ fWork.flapL }};transition:transform .3s cubic-bezier(.22,.61,.36,1)"></span>
+              <span style="position:absolute;z-index:3;inset:0;border-radius:5px 10px 10px 10px;background:{{ fWork.front }};transform-origin:bottom;transform:{{ fWork.flapR }};transition:transform .3s cubic-bezier(.22,.61,.36,1)"></span>
+              <span style="position:absolute;z-index:4;top:-8px;right:-8px;min-width:19px;height:19px;padding:0 5px;border-radius:10px;background:var(--ink,#1A1A17);color:var(--bg,#FBFAF6);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;display:flex;align-items:center;justify-content:center">{{ fWork.count }}</span>
+            </div>
+            <span style="font-size:14.5px;letter-spacing:-.014em;color:var(--ink,#1A1A17)">Work</span>
+          </div>
+      </div>
+      </div>
+
+      <div data-about-right style="display:flex;flex-direction:column;gap:18px;padding-top:0">
+      
+
+      <div style="margin:0;max-width:52ch;font-size:18px;line-height:1.62;color:var(--text2,#55534D);text-wrap:pretty" data-comment-anchor="0a774264d6-p"><div>I design surfaces where the user is sometimes an AI agent, currently MCP interactions for August, Fermat's digital twin research platform. I ship what I design in production code with Claude and Devin, and build my own tools when they don't exist yet. I<span style="color: var(--text2,#55534D); text-wrap-mode: initial;">&nbsp;find the most joy making things that change how people interact with the world, which usually means designing for where technology is going instead of where it is.</span></div></div><p style="margin:0;max-width:52ch;font-size:18px;line-height:1.62;color:var(--text2,#55534D);text-wrap:pretty">Outside of work, you'll find me playing tennis, following Formula 1, traveling abroad, playing Uncharted, rewatching Marvel movies, listening to house music, or picking my way through The Alchemist. I'm into fashion, and I've recently gotten hooked on knitting. I travel everywhere with my knitting kit.</p>
+      
+      </div>
+    </div>
+
+
+  </div>
+
+  <div data-scatter style="position:relative;z-index:5;height:{{ scatterH }};margin-top:clamp(10px,2vh,24px);transition:height .34s cubic-bezier(.22,.9,.3,1);pointer-events:none">
+    <sc-for list="{{ scatter }}" as="ph" hint-placeholder-count="0">
+      <div onMouseEnter="{{ ph.enter }}" onMouseLeave="{{ ph.leave }}" style="position:absolute;left:{{ ph.x }};top:{{ ph.y }};width:{{ ph.w }};padding:11px 11px 30px;border-radius:3px;background:var(--paper3,#FFFEFB);border:1px solid var(--line2,#DFDBD0);box-shadow:0 2px 6px rgba(60,50,35,.05);--r:{{ ph.rot }};transform:rotate({{ ph.rot }}) scale(1);opacity:0;animation:photoDrop .55s cubic-bezier(.22,.9,.3,1) {{ ph.delay }} both;pointer-events:auto">
+        <div style="width:100%;aspect-ratio:4 / 3;border-radius:2px;overflow:hidden;background:var(--surf2,#F2F0E9)">
+{{ ph.slotEl }}
+        </div>
+        <span style="position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);padding:3px 8px;border-radius:5px;background:#222221;color:#F8F6F2;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;white-space:nowrap;opacity:{{ ph.captionO }};transition:opacity .16s ease-out;pointer-events:none;z-index:10">{{ ph.caption }}</span>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<section id="garden" style="padding:0 clamp(20px,6vw,110px) clamp(70px,10vh,140px);width:100%;max-width:1280px;margin:0 auto" data-comment-anchor="4b4762d9c9-section">
+  <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:16px">
+    <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">Plant a flower</span>
+    <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;color:var(--text4,#85817A)">{{ gardenCount }}</span>
+  </div>
+  <p style="margin:0 0 clamp(30px,5vh,54px);max-width:44ch;font-size:19px;line-height:1.55;color:var(--text2,#55534D);text-wrap:pretty" data-comment-anchor="d06a9e8519-p">I love flowers more than is strictly reasonable, so here's a little something for you. Draw one, sign it, and it stays in the garden.</p>
+
+  <div style="display:flex;flex-direction:column;align-items:center;width:100%" data-comment-anchor="60165ee83e-div">
+
+    <div style="width:100%;border-radius:clamp(12px,1.4vw,18px);background:var(--panel,#FFFEFB);border:1px solid var(--line2,#DFDBD0);overflow:hidden;box-shadow:0 1px 2px rgba(60,50,35,.04)" data-comment-anchor="9d0121ab38-div">
+      <div style="display:flex;flex-direction:column;gap:0">
+
+        <div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--line,#E9E5DB); background-color: #1E1E1E">
+          <div style="display:flex;gap:7px">
+            <span style="width: 10px; height: 10px; border-radius: 50%; display: block; background-color: #DB3F10"></span>
+            <span style="width: 10px; height: 10px; border-radius: 50%; display: block; background-color: #E8E5DF"></span>
+            <span style="width: 10px; height: 10px; border-radius: 50%; display: block; background-color: #FFFEFA"></span>
+          </div>
+          
+          
+        </div>
+
+        <sc-if value="{{ isDrawing }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(22px,3.4vw,52px);padding:clamp(24px,3.4vw,44px)">
+
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div onPointerDown="{{ paintStart }}" style="display:grid;grid-template-columns:repeat(21,1fr);gap:1px;width:min(432px,78vw);aspect-ratio:1;padding:7px;border-radius:8px;background:var(--surf,#F7F5F0);border:1px solid var(--line,#E9E5DB);touch-action:none">
+              <sc-for list="{{ cells }}" as="c" hint-placeholder-count="441">
+                <div onPointerDown="{{ c.paint }}" onPointerEnter="{{ c.over }}" style="border-radius:1px;border:1px solid {{ c.ring }};background:{{ c.bg }};cursor:crosshair"></div>
+              </sc-for>
+            </div>
+
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:7px">
+              <sc-for list="{{ swatches }}" as="sw" hint-placeholder-count="6">
+                <div onClick="{{ sw.pick }}" title="{{ sw.title }}" style="width:30px;height:30px;border-radius:6px;background:{{ sw.bg }};border:2px solid {{ sw.ring }};cursor:pointer"></div>
+              </sc-for>
+              <div onClick="{{ pickEraser }}" title="eraser" style="display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:6px;background:var(--panel,#FFFEFB);border:2px solid {{ eraserRing }};cursor:pointer">
+                <span style="width:13px;height:2px;background:var(--text3,#6C6862);transform:rotate(-45deg);display:block"></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:11px">
+            <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text3,#6C6862)">player</span>
+            <div style="display:flex;align-items:center;height:38px;padding:0 12px;border-radius:8px;border:1px solid var(--line2,#DFDBD0);background:var(--panel,#FFFEFB)">
+              <input type="text" value="{{ gName }}" onChange="{{ onGName }}" placeholder="your name" style="width:100%;border:none;outline:none;background:transparent;color:var(--ink,#1A1A17);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px">
+            </div>
+            <div onClick="{{ plant }}" style="display:flex;align-items:center;justify-content:center;height:40px;border-radius:8px;background:var(--accent,#D93E11);color:#FFFFFF;font-size:14.5px;font-weight:500;letter-spacing:-.01em;cursor:{{ plantBtnCursor }};opacity:{{ plantBtnOpacity }}" style-hover="opacity:.88">{{ plantBtnLabel }}</div>
+            <sc-if value="{{ showViewGardenCta }}" hint-placeholder-val="{{ false }}">
+              <div onClick="{{ viewGarden }}" style="display:flex;align-items:center;justify-content:center;height:34px;border-radius:8px;border:1px solid var(--line2,#DFDBD0);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:var(--ink,#1A1A17);cursor:pointer" style-hover="border-color:var(--accent,#D93E11);color:var(--accentText,#C0380E)">see the garden →</div>
+            </sc-if>
+            <div style="display:flex;gap:8px">
+              <div onClick="{{ randomFlower }}" style="flex:1;display:flex;align-items:center;justify-content:center;height:34px;border-radius:8px;border:1px solid var(--line2,#DFDBD0);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:var(--ink,#1A1A17);cursor:pointer" style-hover="border-color:var(--accent,#D93E11)">surprise me</div>
+              <div onClick="{{ clearFlower }}" style="flex:1;display:flex;align-items:center;justify-content:center;height:34px;border-radius:8px;border:1px solid var(--line2,#DFDBD0);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;color:var(--ink,#1A1A17);cursor:pointer" style-hover="border-color:var(--accent,#D93E11)">clear</div>
+            </div>
+            <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;line-height:1.5;color:{{ plantHintColor }}">{{ plantHint }}</span>
+          </div>
+
+        </div>
+
+        </sc-if>
+
+        <sc-if value="{{ isPlanted }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column">
+
+          <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;padding:clamp(18px,2.4vw,28px) clamp(20px,2.8vw,34px)">
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-family:'Instrument Serif',Georgia,serif;font-size:clamp(21px,2.1vw,28px);letter-spacing:-.008em;color:var(--ink,#1A1A17)">{{ plantedTitle }}</span>
+              <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;color:var(--text3,#6C6862)">{{ plantedSubtitle }}</span>
+            </div>
+            <sc-if value="{{ hasPlanted }}" hint-placeholder-val="{{ false }}">
+              <span style="display:inline-flex;align-items:center;padding:8px 14px;border-radius:8px;border:1px solid var(--line2,#DFDBD0);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;color:var(--text3,#6C6862)">one flower per visitor 🌱</span>
+            </sc-if>
+            <sc-if value="{{ canPlant }}" hint-placeholder-val="{{ true }}">
+              <div onClick="{{ backToDraw }}" style="display:inline-flex;align-items:center;justify-content:center;height:38px;padding:0 17px;border-radius:8px;background:var(--accent,#D93E11);color:#FFFFFF;font-size:14px;font-weight:500;cursor:pointer" style-hover="opacity:.88">← back to draw</div>
+            </sc-if>
+          </div>
+
+          <div style="position:relative;width:100%;aspect-ratio:1655 / 950;border-top:1px solid var(--line,#E9E5DB);background-image:url('/canvas-assets/garden-backdrop.svg');background-size:cover;background-position:center bottom;overflow:hidden" data-comment-anchor="7a3522e113-div">
+            <span style="position:absolute;left:0;top:3%;width:200%;height:26%;background-image:url('/canvas-assets/garden-clouds.svg');background-size:50% 100%;background-repeat:repeat-x;opacity:.9;animation:drift 78s linear infinite;pointer-events:none"></span>
+            <span style="position:absolute;left:0;top:12%;width:200%;height:18%;background-image:url('/canvas-assets/garden-clouds.svg');background-size:34% 100%;background-repeat:repeat-x;opacity:.5;animation:drift 132s linear infinite;pointer-events:none"></span>
+<sc-for list="{{ gardenList }}" as="g" hint-placeholder-count="2">
+              <div onMouseEnter="{{ g.enter }}" onMouseLeave="{{ g.leave }}" title="{{ g.name }}" style="position:absolute;left:{{ g.x }};bottom:{{ g.y }};width:{{ g.size }};height:{{ g.size }};z-index:{{ g.z }};cursor:pointer">
+                <div style="position:absolute;left:0;top:0;width:{{ g.px }};height:{{ g.px }};box-shadow:{{ g.sprite }};pointer-events:none"></div>
+                <span style="position:absolute;left:50%;bottom:calc(100% + 7px);transform:translateX(-50%);padding:3px 8px;border-radius:5px;background:#222221;color:#F8F6F2;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10.5px;white-space:nowrap;opacity:{{ g.nameO }};transition:opacity .16s ease-out;pointer-events:none">{{ g.name }}</span>
+              </div>
+            </sc-for>
+          </div>
+
+        </div>
+        </sc-if>
+
+
+      </div>
+    </div>
+
+
+  </div>
+</section>
+
+<section style="padding:0 clamp(20px,6vw,110px) clamp(60px,8vw,120px);width:100%;max-width:1280px;margin:0 auto">
+  <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:40px;padding-top:56px;border-top:1px solid var(--line,#E9E5DB)">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <a href="#top" title="Aditi Kanaujia" style="display:inline-flex;align-items:center;gap:14px;color:var(--ink,#1E1E1E)">
+        <svg data-footer-logo viewBox="298 275 714 714" aria-hidden="true" style="width:56px;height:56px;display:block;flex:0 0 56px">
+          <path data-logo-anchor d="M568.214 626.712C575.34 627.637 590.553 626.828 598.294 627.055C602.425 627.177 618.519 627.177 621.697 626.724L621.134 847.76C634.721 847.558 648.308 847.515 661.895 847.632C661.809 825.827 661.491 802.15 661.987 780.419C676.786 780.413 693.288 780.015 707.934 780.407L708.026 728.067C718.025 728.006 744.642 727.014 753.135 727.896L753.122 709.526C768.265 709.477 784.374 709.159 799.462 709.637C799.394 714.774 798.727 749.724 799.504 752.786C797.79 753.153 787.424 753.031 784.981 753.024C774.473 753.049 763.972 752.957 753.465 752.755C753.22 758.694 753.606 765.454 753.692 771.516C753.876 784.626 753.784 796.908 753.012 809.987C743.007 809.95 733.002 809.975 723.003 810.055C722.415 824.076 722.691 838.992 722.807 853.087C717.756 852.934 712.692 853.424 707.842 853.302C698.027 853.051 690.349 852.965 680.625 853.736C681.054 863.343 681.115 878.529 680.466 887.866L621.03 887.787L621.042 933.244L716.292 933.232L716.396 870.605C724.852 869.76 755.694 870.293 765.179 870.673L765.258 846.15C775.698 846.034 786.138 846.046 796.571 846.18C797.661 863.172 796.204 884.48 795.99 901.619C795.843 912.934 797.398 920.851 796.559 933.122L740.876 933.109C740.791 949.054 740.803 964.998 740.907 980.943L504.855 980.888C504.479 966.486 504.629 951.503 504.596 937.047C511.979 937.273 566.067 937.628 568.299 936.342L568.193 934.965C565.747 932.534 559.741 932.883 556.416 933.03C535.746 933.942 514.958 933.495 494.269 933.079C485.396 932.901 476.481 933.844 467.669 933.514C467.295 921.286 467.597 906.284 467.843 894.008C455.763 893.977 428.012 893.224 416.921 894.62C416.516 875.106 416.867 854.465 416.936 834.896C404.076 834.884 384.866 835.594 372.652 834.559C372.021 825.852 372.373 813.214 372.367 804.238C372.356 789.867 372.159 774.725 372.633 760.403C405.573 759.662 439.478 760.978 472.59 760.195C473.044 778.147 472.183 796.853 472.606 815.075L524.834 815.051C524.55 832.575 524.453 853.1 524.948 870.513C539 870.887 553.994 870.507 568.232 870.691L568.214 626.712Z" fill="var(--ink,#1E1E1E)"></path>
+          <path data-logo-petal d="M548.751 284.177C565.37 283.54 583.492 284.083 600.237 283.946C607.39 283.887 628.084 283.426 634.103 284.401C635.468 289.173 634.783 299.933 634.862 305.222C635.089 320.224 633.821 336.306 635.034 351.211C653.317 351.942 676.915 351.596 695.382 351.316C696.393 357.639 695.762 366.106 695.805 372.682C695.891 387.1 695.309 401.819 696.086 416.221C717.903 416.73 740.117 416.294 761.983 416.386C762.638 425.548 762.313 437.516 762.32 446.861C762.338 461.794 762.448 477.02 762.258 491.939C740.264 492.242 717.866 491.636 696.05 492.389C695.364 507.728 695.768 523.301 695.67 538.654C695.633 544.53 696.282 553.072 695.738 558.589C675.562 559.802 649.496 558.519 628.231 559.011C627.833 568.104 628.721 621.777 627.282 625.622C624.386 626.927 623.755 626.155 621.698 626.725C618.52 627.178 602.425 627.178 598.295 627.055C590.553 626.829 575.34 627.637 568.215 626.712C564.739 626.112 560.272 626.737 556.628 626.994C556.294 604.322 556.239 581.649 556.461 558.977C538.509 558.605 506.526 557.914 488.957 559.043C488.831 536.541 488.823 514.038 488.933 491.536L421.697 491.612C421.529 475.319 421.506 459.025 421.627 442.731C421.663 434.768 421.424 424.248 421.945 416.453C435.837 416.335 449.729 416.329 463.621 416.435C470.028 416.449 480.681 416.735 486.799 415.988C486.803 395.289 486.258 371.856 486.894 351.393C506.385 351.431 528.788 351.998 548.032 351.208C548.257 337.432 548.304 323.654 548.176 309.877C548.156 302.427 547.835 291.423 548.751 284.177Z" fill="#E8E5DF"></path>
+          <path d="M557.547 420.041L628.262 420.088L628.274 466.189C628.28 473.671 628.605 484.792 628.072 491.989L557.379 492.162C557.47 468.153 557.16 444.009 557.547 420.041Z" fill="var(--accent,#D93E11)"></path>
+          <path d="M797.919 552.947L858.108 552.954C866.503 552.96 880.77 552.549 888.693 553.116C889.593 564.768 888.65 578.414 889.097 590.434C904.197 591.21 924.072 589.384 937.916 590.888C938.492 626.78 938.161 664.516 937.978 700.489C924.201 699.895 902.96 700.036 889.103 700.648C888.859 702.92 888.24 707.071 888.534 709.159C889.299 711.437 888.932 747.795 888.718 752.565L830.628 752.578C821.676 752.578 808.206 752.18 799.505 752.786C798.727 749.724 799.395 714.774 799.462 709.637C784.375 709.159 768.265 709.477 753.123 709.526C752.706 680.215 752.97 650.323 752.908 620.944L798.476 620.828C797.839 614.191 797.815 607.61 797.882 600.952C798.029 584.97 797.711 568.923 797.919 552.947Z" fill="#E8E5DF"></path>
+          <path d="M752.908 620.944L798.476 620.828C799.793 631.488 799.033 653.868 799.217 665.575C814.157 665.551 829.391 665.398 844.307 665.594L844.338 709.324C857.447 709.404 875.792 709.955 888.534 709.159C889.299 711.437 888.932 747.795 888.718 752.565L830.628 752.577C821.676 752.577 808.206 752.18 799.505 752.786C798.727 749.724 799.395 714.774 799.462 709.637C784.375 709.159 768.265 709.477 753.123 709.526C752.706 680.215 752.97 650.323 752.908 620.944Z" fill="var(--accent,#D93E11)"></path>
+        </svg>
+        <span style="font-family:'Instrument Serif',Georgia,serif;font-size:44px;font-weight:400;line-height:1;letter-spacing:-.01em;color:var(--ink,#1E1E1E)">Aditi</span>
+      </a>
+      
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <a href="mailto:ak9138@gmail.com" data-comment-anchor="7f03a95ff0-div" style="padding:10px 18px;border-radius:7px;background:var(--accent,#D93E11);color:#FFFFFF;font-size:14px;font-weight:500" style-hover="opacity:.88">Say hi</a>
+      <a href="https://www.linkedin.com/in/aditi-kanaujia-b6a06053/" target="_blank" rel="noopener noreferrer" style="padding:10px 18px;border-radius:7px;border:1px solid var(--line2,#DFDBD0);font-size:14px;font-weight:500" style-hover="border-color:var(--accent,#D93E11);color:var(--accentText,#C0380E)">LinkedIn</a>
+      <a href="https://dribbble.com/aditi-kanaujia" target="_blank" rel="noopener noreferrer" style="padding:10px 18px;border-radius:7px;border:1px solid var(--line2,#DFDBD0);font-size:14px;font-weight:500" style-hover="border-color:var(--accent,#D93E11);color:var(--accentText,#C0380E)">Dribbble</a>
+      <a href="https://github.com/akana3866" target="_blank" rel="noopener noreferrer" style="padding:10px 18px;border-radius:7px;border:1px solid var(--line2,#DFDBD0);font-size:14px;font-weight:500" style-hover="border-color:var(--accent,#D93E11);color:var(--accentText,#C0380E)">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ closeLightbox }}" style="position:fixed;inset:0;z-index:190;background:rgba(20,18,15,.86);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:24px;cursor:zoom-out;animation:fadeUp .2s ease-out">
+  <div style="position:absolute;top:20px;right:24px;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:99px;background:rgba(255,255,255,.12);color:#F8F6F2;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:18px;cursor:pointer" title="close">✕</div>
+  {{ lightboxContent }}
+</div>
+</sc-if>
+
+<sc-if value="{{ showCursor }}" hint-placeholder-val="{{ false }}">
+<div data-cursor="1" style="position:fixed;left:0;top:0;z-index:200;pointer-events:none;display:flex;align-items:flex-start;gap:2px;transform:translate3d(-200px,-200px,0);will-change:transform">
+  <svg viewBox="0 0 14 18" aria-hidden="true" style="width:16px;height:20px;display:block;filter:drop-shadow(0 1px 2px rgba(26,26,23,.22))">
+    <path d="M1 1L1 15.2L5.1 11.4L7.6 16.9L10 15.8L7.5 10.4L12.8 10.1Z" fill="var(--accent,#D93E11)" stroke="#FFFFFF" stroke-width="1.1"></path>
+  </svg>
+  <span style="margin-top:14px;margin-left:-2px;padding:3px 8px;border-radius:5px;background:var(--accent,#D93E11);color:#FFFFFF;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.02em;white-space:nowrap">{{ cursorLabel }}</span>
+</div>
+</sc-if>
+
+
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light'|'dark'&quot;,&quot;section&quot;:&quot;Theme&quot;}}">
+const COMPANIES = [
+  {
+    id: 'fermat', name: 'Fermàt', role: 'Product Designer', years: '2026',
+    logo: '/images/logos/fermat.webp', logoH: 34,
+    title: 'Commerce experiences for merchants and shoppers',
+    tags: ['AI', 'Ecommerce', 'Enterprise'],
+    shots: [
+      { src: '/images/work/fermat/interview.mov', alt: 'Fermàt · interview', video: true, speed: 2,
+        title: 'Interview a twin',
+        subtext: 'A product primitive for August. Users can ask any question of their own customer segments, work inside a goaled workspace, hand-pick specific twins, or let the system route to the right ones automatically.' },
+      { src: '/images/work/fermat/ais.png',       alt: 'Fermàt · AI Search', objectPosition: 'top left',
+        title: 'AI Search',
+        subtext: 'A dashboard that surfaces AEO optimization opportunities ranked by visibility impact. Built to make abstract search performance concrete and actionable for brand teams.' },
+      { src: '/images/work/fermat/ais-onboarding.mov', alt: 'Fermàt · AI Search onboarding', video: true, speed: 2, fit: 'contain', bg: '#F6F1E4',
+        title: 'AI Search onboarding',
+        subtext: 'An onboarding flow that stays lightweight while communicating value up front. Motion, progressive disclosure, and considered defaults do the heavy lifting.' },
+      { src: '/images/work/fermat/august.png',    alt: 'Fermàt · August design system',
+        title: 'August design system',
+        subtext: 'A first look at the August design system. Tokens, components, and patterns unified across every research surface.' },
+      { src: '/images/work/fermat/august-home.mov',    alt: 'Fermàt · August homepage', video: true,
+        title: 'August homepage',
+        subtext: 'The session home. Surfaces every research method at a glance, communicates that twin data is always being collected, and lets users jump straight back into any active session.' },
+      { src: '/images/work/fermat/video-module.png', alt: 'Fermàt · video module',
+        title: 'Video module',
+        subtext: 'Funnel dashboard editing for the video module. Redesigned to feel more dynamic and customizable across brand configurations.' }
+    ],
+    slots: 0,
+    cta: 'Visit Fermàt', href: 'https://www.fermatcommerce.com/'
+  },
+  {
+    id: 'henry', name: 'Henry Labs', role: 'Lead Product Designer', years: '2025',
+    logo: '/images/logos/henry.png', logoH: 30, logoFilter: 'brightness(0)',
+    title: 'Helping users discover more with an AI powered interface',
+    tags: ['AI', 'Ecommerce', 'Consumer'],
+    shots: [
+      { src: '/images/work/henry/henry-1.png', alt: 'Henry · AI-forward home',
+        title: 'AI-forward home',
+        subtext: 'A homepage built around AI search as the primary affordance, so users get to what they need without navigation friction.' },
+      { src: '/images/work/henry/henry-3.mov', alt: 'Henry · faster checkout', video: true,
+        title: 'Faster checkout',
+        subtext: 'A checkout flow integrated onto a sample store, tuned for higher intent and shorter time-to-purchase.' },
+      { src: '/images/work/henry/henry-2.png', alt: 'Henry · design system', scale: 1.32,
+        title: 'Henry design system',
+        subtext: 'A sneak peek at the Henry design system. B2B and B2C surfaces sharing a common token layer.' },
+      { src: '/images/work/henry/henry-4.png', alt: 'Henry · discovery flow',
+        title: 'Discovery flow',
+        subtext: 'Discovery leads with recommended, featured brands to establish trust. AI search then routes shoppers to a familiar PDP so they find what they need faster, trust the brand, and never have to relearn how to shop.' },
+      { src: '/images/work/henry/henry-5.jpg', alt: 'Henry · developer login',
+        title: 'Developer login',
+        subtext: 'The developer sign-in surface. Clean, functional, aligned to the marketing site’s brand system.' },
+      { src: '/images/work/henry/henry-6.png', alt: 'Henry · marketing site',
+        title: 'Marketing site',
+        subtext: 'A preview of the marketing site. Positioned at the intersection of crypto and shopping to reinforce the product’s dual identity.' }
+    ],
+    slots: 0,
+    cta: 'Visit Henry Labs', href: 'https://www.henrylabs.ai/'
+  },
+  {
+    id: 'roam', name: 'Roam', role: 'Founding Product Designer', years: '2024',
+    logo: '/images/logos/roam.png', logoH: 20,
+    title: 'A marketplace that simplifies moving abroad',
+    tags: ['Marketplaces', 'Consumer'],
+    shots: [
+      { src: '/images/work/roam/roam-marketplace.png', alt: 'Roam · website',
+        title: 'Website',
+        subtext: 'The Roam marketing site. Hero design and marketplace positioning for international student services.' },
+      { src: '/images/work/roam/roam-mobile-app.png',  alt: 'Roam · mobile',
+        title: 'Mobile',
+        subtext: 'The mobile version of the site. Same narrative, restructured for small-screen hierarchy and touch affordances.' },
+      { src: '/images/work/roam/roam-brand.png',       alt: 'Roam · design system', scale: 1.1,
+        title: 'Design system',
+        subtext: 'The Roam design system. An educational, youthful palette that supports the goal of making student life abroad feel approachable.' },
+      { src: '/images/work/roam/roam-dashboard.png',   alt: 'Roam · counselor dashboard', fit: 'contain', bg: '#FFFFFF',
+        title: 'Counselor dashboard',
+        subtext: 'A dashboard for counselors to track student usage across Roam at a glance.' },
+      { src: '/images/work/roam/roam-linkedin.png',    alt: 'Roam · 2024 Wrapped',
+        title: '2024 Roam Wrapped',
+        subtext: 'The 2024 Roam Wrapped concept. Designed and produced end to end.' }
+    ],
+    slots: 0,
+    cta: 'See live website', href: 'https://roam.college/'
+  },
+];
+
+const GW = 21;
+
+const PALETTE = [
+  '#D9463F', '#E8A33D', '#EBC94F', '#7B9E4B', '#2F8F84',
+  '#4E7CB5', '#7B4BA8', '#C2557A', '#8A5A3B', '#EFEAD9', '#FFFFFF', '#1E1E1E'
+];
+const PAL_NAMES = ['red', 'amber', 'yellow', 'green', 'teal', 'blue', 'violet', 'pink', 'brown', 'cream', 'white', 'ink'];
+const CREAM = 9, WHITE = 10, INK = 11;
+const bloom = (petal, r, cx, cy) => {
+  const g = new Array(GW * GW).fill(null);
+  for (let y = 0; y < GW; y++) {
+    for (let x = 0; x < GW; x++) {
+      const d = Math.hypot(x - cx, y - cy);
+      if (d <= r + 0.45) g[y * GW + x] = petal;
+      if (d <= 1.6) g[y * GW + x] = 1;
+    }
+  }
+  for (let y = cy + r + 1; y < GW - 1; y++) g[y * GW + cx] = 3;
+  const l1 = cy + r + 3, l2 = l1 + 2;
+  if (l1 < GW - 1) { g[l1 * GW + cx - 1] = 3; g[l1 * GW + cx - 2] = 3; }
+  if (l2 < GW - 1) { g[l2 * GW + cx + 1] = 3; g[l2 * GW + cx + 2] = 3; }
+  return g;
+};
+
+// the seeded flower is the logo mark, drawn on the grid
+const seedGrid = () => {
+  const g = new Array(GW * GW).fill(null);
+  const put = (x, y, v) => { if (x >= 0 && x < GW && y >= 0 && y < GW) g[y * GW + x] = v; };
+  const cx = 10, cy = 7;
+  const disc = (px, py, r, v) => {
+    for (let y = Math.floor(py - r); y <= Math.ceil(py + r); y++) {
+      for (let x = Math.floor(px - r); x <= Math.ceil(px + r); x++) {
+        if (Math.hypot(x - px, y - py) <= r + 0.35) put(x, y, v);
+      }
+    }
+  };
+  for (let i = 0; i < 5; i++) {
+    const a = -Math.PI / 2 + i * (2 * Math.PI / 5);
+    disc(cx + Math.cos(a) * 4.1, cy + Math.sin(a) * 4.1, 2.5, CREAM);
+  }
+  disc(cx, cy, 2.4, CREAM);
+  // outline every petal edge in ink, the way the mark reads
+  const edge = [];
+  for (let y = 0; y < GW; y++) {
+    for (let x = 0; x < GW; x++) {
+      if (g[y * GW + x] !== CREAM) continue;
+      const n = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+      if (n.some(([dx, dy]) => {
+        const nx = x + dx, ny = y + dy;
+        return nx < 0 || nx >= GW || ny < 0 || ny >= GW || g[ny * GW + nx] === null;
+      })) edge.push(y * GW + x);
+    }
+  }
+  edge.forEach(i => { g[i] = INK; });
+  disc(cx, cy, 1.5, 0);
+  for (let y = cy + 5; y < GW - 2; y++) put(cx, y, INK);
+  [[cx - 1, cy + 8], [cx - 2, cy + 8], [cx - 2, cy + 7], [cx + 1, cy + 10], [cx + 2, cy + 10], [cx + 2, cy + 9]].forEach(([x, y]) => put(x, y, INK));
+  put(cx - 1, GW - 3, INK); put(cx + 1, GW - 3, INK);
+  return g;
+};
+
+const PLAYLISTS = {
+  'jazz-house': {
+    label: 'jazz house',
+    tracks: [
+      { title: 'Beauty In Imperfection',  artist: 'gabriel, Two Scents', src: '/music/Beauty In Imperfection.mp3' },
+      { title: 'Saudade Vem Correndo',    artist: 'Stan Getz',        src: '/music/Stan Getz - Saudade Vem Correndo Instrumental [BPM 91 E major].mp3' },
+      { title: 'Stay',                    artist: 'Tour-Maubourg',    src: '/music/Stay.mp3' },
+      { title: 'De Vere',                 artist: 'Mack Walker',      src: '/music/De Vere.mp3' }
+    ]
+  },
+  'synthwave': {
+    label: 'synthwave',
+    tracks: [
+      { title: 'coastin',        artist: 'lofi cassette',                src: '/music/coastin.mp3' },
+      { title: 'Warmpop',        artist: 'ESPRIT 空想, George Clanton', src: '/music/ESPRIT 空想, George Clanton - Warmpop.mp3' },
+      { title: 'Purple Skies',   artist: 'Cyter',                        src: '/music/Cyter - Purple Skies (Chillsynth).mp3' },
+      { title: 'Together',       artist: 'Division Street',              src: '/music/Division Street - Together.mp3' }
+    ]
+  }
+};
+const VIBE_ORDER = ['jazz-house', 'synthwave'];
+
+const THEMES = {
+  light: {
+    bg: '#FBFAF6', panel: '#FFFEFB', chrome: '#F8F6F1', surf: '#F7F5F0', surf2: '#F2F0E9',
+    line: '#E9E5DB', line2: '#DFDBD0', line3: '#CDC8BB',
+    ink: '#1A1A17', text2: '#55534D', text3: '#6C6862', text4: '#85817A',
+    accent: '#D93E11', accentText: '#C0380E', accentSoft: '#FAE9E1', dot: 'rgba(26,26,23,.085)',
+    navShell: '#EFEDE3', navActive: '#E4E1D4', cardGlass: 'rgba(255,254,251,.96)',
+    folderFront: '#D93E11', folderBack: '#B93109', paper1: '#E3E0D7', paper2: '#EFEDE5', paper3: '#FFFEFB'
+  },
+  dark: {
+    bg: '#1F1E1B', panel: '#2A2825', chrome: '#2E2C29', surf: '#2C2A27', surf2: '#35322E',
+    line: '#3E3B36', line2: '#484540', line3: '#5A5650',
+    ink: '#F5F3EF', text2: '#C6C2BA', text3: '#A6A19A', text4: '#8E8982',
+    accent: '#E8542A', accentText: '#FF8355', accentSoft: '#3A2018', dot: 'rgba(245,243,239,.09)',
+    navShell: '#35322E', navActive: '#44403B', cardGlass: 'rgba(42,40,37,.94)',
+    folderFront: '#E8542A', folderBack: '#C4400F', paper1: '#E3E0D7', paper2: '#EFEDE5', paper3: '#FFFEFB'
+  }
+};
+
+const RATIOS = [['3 / 2', '3x2'], ['1 / 1', '1x1'], ['16 / 9', '16x9'], ['4 / 5', '4x5']];
+
+// Drop photos into images/ and add them here — each folder reads straight from this map.
+const WORK = {
+  life: { title: 'Life', shots: [] },
+  travel: { title: 'Travel', shots: [] },
+  work: { title: 'Work', shots: [] }
+};
+
+class Component extends DCLogic {
+  state = {
+    theme: (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light',
+    inspect: true,
+    scroll: 0,
+    pick: 'speed',
+    size: 0.52,
+    ratio: 0,
+    name: '',
+    nameActive: false,
+    hue: 14,
+    vibe: 'jazz-house',
+    track: 0,
+    playing: false,
+    trackMissing: false,
+    specHover: false,
+    logoHover: false,
+    logoLabelW: 0,
+    gardenView: 'draw',
+    hasPlanted: false,
+    lastPlanted: '',
+    hoverFlower: null,
+    nav: null,
+    navPill: { x: 0, w: 0 },
+    work: 0,
+    grid: new Array(GW * GW).fill(null),
+    pen: 2,
+    gName: '',
+    plantHint: 'click to draw, drag to fill',
+    plantWarn: false,
+    garden: [],
+    pos: 0,
+    dur: 0,
+    otp: ['', '', '', ''],
+    frame: { w: 0, h: 0 },
+    hoverFolder: null,
+    hoverPhoto: null,
+    lightbox: null,
+    hoverClickable: false,
+    viewer: null,
+    shot: 0
+  };
+
+  componentDidMount() {
+    this.loadGarden();
+    // the label's own width, so the open state has no trailing gap
+    const label = document.querySelector('[data-logo-label]');
+    if (label) {
+      const measure = () => {
+        const prev = label.style.maxWidth;
+        label.style.transition = 'none';
+        label.style.maxWidth = 'none';
+        // into state, so a post-font re-measure actually reaches the render
+        const w = Math.ceil(label.scrollWidth) + 3;
+        label.style.maxWidth = prev;
+        requestAnimationFrame(() => { label.style.transition = 'max-width .22s ease-out,opacity .18s ease-out'; });
+        if (w !== this.state.logoLabelW) this.setState({ logoLabelW: w });
+      };
+      measure();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    }
+    this.onScroll = () => {
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      this.setState({ scroll: max > 0 ? Math.min(1, window.scrollY / max) : 0 });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.measure);
+    window.addEventListener('keydown', this.onViewerKey);
+    if (this.props.theme) this.setState({ theme: this.props.theme });
+    this._themeProp = this.props.theme;
+    // Follow the OS theme unless the visitor has explicitly picked one this session.
+    if (window.matchMedia) {
+      this._themeMql = window.matchMedia('(prefers-color-scheme: dark)');
+      this._onThemeSys = e => { if (!this._themeExplicit) this.setState({ theme: e.matches ? 'dark' : 'light' }); };
+      try { this._themeMql.addEventListener('change', this._onThemeSys); }
+      catch (e) { this._themeMql.addListener(this._onThemeSys); }
+    }
+    this.onScroll();
+    this.measure();
+    this._mid = setTimeout(this.measure, 400);
+
+    // a ball hops across "fun", lighting each letter as it lands
+    this.ballTrack = document.querySelector('[data-ball-track]');
+    this.ballLetters = Array.prototype.slice.call(document.querySelectorAll('[data-ball-letter]'));
+    this.ballLetters.forEach(el => { el.dataset.base = el.style.transform || ''; });
+    if (this.ballTrack && this.ballLetters.length) {
+      // a split-flap pass: each letter flips, overshoots, then settles into a slow idle wave
+      this.FUN_TILT = ['-3.5deg', '2.5deg', '-2deg'];
+      // no entrance pass — the letters simply drift, coloured from the start
+      this.flipLetters = () => {
+        const cs = getComputedStyle(this.ballTrack);
+        const accent = cs.getPropertyValue('--accent').trim() || '#D93E11';
+        this.ballLetters.forEach((el, i) => {
+          el.style.transition = 'color .2s ease-out';
+          el.style.color = accent;
+          el.style.setProperty('--fr', this.FUN_TILT[i % 3]);
+          el.style.animation = 'funWave 2.9s ease-in-out ' + (i * 0.22).toFixed(2) + 's infinite';
+        });
+      };
+
+
+
+      // hold everything until the sentence is actually on screen
+      this.armAnims = () => {
+        if (this.animsArmed) return;
+        this.animsArmed = true;
+        this.flipLetters();
+        const hl = document.querySelector('[data-hl]');
+        const hlText = document.querySelector('[data-hl-text]');
+        const cs = getComputedStyle(this.ballTrack);
+        if (hl) hl.style.width = '100%';
+        // the accent itself, not the darker text variant
+        if (hlText) hlText.style.color = cs.getPropertyValue('--accent').trim() || '#D93E11';
+      };
+      const scope = document.querySelector('[data-anim-scope]');
+      if (scope && 'IntersectionObserver' in window) {
+        this.animObs = new IntersectionObserver(entries => {
+          entries.forEach(en => { if (en.isIntersecting) { this.armAnims(); this.animObs.disconnect(); } });
+        }, { threshold: 0.35 });
+        this.animObs.observe(scope);
+      } else {
+        this.armAnims();
+      }
+    }
+
+    // "accessible" letters scatter away from the cursor
+    this.flee = Array.prototype.slice.call(document.querySelectorAll('[data-flee]'));
+    this.flee.forEach(el => {
+      el.dataset.base = el.style.transform || '';
+      el.style.transition = 'transform .28s cubic-bezier(.22,.61,.36,1)';
+      el.style.willChange = 'transform';
+    });
+    this.onFlee = e => {
+      const R = 118;
+      for (let i = 0; i < this.flee.length; i++) {
+        const el = this.flee[i];
+        const r = el.getBoundingClientRect();
+        const dx = (r.left + r.width / 2) - e.clientX;
+        const dy = (r.top + r.height / 2) - e.clientY;
+        const dist = Math.hypot(dx, dy) || 1;
+        if (dist < R) {
+          const push = (1 - dist / R) * 52;
+          const ox = (dx / dist) * push, oy = (dy / dist) * push;
+          const spin = (dx > 0 ? 1 : -1) * (1 - dist / R) * 16;
+          el.style.transform = el.dataset.base + ' translate(' + ox.toFixed(1) + 'px,' + oy.toFixed(1) + 'px) rotate(' + spin.toFixed(1) + 'deg)';
+        } else if (el.style.transform !== el.dataset.base) {
+          el.style.transform = el.dataset.base;
+        }
+      }
+    };
+    this.settleFlee = () => this.flee.forEach(el => { el.style.transform = el.dataset.base; });
+    // Figma-style presence cursor — attaches to the pointer once a name is entered
+    this.onCursor = e => {
+      if (!this.cursorEl || !document.contains(this.cursorEl)) this.cursorEl = document.querySelector('[data-cursor]');
+      if (this.cursorEl) this.cursorEl.style.transform = 'translate3d(' + e.clientX + 'px,' + e.clientY + 'px,0)';
+    };
+    // Swap the follower cursor label to "click me" over any clickable element
+    this.onHoverCheck = e => {
+      const t = e.target;
+      if (!t || t.nodeType !== 1) return;
+      let clickable = false;
+      const el = t.closest && t.closest('a, button, [role="button"], input, textarea, select, [data-clickable]');
+      if (el) clickable = true;
+      else {
+        try { clickable = getComputedStyle(t).cursor.indexOf('pointer') !== -1; } catch (err) {}
+      }
+      if (this.state.hoverClickable !== clickable) this.setState({ hoverClickable: clickable });
+    };
+    window.addEventListener('pointermove', this.onCursor, { passive: true });
+    window.addEventListener('mouseover', this.onHoverCheck, { passive: true });
+    window.addEventListener('pointermove', this.onFlee, { passive: true });
+    window.addEventListener('pointerleave', this.settleFlee);
+    window.addEventListener('blur', this.settleFlee);
+
+    this.wrap = document.querySelector('[data-stack]');
+    this.imgs = Array.prototype.slice.call(document.querySelectorAll('[data-img-layer]'));
+    this.txts = Array.prototype.slice.call(document.querySelectorAll('[data-txt-layer]'));
+    this.stack = () => {
+      this.raf = null;
+      if (!this.wrap || !this.imgs.length) return;
+      const n = this.imgs.length;
+      const box = this.wrap.getBoundingClientRect();
+      const p = Math.max(0, Math.min(1, -box.top / ((box.height - window.innerHeight) || 1)));
+      const cursor = p * (n - 1 + 0.999);
+      const ease = v => v * v * (3 - 2 * v);
+      for (let i = 0; i < n; i++) {
+        const d = cursor - i;                       // >0 released, 0 front, <0 still behind
+        const img = this.imgs[i], txt = this.txts[i];
+        if (d >= 0) {
+          const e = ease(Math.min(1, d));
+          const gone = i === n - 1 ? 0 : e;         // the last one never leaves
+          img.style.transform = 'translate3d(0,' + (-gone * 34).toFixed(1) + 'vh,0) scale(' + (1 - gone * 0.06).toFixed(3) + ')';
+          img.style.opacity = (1 - gone).toFixed(3);
+          txt.style.transform = 'translateY(-50%) translateY(' + (-gone * 26).toFixed(1) + 'px)';
+          txt.style.opacity = (1 - Math.min(1, gone * 2.2)).toFixed(3);
+        } else {
+          const rel = Math.min(2, -d);              // depth behind the front layer
+          img.style.transform = 'translate3d(0,' + (rel * 2.4).toFixed(2) + 'vh,0) scale(' + (1 - rel * 0.05).toFixed(3) + ')';
+          img.style.opacity = (1 - rel * 0.26).toFixed(3);
+          txt.style.transform = 'translateY(-50%) translateY(' + (rel * 20).toFixed(1) + 'px)';
+          txt.style.opacity = rel < 0.28 ? (1 - rel / 0.28).toFixed(3) : '0';
+        }
+        txt.style.pointerEvents = Math.abs(d) < 0.5 ? 'auto' : 'none';
+      }
+    };
+    this.queueStack = () => { if (!this.raf) this.raf = requestAnimationFrame(this.stack); };
+    window.addEventListener('scroll', this.queueStack, { passive: true });
+    window.addEventListener('resize', this.queueStack);
+    this.stack();
+    if (typeof document !== 'undefined') this.syncCursor();
+    this.armEnterAnimations();
+  }
+
+  armEnterAnimations() {
+    if (typeof window === 'undefined' || !('IntersectionObserver' in window)) return;
+    const selectors = [
+      'section#work > sc-for > div',
+      'section#work > div > div',
+      '#resume [data-exp-row]',
+      '#resume > div > div',
+      '#about [data-about-right]',
+      '#about [data-about-folders] > div',
+      '#garden > div',
+      '#garden > p',
+      '#garden [data-comment-anchor="9d0121ab38-div"]'
+    ];
+    const targets = [];
+    selectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach(el => {
+        if (!el.hasAttribute('data-anim')) {
+          el.setAttribute('data-anim', 'in');
+          targets.push(el);
+        }
+      });
+    });
+    // stagger per section (siblings) so items reveal one after the other
+    targets.forEach(el => {
+      const parent = el.parentElement;
+      if (!parent) return;
+      const sibs = Array.from(parent.children).filter(c => c.hasAttribute('data-anim'));
+      const idx = sibs.indexOf(el);
+      el.style.transitionDelay = Math.min(idx, 6) * 60 + 'ms';
+    });
+    this._animObs = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          en.target.setAttribute('data-anim-in', '1');
+          this._animObs.unobserve(en.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    targets.forEach(el => this._animObs.observe(el));
+  }
+
+  componentDidUpdate() {
+    if (this.props.theme && this.props.theme !== this._themeProp) {
+      this._themeProp = this.props.theme;
+      this.setState({ theme: this.props.theme });
+    }
+    if (typeof document !== 'undefined') {
+      const showFollower = this.state.name.trim().length > 0 || this.state.hoverClickable;
+      document.body.classList.toggle('has-name', showFollower);
+      this.syncCursor();
+    }
+  }
+
+  syncCursor() {
+    const accent = this.theme().accent;
+    if (this._lastAccent === accent) return;
+    this._lastAccent = accent;
+    const enc = c => encodeURIComponent(c);
+    const svg = (w, h, stroke) => `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}' viewBox='0 0 14 18'><path d='M1 1L1 15.2L5.1 11.4L7.6 16.9L10 15.8L7.5 10.4L12.8 10.1Z' fill='${enc(accent)}' stroke='%23FFFFFF' stroke-width='${stroke}'/></svg>`;
+    const rule = `html,body{cursor:url("${svg(20,24,1.1)}") 2 2, auto}\n` +
+      `a,button,[role="button"],input,textarea,select,[onclick],[onClick],[onPointerDown],[onMouseDown]{cursor:url("${svg(22,26,1.4)}") 2 2, pointer}\n` +
+      `input[type="text"],textarea{cursor:text}\n` +
+      `body.has-name,body.has-name *{cursor:none!important}\n` +
+      `body.has-name input[type="text"],body.has-name textarea{cursor:text!important}`;
+    let el = document.getElementById('accent-cursor-style');
+    if (!el) { el = document.createElement('style'); el.id = 'accent-cursor-style'; document.head.appendChild(el); }
+    el.textContent = rule;
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.measure);
+    window.removeEventListener('keydown', this.onViewerKey);
+    window.removeEventListener('pointermove', this.onFlee);
+    window.removeEventListener('pointermove', this.onCursor);
+    window.removeEventListener('mouseover', this.onHoverCheck);
+    if (this._themeMql && this._onThemeSys) {
+      try { this._themeMql.removeEventListener('change', this._onThemeSys); }
+      catch (e) { this._themeMql.removeListener(this._onThemeSys); }
+    }
+    if (this.ballRaf) cancelAnimationFrame(this.ballRaf);
+    if (this.animObs) this.animObs.disconnect();
+    if (this._animObs) this._animObs.disconnect();
+    if (this._audio) this._audio.pause();
+    window.removeEventListener('pointerleave', this.settleFlee);
+    window.removeEventListener('blur', this.settleFlee);
+    window.removeEventListener('scroll', this.queueStack);
+    window.removeEventListener('resize', this.queueStack);
+    if (this.raf) cancelAnimationFrame(this.raf);
+    clearTimeout(this._mid);
+    (this._timers || []).forEach(clearTimeout);
+  }
+
+  measure = () => {
+    const el = document.querySelector('[data-frame]');
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const cs = getComputedStyle(el);
+    const w = Math.round(r.width), h = Math.round(r.height);
+    const pt = Math.round(parseFloat(cs.paddingTop)), pl = Math.round(parseFloat(cs.paddingLeft));
+    const f = this.state.frame;
+    if (w !== f.w || h !== f.h || pt !== f.pt || pl !== f.pl) this.setState({ frame: { w, h, pt, pl } });
+  };
+
+  pillBox(el) {
+    // measured from rects against the shell's padding box — no assumptions about offsetParent
+    const shell = el.parentElement;
+    const sr = shell.getBoundingClientRect();
+    const r = el.getBoundingClientRect();
+    // left:0 already resolves to the shell's padding box — no padding to subtract
+    return { x: Math.round(r.left - sr.left), w: Math.round(r.width) };
+  }
+
+  navEnter = i => e => {
+    const el = e.currentTarget;
+    this.setState({ nav: i, logoHover: i === 0, navPill: this.pillBox(el) });
+    // the logo grows as its name opens, so track the live box until the transition settles
+    clearTimeout(this.navSettle);
+    const t0 = performance.now();
+    const follow = () => {
+      if (this.state.nav !== i || !el.isConnected) return;
+      this.setState({ navPill: this.pillBox(el) });
+      if (performance.now() - t0 < 320) requestAnimationFrame(follow);
+    };
+    requestAnimationFrame(follow);
+  };
+
+  scrollStrip(id, dir) {
+    const el = document.querySelector('[data-strip="' + id + '"]');
+    if (!el) return;
+    const card = el.firstElementChild;
+    const step = (card ? card.getBoundingClientRect().width : 320) + 16;
+    const max = el.scrollWidth - el.clientWidth;
+    const from = el.scrollLeft;
+    const to = Math.max(0, Math.min(from + dir * step, max));
+    if (to === from) return;
+    // native smooth scrolling is discarded on this scroller — animate it ourselves
+    if (el._anim) cancelAnimationFrame(el._anim);
+    const t0 = performance.now(), dur = 320;
+    const tick = now => {
+      const p = Math.min(1, (now - t0) / dur);
+      const e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      el.scrollLeft = from + (to - from) * e;
+      if (p < 1) el._anim = requestAnimationFrame(tick);
+      else el._anim = null;
+    };
+    el._anim = requestAnimationFrame(tick);
+  }
+
+  // ---- flower garden ----
+  // Flowers are stored globally in Vercel KV via /api/garden.
+  // The per-visitor "has planted" lock stays in localStorage.
+  GPLANTED = 'ak-garden-planted-v1';
+
+  loadGarden() {
+    const alreadyPlanted = (() => { try { return !!window.localStorage.getItem(this.GPLANTED); } catch (e) { return false; } })();
+    if (alreadyPlanted) this.setState({ hasPlanted: true, gardenView: 'planted' });
+    fetch('/api/garden', { cache: 'no-store' })
+      .then(r => r.ok ? r.json() : { garden: [] })
+      .then(data => {
+        const list = Array.isArray(data?.garden) ? data.garden : [];
+        if (list.length) this.setState({ garden: list });
+      })
+      .catch(() => { /* offline / api missing — the garden simply shows empty */ });
+  }
+
+  markPlanted(name) {
+    try { window.localStorage.setItem(this.GPLANTED, name || '1'); } catch (e) {}
+  }
+
+  paintCell = i => {
+    this.setState(p => {
+      if (p.grid[i] === p.pen) return null;
+      const grid = p.grid.slice();
+      grid[i] = p.pen;
+      return { grid };
+    });
+  };
+
+  paintStart = e => {
+    this._painting = true;
+    const stop = () => { this._painting = false; window.removeEventListener('pointerup', stop); };
+    window.addEventListener('pointerup', stop);
+    if (e.target && e.target.dataset && e.target.dataset.cell) this.paintCell(+e.target.dataset.cell);
+  };
+
+  clearFlower = () => this.setState({ grid: new Array(GW * GW).fill(null), plantHint: 'click to draw, drag to fill', plantWarn: false });
+
+  randomFlower = () => {
+    const petal = [0, 1, 2, 6, 7][Math.floor(Math.random() * 5)];
+    const r = 3 + Math.round(Math.random() * 2);
+    this.setState({ grid: bloom(petal, r, 8, r + 1), pen: petal, plantHint: 'click to draw, drag to fill', plantWarn: false });
+  };
+
+  plant = () => {
+    if (this.state.hasPlanted || this._planting) return;
+    const name = this.state.gName.trim();
+    if (!name) { this.setState({ plantHint: 'add your name first', plantWarn: true }); return; }
+    if (!this.state.grid.some(v => v !== null)) { this.setState({ plantHint: 'draw something first', plantWarn: true }); return; }
+    const short = name.slice(0, 14);
+    const grid = this.state.grid.slice();
+    this._planting = true;
+    this.setState({ plantHint: 'planting…', plantWarn: false });
+    fetch('/api/garden', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: short, grid })
+    })
+      .then(r => r.json().then(data => ({ ok: r.ok, data })))
+      .then(({ ok, data }) => {
+        this._planting = false;
+        if (!ok) {
+          this.setState({ plantHint: (data && data.error) || 'could not save. try again.', plantWarn: true });
+          return;
+        }
+        const list = Array.isArray(data?.garden) ? data.garden : this.state.garden.concat([{ name: short, grid }]);
+        this.markPlanted(short);
+        this.setState({
+          garden: list,
+          grid: new Array(GW * GW).fill(null),
+          gName: '',
+          lastPlanted: short,
+          hasPlanted: true,
+          gardenView: 'planted',
+          hoverFlower: list.length - 1,
+          plantHint: 'click to draw, drag to fill',
+          plantWarn: false
+        });
+      })
+      .catch(() => {
+        this._planting = false;
+        this.setState({ plantHint: 'network error. try again.', plantWarn: true });
+      });
+  };
+
+  viewGarden = () => this.setState({ gardenView: 'planted' });
+
+  sprite(grid, px) {
+    // width from the grid itself, so flowers planted on the older 11×11 board still render
+    const w = Math.round(Math.sqrt(grid.length)) || GW;
+    const out = [];
+    for (let i = 0; i < grid.length; i++) {
+      const v = grid[i];
+      if (v === null || v === undefined) continue;
+      const color = PALETTE[v] || PALETTE[0];
+      out.push((i % w) * px + 'px ' + Math.floor(i / w) * px + 'px 0 0.5px ' + color);
+    }
+    return out.length ? out.join(',') : '0 0 0 0 transparent';
+  }
+
+  theme() {
+    const base = THEMES[this.state.theme] || THEMES.light;
+    const h = this.state.hue;
+    const dark = this.state.theme === 'dark';
+    return Object.assign({}, base, {
+      accent: dark ? `hsl(${h} 80% 54%)` : `hsl(${h} 86% 46%)`,
+      accentText: dark ? `hsl(${h} 92% 68%)` : `hsl(${h} 80% 38%)`,
+      accentSoft: dark ? `hsl(${h} 55% 12%)` : `hsl(${h} 72% 94%)`,
+      folderFront: dark ? `hsl(${h} 78% 52%)` : `hsl(${h} 84% 46%)`,
+      folderBack: dark ? `hsl(${h} 80% 38%)` : `hsl(${h} 86% 34%)`
+    });
+  }
+
+  setHue = e => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const move = ev => {
+      const f = Math.max(0, Math.min(1, (ev.clientX - (r.left + 9)) / (r.width - 18)));
+      this.setState({ hue: Math.round(f * 360) });
+    };
+    move(e);
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  // clicking a folder scatters its photos; clicking it again — or another — tidies up
+  openFolder = id => () => this.setState(p => ({ viewer: p.viewer === id ? null : id, shot: 0 }));
+
+  SCATTER = [
+    { x: '2%',   y: '2%',  rot: '-3deg', w: '29%' },
+    { x: '35.5%', y: '3%',  rot: '2deg',  w: '29%' },
+    { x: '69%',  y: '2%',  rot: '-2deg', w: '29%' },
+    { x: '2%',   y: '52%', rot: '3deg',  w: '29%' },
+    { x: '35.5%', y: '51%', rot: '-2deg', w: '29%' },
+    { x: '69%',  y: '52%', rot: '2deg',  w: '29%' }
+  ];
+
+  PHOTOS = {
+    work: [
+      { src: '/images/work/fermat-offsite.JPG',           caption: 'Fermat offsite' },
+      { src: '/images/work/cocktails-and-claude.png',     caption: 'cocktails & Claude' },
+      { src: '/images/work/fermat-team-building.png',     caption: 'Fermat team building' },
+      { src: '/images/work/design-networking-event.png',  caption: 'design networking event' },
+      { src: '/images/work/roam-community-event.jpg',     caption: 'Roam community event' },
+      { src: '/images/work/config.png',                   caption: 'Config' }
+    ],
+    life: [
+      { src: '/images/life/us-open.jpg',         caption: 'US Open. I go every year.' },
+      { src: '/images/life/dog.jpg',             caption: 'My dog.' },
+      { src: '/images/life/knicks.jpg',          caption: 'Knicks game.' },
+      { src: '/images/life/housewarming.jpg',    caption: 'Housewarming in my new studio.' },
+      { src: '/images/life/picnic.jpg',          caption: 'One of many picnics.' },
+      { src: '/images/life/concert-gambino.jpg', caption: 'Childish Gambino. Love going to concerts.' }
+    ],
+    travel: [
+      { src: '/images/travel/florence.png', caption: 'Florence.' },
+      { src: '/images/travel/porto.png',    caption: 'Porto.' },
+      { src: '/images/travel/london.png',   caption: 'London.' },
+      { src: '/images/travel/mallorca.png', caption: 'Mallorca.' },
+      { src: '/images/travel/monaco.png',   caption: 'Monaco.' },
+      { src: '/images/travel/nice.png',     caption: 'Nice.' }
+    ]
+  };
+
+  scatterCards() {
+    const id = this.state.viewer;
+    if (!id) return [];
+    const seeded = this.PHOTOS[id] || [];
+    return this.SCATTER.map((p, i) => {
+      const photo = seeded[i] || {};
+      const hovered = this.state.hoverPhoto === (id + i);
+      const slotId = 'photo-' + id + '-' + (i + 1);
+      const slotProps = { id: slotId, shape: 'rounded', radius: '2', style: { width: '100%', height: '100%' }, placeholder: 'drop a photo' };
+      if (photo.src) slotProps.src = photo.src;
+      return {
+        key: id + i,
+        slot: slotId,
+        src: photo.src || '',
+        slotEl: React.createElement('image-slot', slotProps),
+        caption: photo.caption || '',
+        captionO: hovered ? 1 : 0,
+        enter: () => this.setState({ hoverPhoto: id + i }),
+        leave: () => this.setState({ hoverPhoto: null }),
+        x: p.x, y: p.y, w: p.w, rot: p.rot,
+        scale: 1,
+        o: 1,
+        delay: (i * 55) + 'ms'
+      };
+    });
+  }
+
+  closeViewer = () => this.setState({ viewer: null });
+
+
+  onViewerKey = e => {
+    if (e.key === 'Escape' && this.state.lightbox) { this.setState({ lightbox: null }); return; }
+    if (this.state.viewer && e.key === 'Escape') this.closeViewer();
+  };
+
+  folder(id) {
+    const t = this.theme();
+    const on = this.state.hoverFolder === id || this.state.viewer === id;
+    return {
+      // what the folder actually holds when opened
+      count: this.SCATTER.length,
+      back: t.folderBack,
+      front: t.folderFront,
+      lift: on ? 'translateY(-7px)' : 'none',
+      p1: on ? 'translate(-50%,-16%) rotate(-7deg)' : 'translate(-50%,10%)',
+      p2: on ? 'translate(-50%,-22%) rotate(3deg)' : 'translate(-50%,10%)',
+      p3: on ? 'translate(-50%,-28%) rotate(9deg)' : 'translate(-50%,10%)',
+      flapL: on ? 'skew(15deg) scaleY(.6)' : 'none',
+      flapR: on ? 'skew(-15deg) scaleY(.6)' : 'none',
+      open: this.openFolder(id),
+      enter: () => this.setState({ hoverFolder: id }),
+      leave: () => this.setState({ hoverFolder: null }),
+      key: e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.openFolder(id)(); }
+      }
+    };
+  }
+
+  fill(on) { return on ? this.theme().text2 : 'transparent'; }
+
+  headlinePx() { return Math.round(30 + this.state.size * 62); }
+
+  sizeDown = e => {
+    const track = e.currentTarget.querySelector('span:nth-child(2)');
+    const r = (track || e.currentTarget).getBoundingClientRect();
+    const move = ev => this.setState({ size: Math.max(0, Math.min(1, (ev.clientX - r.left) / r.width)) });
+    move(e);
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  audio() {
+    if (!this._audio) {
+      this._audio = new Audio();
+      this._audio.addEventListener('ended', () => this.nextTrack());
+      this._audio.addEventListener('error', () => this.setState({ playing: false, trackMissing: true }));
+      this._audio.addEventListener('playing', () => this.setState({ playing: true, trackMissing: false }));
+      this._audio.addEventListener('timeupdate', () => this.setState({ pos: this._audio.currentTime }));
+      this._audio.addEventListener('loadedmetadata', () => this.setState({ dur: this._audio.duration || 0 }));
+    }
+    return this._audio;
+  }
+
+  tracks() { return PLAYLISTS[this.state.vibe].tracks; }
+
+  playIndex(i, autoplay) {
+    const list = this.tracks();
+    const t = list[i];
+    const a = this.audio();
+    a.src = t.src;
+    this.setState({ track: i, trackMissing: false, playing: !!autoplay, pos: 0, dur: 0 });
+    if (autoplay) a.play().catch(() => this.setState({ playing: false, trackMissing: true }));
+  }
+
+  setVibe = id => () => {
+    if (this.state.vibe === id) return;
+    const wasPlaying = this.state.playing;
+    const a = this.audio();
+    a.pause();
+    const first = PLAYLISTS[id].tracks[0];
+    a.src = first.src;
+    this.setState({ vibe: id, track: 0, pos: 0, dur: 0, trackMissing: false, playing: false });
+    if (wasPlaying) a.play().then(() => this.setState({ playing: true })).catch(() => this.setState({ trackMissing: true }));
+  };
+
+  toggleTrack = () => {
+    const a = this.audio();
+    if (!a.src) { this.playIndex(this.state.track, true); return; }
+    if (this.state.playing) { a.pause(); this.setState({ playing: false }); }
+    else a.play().then(() => this.setState({ playing: true })).catch(() => this.setState({ trackMissing: true }));
+  };
+
+  nextTrack = () => { const n = this.tracks().length; this.playIndex((this.state.track + 1) % n, this.state.playing); };
+
+  prevTrack = () => {
+    const a = this.audio();
+    if (a.currentTime > 3) { a.currentTime = 0; return; }
+    const n = this.tracks().length;
+    this.playIndex((this.state.track - 1 + n) % n, this.state.playing);
+  };
+
+  seekTrack = e => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const a = this.audio();
+    if (a.duration) a.currentTime = ((e.clientX - r.left) / r.width) * a.duration;
+  };
+
+  mmss(v, sign) {
+    if (!v || !isFinite(v)) return sign ? '−0:00' : '0:00';
+    return (sign ? '−' : '') + Math.floor(v / 60) + ':' + String(Math.floor(v % 60)).padStart(2, '0');
+  }
+
+  seekSize = e => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const v = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+    this.setState({ size: v }, () => this.later());
+  };
+
+  later() { clearTimeout(this._mid); this._mid = setTimeout(this.measure, 60); }
+
+  // a real deferred timer — later() above is a debounced re-measure and drops its arguments
+  defer(fn, ms) {
+    this._timers = this._timers || [];
+    this._timers.push(setTimeout(fn, ms));
+  }
+
+  setOtp = i => e => {
+    const v = (e.target.value || '').slice(-1);
+    this.setState(s => { const otp = s.otp.slice(); otp[i] = v; return { otp }; });
+  };
+
+  renderVals() {
+    const t = this.theme();
+    const s = this.state;
+    const pct = Math.round(s.scroll * 100);
+    return {
+      t,
+      fLife: this.folder('life'),
+      fTravel: this.folder('travel'),
+      fWork: this.folder('work'),
+      scatterHint: s.viewer ? 'click the folder again to tidy up' : 'click a folder',
+      scatter: this.scatterCards(),
+      scatterH: s.viewer ? 'clamp(520px,58vw,760px)' : '0px',
+      chipOpacity: s.inspect ? 1 : 0,
+      themeName: s.theme,
+      inspectFill: s.inspect ? t.navActive : t.panel,
+      inspectDot: s.inspect ? t.accent : 'transparent',
+      devRing: s.inspect ? t.accent : t.line3,
+      frameStroke: s.inspect ? t.accent : 'transparent',
+      devOn: () => this.setState({ inspect: true }),
+      devOff: () => this.setState({ inspect: false }),
+      devOnFill: s.inspect ? t.accent : 'transparent',
+      devOffFill: s.inspect ? 'transparent' : t.accent,
+      spec: (s.inspect || s.specHover) ? 1 : 0,
+      // the measurement chips share the band the spacing rails occupy — yield it
+      chipRow: (s.inspect && !s.specHover) ? 1 : 0,
+      specPad: (s.inspect || s.specHover) ? 0.9 : 0,
+      navEnter0: this.navEnter(0),
+      navEnter1: this.navEnter(1),
+      navEnter2: this.navEnter(2),
+      navEnter3: this.navEnter(3),
+      navLeave: () => this.setState({ nav: null, logoHover: false }),
+      // no hover: every item wears its own pill. hovering: one pill slides to it
+      // the mark does not invert, so its chip stays light in both themes
+      navBg0: '#FFFEFB',
+      navPillBg: s.nav === 0 ? '#FFFEFB' : t.panel,
+      navBg1: s.nav === null ? t.panel : 'transparent',
+      navBg2: s.nav === null ? t.panel : 'transparent',
+      navBg3: s.nav === null ? t.panel : 'transparent',
+      navPillO: s.nav === null ? 0 : 1,
+      navPillX: (s.navPill.x || 0) + 'px',
+      navPillW: (s.navPill.w || 0) + 'px',
+      logoW: s.logoHover ? (s.logoLabelW || 52) + 'px' : '0px',
+      logoO: s.logoHover ? 1 : 0,
+      logoGap: s.logoHover ? '7px' : '0px',
+      rows: COMPANIES.map((co, i) => ({
+        key: co.id, name: co.name, role: co.role, years: co.years, title: co.title,
+        cta: co.cta, href: co.href,
+        logo: co.logo || '', logoH: (co.logoH || 32) + 'px', logoFilter: co.logoFilter || 'none', hasLogo: !!co.logo, noLogo: !co.logo,
+        logoImg: co.logo ? React.createElement('img', {
+          'data-work-logo': '',
+          src: co.logo,
+          alt: co.name,
+          style: { height: (co.logoH || 32) + 'px', width: 'auto', display: 'block', filter: co.logoFilter || 'none' }
+        }) : null,
+        linked: /^https?:/.test(co.href || ''),
+        plain: !/^https?:/.test(co.href || ''),
+        tags: co.tags.map((text, j) => ({ key: j, text })),
+        // built here: a {{ hole }} in an <img src> is fetched literally at parse time
+        shots: co.shots.map((sh, j) => {
+          const style = { width: '100%', height: '100%', objectFit: sh.fit || 'cover', display: 'block' };
+          if (sh.scale && sh.scale !== 1) style.transform = 'scale(' + sh.scale + ')';
+          if (sh.objectPosition) style.objectPosition = sh.objectPosition;
+          let img;
+          if (sh.collage) {
+            img = React.createElement('div', {
+              'aria-label': sh.alt,
+              style: { width: '100%', height: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: '2px' }
+            }, sh.collage.map((src, k) => React.createElement('img', {
+              key: k, src, alt: '',
+              style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }
+            })));
+          } else if (sh.video) {
+            img = React.createElement('video', {
+              src: sh.src, autoPlay: true, muted: true, loop: true, playsInline: true,
+              'aria-label': sh.alt,
+              ref: el => { if (el && sh.speed) el.playbackRate = sh.speed; },
+              onLoadedMetadata: sh.speed ? (e => { e.currentTarget.playbackRate = sh.speed; }) : undefined,
+              style
+            });
+          } else {
+            img = React.createElement('img', { src: sh.src, alt: sh.alt, style });
+          }
+          return {
+            key: j,
+            bg: sh.bg || 'var(--surf2,#F2F0E9)',
+            img,
+            open: sh.collage ? undefined : () => this.setState({ lightbox: { src: sh.src, video: !!sh.video, speed: sh.speed || 1, alt: sh.alt || '', title: sh.title || '', subtext: sh.subtext || '', metrics: sh.metrics || [], fit: sh.fit || 'cover', bg: sh.bg || 'var(--surf2,#F2F0E9)' } }),
+            cursor: sh.collage ? 'default' : 'pointer'
+          };
+        }),
+        slots: Array.from({ length: co.slots }, (_, j) => ({ key: j, id: 'work-' + co.id + '-' + (j + 1) })),
+        prev: () => this.scrollStrip(co.id, -1),
+        next: () => this.scrollStrip(co.id, 1)
+      })),
+      padLabel: 'pad ' + (s.frame.pt || 0) + ' / ' + (s.frame.pl || 0),
+      cells: s.grid.map((v, i) => ({
+        key: i,
+        bg: v === null ? t.panel : PALETTE[v],
+        ring: v === null ? t.line2 : 'transparent',
+        paint: () => this.paintCell(i),
+        over: () => { if (this._painting) this.paintCell(i); }
+      })),
+      swatches: PALETTE.map((c, i) => ({
+        key: i, bg: c, title: PAL_NAMES[i],
+        ring: s.pen === i ? t.ink : t.line2,
+        pick: () => this.setState({ pen: i })
+      })),
+      eraserRing: s.pen === null ? t.ink : t.line2,
+      pickEraser: () => this.setState({ pen: null }),
+      paintStart: this.paintStart,
+      clearFlower: this.clearFlower,
+      randomFlower: this.randomFlower,
+      plant: this.plant,
+      gName: s.gName,
+      onGName: e => this.setState({ gName: e.target.value }),
+      plantHint: s.plantHint,
+      plantHintColor: s.plantWarn ? t.accentText : t.text4,
+      gardenCount: s.garden.length + (s.garden.length === 1 ? ' flower' : ' flowers'),
+      isDrawing: s.gardenView !== 'planted',
+      isPlanted: s.gardenView === 'planted',
+      gardenUrl: s.gardenView === 'planted' ? 'aditi.design/garden' : 'aditi.design/garden/new',
+      plantedTitle: s.lastPlanted ? 'Thanks, ' + s.lastPlanted + '.' : 'The garden',
+      hasPlanted: s.hasPlanted,
+      canPlant: !s.hasPlanted,
+      viewGarden: this.viewGarden,
+      backToDraw: () => this.setState({ gardenView: 'draw' }),
+      showViewGardenCta: !s.hasPlanted,
+      plantBtnOpacity: s.hasPlanted ? '.4' : '1',
+      plantBtnCursor: s.hasPlanted ? 'not-allowed' : 'pointer',
+      plantBtnLabel: s.hasPlanted ? 'already planted' : 'Plant it',
+      plantedSubtitle: s.hasPlanted
+        ? s.garden.length + (s.garden.length === 1 ? ' flower. Thanks for planting one!' : ' flowers. Hover one to see who planted it')
+        : s.garden.length + (s.garden.length === 1 ? ' flower. Hover one to see who planted it' : ' flowers. Hover one to see who planted it'),
+      // planted anywhere in the grass — a stable pseudo-random spot per flower
+      gardenList: s.garden.map((g, i) => {
+        const h = (n, k) => { let v = (n + 1) * k; v = (v * 9301 + 49297) % 233280; return v / 233280; };
+        const rx = h(i, 137), ry = h(i, 971);
+        const depth = ry;                       // further back = smaller
+        const px = Math.max(3, Math.round(5.4 - depth * 1.6));
+        const w = Math.round(Math.sqrt(g.grid.length)) || GW;
+        return {
+          key: i, name: g.name, sprite: this.sprite(g.grid, px),
+          px: px + 'px',
+          size: (w * px) + 'px',
+          x: (3 + rx * 82).toFixed(1) + '%',
+          y: (2 + ry * 30).toFixed(1) + '%',
+          z: Math.round(40 - depth * 30) + (s.hoverFlower === i ? 60 : 0),
+          enter: () => this.setState({ hoverFlower: i }),
+          leave: () => this.setState({ hoverFlower: null }),
+
+          nameO: s.hoverFlower === i ? 1 : 0
+        };
+      }),
+      specOn: () => this.setState({ specHover: true }),
+      specOff: () => this.setState({ specHover: false }),
+      toggleInspect: () => this.setState(p => ({ inspect: !p.inspect })),
+      scrollPct: pct + '%',
+      scrollLabel: pct + '%',
+      setLight: () => { this._themeExplicit = true; this.setState({ theme: 'light' }); },
+      setDark: () => { this._themeExplicit = true; this.setState({ theme: 'dark' }); },
+      lightFill: s.theme === 'light' ? t.surf2 : 'transparent',
+      darkFill: s.theme === 'dark' ? t.surf2 : 'transparent',
+      pickSpeed: () => this.setState({ pick: 'speed' }),
+      pickCraft: () => this.setState({ pick: 'craft' }),
+      speedFill: this.fill(s.pick === 'speed'),
+      craftFill: this.fill(s.pick === 'craft'),
+      sizePct: Math.round(s.size * 100) + '%',
+      seekSize: this.seekSize,
+      sizeDown: this.sizeDown,
+      toggleTrack: this.toggleTrack,
+      nextTrack: this.nextTrack,
+      trackPlaying: s.playing,
+      trackPaused: !s.playing,
+      trackTitle: s.trackMissing ? 'add files to music/' : PLAYLISTS[s.vibe].tracks[s.track].title,
+      trackArtist: s.trackMissing ? '' : PLAYLISTS[s.vibe].tracks[s.track].artist,
+      vibeJazzActive: s.vibe === 'jazz-house',
+      vibeSynthActive: s.vibe === 'synthwave',
+      vibeJazzBg: s.vibe === 'jazz-house' ? t.panel : 'transparent',
+      vibeSynthBg: s.vibe === 'synthwave' ? t.panel : 'transparent',
+      vibeJazzColor: s.vibe === 'jazz-house' ? t.ink : t.text3,
+      vibeSynthColor: s.vibe === 'synthwave' ? t.ink : t.text3,
+      setVibeJazz: this.setVibe('jazz-house'),
+      setVibeSynth: this.setVibe('synthwave'),
+      coverBg: s.vibe === 'synthwave'
+        ? (s.theme === 'dark' ? `hsl(${(s.hue + 180) % 360} 80% 54%)` : `hsl(${(s.hue + 180) % 360} 86% 46%)`)
+        : t.accent,
+      trackPct: s.dur ? (s.pos / s.dur) * 100 + '%' : '0%',
+      posLabel: this.mmss(s.pos),
+      remLabel: this.mmss(Math.max(0, (s.dur || 0) - (s.pos || 0)), true),
+      prevTrack: this.prevTrack,
+      seekTrack: this.seekTrack,
+      headlineSize: 'clamp(26px,' + (2.6 + s.size * 4.2).toFixed(2) + 'vw,' + Math.round(this.headlinePx() * 1.3) + 'px)',
+      fontSizeLabel: (2 + s.size * 3.2).toFixed(1) + 'rem',
+      frameW: (s.frame.w || 0) + 'px',
+      frameH: (s.frame.h || 0) + 'px',
+      ratio: RATIOS[s.ratio][0],
+      ratioLabel: RATIOS[s.ratio][1],
+      cycleRatio: () => this.setState(p => ({ ratio: (p.ratio + 1) % RATIOS.length })),
+      lightboxOpen: !!s.lightbox,
+      closeLightbox: () => this.setState({ lightbox: null }),
+      lightboxContent: (() => {
+        if (!s.lightbox) return null;
+        const lb = s.lightbox;
+        const media = lb.video
+          ? React.createElement('video', {
+              key: lb.src, src: lb.src, autoPlay: true, muted: true, loop: true, playsInline: true, controls: true,
+              ref: el => { if (el && lb.speed) el.playbackRate = lb.speed; },
+              onLoadedMetadata: e => { if (lb.speed) e.currentTarget.playbackRate = lb.speed; },
+              style: { width: '100%', maxHeight: '72vh', display: 'block', objectFit: lb.fit, background: '#000' }
+            })
+          : React.createElement('img', {
+              key: lb.src, src: lb.src, alt: lb.alt,
+              style: { width: '100%', maxHeight: '72vh', display: 'block', objectFit: lb.fit }
+            });
+        const hasCopy = lb.title || lb.subtext || (lb.metrics && lb.metrics.length);
+        const stop = e => e.stopPropagation();
+        return React.createElement('div', {
+          onClick: stop,
+          style: { width: 'min(1080px, 92vw)', maxHeight: '92vh', display: 'flex', flexDirection: 'column', gap: '20px', color: '#F5F3EF' }
+        }, [
+          React.createElement('div', {
+            key: 'media', style: { borderRadius: '14px', overflow: 'hidden', background: lb.bg, boxShadow: '0 20px 60px rgba(0,0,0,.5)' }
+          }, media),
+          hasCopy ? React.createElement('div', {
+            key: 'meta', style: { display: 'flex', flexDirection: 'column', gap: '14px' }
+          }, [
+            lb.title ? React.createElement('h3', {
+              key: 't', style: { margin: 0, fontFamily: "'Instrument Serif',Georgia,serif", fontSize: 'clamp(24px,2.4vw,34px)', letterSpacing: '-.014em', lineHeight: 1.1, color: '#FBFAF6' }
+            }, lb.title) : null,
+            lb.subtext ? React.createElement('p', {
+              key: 's', style: { margin: 0, maxWidth: '68ch', fontSize: 'clamp(14px,1.15vw,16px)', lineHeight: 1.55, letterSpacing: '-.005em', color: 'rgba(245,243,239,.72)' }
+            }, lb.subtext) : null,
+            lb.metrics && lb.metrics.length ? React.createElement('div', {
+              key: 'm', style: { display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '4px' }
+            }, lb.metrics.map((m, i) => React.createElement('div', {
+              key: i, style: { display: 'flex', flexDirection: 'column', gap: '2px', padding: '10px 14px', borderRadius: '10px', background: 'rgba(255,255,255,.08)', border: '1px solid rgba(255,255,255,.12)', minWidth: '96px' }
+            }, [
+              React.createElement('span', { key: 'v', style: { fontFamily: "'Instrument Serif',Georgia,serif", fontSize: '22px', lineHeight: 1.1, letterSpacing: '-.01em', color: '#FBFAF6' } }, m.value),
+              React.createElement('span', { key: 'l', style: { fontFamily: "'JetBrains Mono',ui-monospace,monospace", fontSize: '10px', letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(245,243,239,.55)' } }, m.label)
+            ]))) : null
+          ].filter(Boolean)) : null
+        ].filter(Boolean));
+      })(),
+      nameValue: s.name,
+      onName: e => this.setState({ name: e.target.value }),
+      hasName: s.name.trim().length > 0,
+      cursorLabel: s.hoverClickable ? 'click me' : s.name,
+      showCursor: s.hoverClickable || s.name.trim().length > 0,
+      nameFocus: () => this.setState({ nameActive: true }),
+      nameBlur: () => this.setState({ nameActive: false }),
+      nameBorder: s.nameActive ? t.accent : t.line2,
+      nameGlow: s.nameActive ? '0 0 0 3px ' + t.accentSoft : 'none',
+      huePct: 'calc(9px + ' + (s.hue / 360) + ' * (100% - 18px))',
+      hueDown: this.setHue,
+      otp0: s.otp[0], otp1: s.otp[1], otp2: s.otp[2], otp3: s.otp[3],
+      onOtp0: this.setOtp(0), onOtp1: this.setOtp(1), onOtp2: this.setOtp(2), onOtp3: this.setOtp(3)
+    };
+  }
+}
+</script>
+</body>
+</html>
