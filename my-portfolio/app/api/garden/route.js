@@ -1,33 +1,34 @@
 import { NextResponse } from 'next/server'
+import { createClient } from 'redis'
+
+export const runtime = 'nodejs'
 
 const KEY = 'ak-garden-v1'
 const MAX_NAME = 14
 const MAX_ENTRIES = 5000
 
-// Support both Vercel's classic KV naming (KV_REST_API_*) and Upstash's
-// newer marketplace naming (UPSTASH_REDIS_REST_*).
-function credentials() {
-  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
-  const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN
-  return url && token ? { url, token } : null
+let clientPromise = null
+async function getClient() {
+  const url = process.env.REDIS_URL
+  if (!url) return null
+  if (!clientPromise) {
+    clientPromise = (async () => {
+      const c = createClient({ url })
+      c.on('error', () => {
+        clientPromise = null
+      })
+      await c.connect()
+      return c
+    })().catch(err => {
+      clientPromise = null
+      throw err
+    })
+  }
+  return clientPromise
 }
 
-async function redis(command) {
-  const c = credentials()
-  if (!c) throw new Error('KV not configured')
-  const res = await fetch(c.url, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${c.token}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify(command),
-    cache: 'no-store',
-  })
-  if (!res.ok) throw new Error(`upstash ${res.status}`)
-  const data = await res.json()
-  return data.result
-}
-
-async function loadGarden() {
-  const raw = await redis(['GET', KEY])
+async function loadGarden(client) {
+  const raw = await client.get(KEY)
   if (!raw) return []
   try {
     const parsed = JSON.parse(raw)
@@ -37,23 +38,17 @@ async function loadGarden() {
   }
 }
 
-async function saveGarden(list) {
-  await redis(['SET', KEY, JSON.stringify(list)])
+async function saveGarden(client, list) {
+  await client.set(KEY, JSON.stringify(list))
 }
 
-export async function GET(req) {
-  const url = new URL(req.url)
-  if (url.searchParams.get('debug') === '1') {
-    const seen = Object.keys(process.env).filter(k =>
-      /KV|REDIS|UPSTASH|STORAGE/i.test(k)
-    )
-    return NextResponse.json({ seen })
-  }
-  if (!credentials()) {
+export async function GET() {
+  const client = await getClient().catch(() => null)
+  if (!client) {
     return NextResponse.json({ garden: [], warning: 'KV not configured' }, { status: 200 })
   }
   try {
-    const garden = await loadGarden()
+    const garden = await loadGarden(client)
     return NextResponse.json({ garden })
   } catch (e) {
     return NextResponse.json({ garden: [], error: String(e?.message || e) }, { status: 500 })
@@ -61,7 +56,8 @@ export async function GET(req) {
 }
 
 export async function POST(req) {
-  if (!credentials()) {
+  const client = await getClient().catch(() => null)
+  if (!client) {
     return NextResponse.json({ error: 'KV not configured' }, { status: 503 })
   }
   try {
@@ -73,12 +69,12 @@ export async function POST(req) {
       return NextResponse.json({ error: 'invalid grid' }, { status: 400 })
     }
     const cleanGrid = grid.map(v => (v === null || v === undefined ? null : Number(v)))
-    const current = await loadGarden()
+    const current = await loadGarden(client)
     if (current.length >= MAX_ENTRIES) {
       return NextResponse.json({ error: 'garden full' }, { status: 429 })
     }
     const next = current.concat([{ name, grid: cleanGrid, at: Date.now() }])
-    await saveGarden(next)
+    await saveGarden(client, next)
     return NextResponse.json({ garden: next })
   } catch (e) {
     return NextResponse.json({ error: String(e?.message || e) }, { status: 500 })
