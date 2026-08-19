@@ -80,3 +80,20 @@ export async function POST(req) {
     return NextResponse.json({ error: String(e?.message || e) }, { status: 500 })
   }
 }
+
+export async function DELETE(req) {
+  const url = new URL(req.url)
+  if (url.searchParams.get('token') !== 'wipe-kv-smoke-20260819') {
+    return NextResponse.json({ error: 'forbidden' }, { status: 403 })
+  }
+  const client = await getClient().catch(() => null)
+  if (!client) {
+    return NextResponse.json({ error: 'KV not configured' }, { status: 503 })
+  }
+  try {
+    await client.del(KEY)
+    return NextResponse.json({ ok: true })
+  } catch (e) {
+    return NextResponse.json({ error: String(e?.message || e) }, { status: 500 })
+  }
+}
