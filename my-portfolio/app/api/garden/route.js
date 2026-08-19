@@ -41,7 +41,14 @@ async function saveGarden(list) {
   await redis(['SET', KEY, JSON.stringify(list)])
 }
 
-export async function GET() {
+export async function GET(req) {
+  const url = new URL(req.url)
+  if (url.searchParams.get('debug') === '1') {
+    const seen = Object.keys(process.env).filter(k =>
+      /KV|REDIS|UPSTASH|STORAGE/i.test(k)
+    )
+    return NextResponse.json({ seen })
+  }
   if (!credentials()) {
     return NextResponse.json({ garden: [], warning: 'KV not configured' }, { status: 200 })
   }
