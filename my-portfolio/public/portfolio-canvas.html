@@ -318,7 +318,7 @@ input{font-family:inherit}
         <span style="position:absolute;left:0;right:0;top:0;height:clamp(14px,2vw,26px);background:repeating-linear-gradient(-45deg,var(--accentSoft,#FAE9E1) 0 4px,transparent 4px 8px);opacity:{{ specPad }};transition:opacity .16s ease-out"></span>
         <span style="position:absolute;left:0;right:0;bottom:0;height:clamp(14px,2vw,26px);background:repeating-linear-gradient(-45deg,var(--accentSoft,#FAE9E1) 0 4px,transparent 4px 8px);opacity:{{ specPad }};transition:opacity .16s ease-out"></span>
         <div style="margin-bottom: .28em; font-family: 'JetBrains Mono',ui-monospace,monospace; font-size: 14px; letter-spacing: .18em; text-transform: uppercase; color: var(--accentText,#C0380E)">Aditi Kanaujia</div>
-        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:{{ headlineSize }};line-height:1;font-weight:400;letter-spacing:-.02em;text-wrap:balance">Product designer &amp; developer.</div>
+        <div data-frame-measure="1" style="display:inline-block;font-family:'Instrument Serif',Georgia,serif;font-size:{{ headlineSize }};line-height:1;font-weight:400;letter-spacing:-.02em;text-wrap:balance">Product designer &amp; developer.</div>
       </div>
 
       <div style="display:flex;gap:6px;opacity:var(--chip,0)">
@@ -470,13 +470,13 @@ input{font-family:inherit}
   <div data-anim-scope="1" style="max-width:28ch;margin-bottom:0;font-family:'Neue Montreal',Helvetica,Arial,sans-serif;font-size:clamp(30px,4.6vw,66px);font-weight:400;letter-spacing:-.032em;word-spacing:.08em;line-height:1.08;text-wrap:balance" data-comment-anchor="6367328844-div">
       <span>I like making technology </span>
       <span style="white-space:nowrap"><span data-ball-track="1" style="position:relative;display:inline-flex;vertical-align:baseline;perspective:600px;cursor:default">
-        <span data-ball-letter="1" style="display:inline-block;padding:0 1px;color:var(--ink,#1A1A17);transform-origin:center 45%;backface-visibility:hidden">f</span>
-        <span data-ball-letter="1" style="display:inline-block;padding:0 1px;color:var(--ink,#1A1A17);transform-origin:center 45%;backface-visibility:hidden">u</span>
-        <span data-ball-letter="1" style="display:inline-block;padding:0 1px;color:var(--ink,#1A1A17);transform-origin:center 45%;backface-visibility:hidden">n</span>
+        <span data-ball-letter="1" style="display:inline-block;padding:0 1px;color:var(--accentText,#C0380E);transform-origin:center 45%;backface-visibility:hidden">f</span>
+        <span data-ball-letter="1" style="display:inline-block;padding:0 1px;color:var(--accentText,#C0380E);transform-origin:center 45%;backface-visibility:hidden">u</span>
+        <span data-ball-letter="1" style="display:inline-block;padding:0 1px;color:var(--accentText,#C0380E);transform-origin:center 45%;backface-visibility:hidden">n</span>
       </span>,</span>
       <span style="white-space:nowrap"><span data-hl-wrap="1" style="position:relative;display:inline-block;margin:0 .06em;padding:0 4px" data-comment-anchor="6464792108-span">
         <span data-hl="1" style="position:absolute;left:0;top:.04em;bottom:.04em;width:0;background:var(--accentSoft,#FAE9E1);transition:width .9s cubic-bezier(.22,.61,.36,1)"></span>
-        <span data-hl-text="1" style="position:relative;color:var(--ink,#1A1A17);transition:color .4s ease-out .18s">approachable</span>
+        <span data-hl-text="1" style="position:relative;color:var(--accentText,#C0380E);transition:color .4s ease-out .18s">approachable</span>
       </span>,</span> and
       <span style="display:inline-flex;vertical-align:baseline;margin:0 .06em">
         <span data-flee="1" style="display:inline-block;padding:0 1px;background:var(--accentSoft,#FAE9E1);color:var(--accentText,#C0380E);transform:translateY(.12em) rotate(6deg)">a</span>
@@ -933,7 +933,7 @@ class Component extends DCLogic {
     pos: 0,
     dur: 0,
     otp: ['', '', '', ''],
-    frame: { w: 0, h: 0 },
+    frame: { w: 0, h: 0, pt: 0, pl: 0 },
     hoverFolder: null,
     hoverPhoto: null,
     lightbox: null,
@@ -979,6 +979,13 @@ class Component extends DCLogic {
     }
     this.onScroll();
     this.measure();
+    if ('ResizeObserver' in window) {
+      this.frameResize = new ResizeObserver(() => this.measure());
+      const frameEl = document.querySelector('[data-frame]');
+      const measureEl = document.querySelector('[data-frame-measure]');
+      if (frameEl) this.frameResize.observe(frameEl);
+      if (measureEl) this.frameResize.observe(measureEl);
+    }
     this._mid = setTimeout(this.measure, 400);
 
     // a ball hops across "fun", lighting each letter as it lands
@@ -990,11 +997,9 @@ class Component extends DCLogic {
       this.FUN_TILT = ['-3.5deg', '2.5deg', '-2deg'];
       // no entrance pass — the letters simply drift, coloured from the start
       this.flipLetters = () => {
-        const cs = getComputedStyle(this.ballTrack);
-        const accent = cs.getPropertyValue('--accent').trim() || '#D93E11';
         this.ballLetters.forEach((el, i) => {
           el.style.transition = 'color .2s ease-out';
-          el.style.color = accent;
+          el.style.color = 'var(--accentText,#C0380E)';
           el.style.setProperty('--fr', this.FUN_TILT[i % 3]);
           el.style.animation = 'funWave 2.9s ease-in-out ' + (i * 0.22).toFixed(2) + 's infinite';
         });
@@ -1009,10 +1014,8 @@ class Component extends DCLogic {
         this.flipLetters();
         const hl = document.querySelector('[data-hl]');
         const hlText = document.querySelector('[data-hl-text]');
-        const cs = getComputedStyle(this.ballTrack);
         if (hl) hl.style.width = '100%';
-        // the accent itself, not the darker text variant
-        if (hlText) hlText.style.color = cs.getPropertyValue('--accent').trim() || '#D93E11';
+        if (hlText) hlText.style.color = 'var(--accentText,#C0380E)';
       };
       const scope = document.querySelector('[data-anim-scope]');
       if (scope && 'IntersectionObserver' in window) {
@@ -1197,6 +1200,7 @@ class Component extends DCLogic {
     if (this.animObs) this.animObs.disconnect();
     if (this._animObs) this._animObs.disconnect();
     if (this._audio) this._audio.pause();
+    if (this.frameResize) this.frameResize.disconnect();
     window.removeEventListener('pointerleave', this.settleFlee);
     window.removeEventListener('blur', this.settleFlee);
     window.removeEventListener('scroll', this.queueStack);
@@ -1209,7 +1213,8 @@ class Component extends DCLogic {
   measure = () => {
     const el = document.querySelector('[data-frame]');
     if (!el) return;
-    const r = el.getBoundingClientRect();
+    const target = document.querySelector('[data-frame-measure]') || el;
+    const r = target.getBoundingClientRect();
     const cs = getComputedStyle(el);
     const w = Math.round(r.width), h = Math.round(r.height);
     const pt = Math.round(parseFloat(cs.paddingTop)), pl = Math.round(parseFloat(cs.paddingLeft));
@@ -1495,7 +1500,10 @@ class Component extends DCLogic {
   sizeDown = e => {
     const track = e.currentTarget.querySelector('span:nth-child(2)');
     const r = (track || e.currentTarget).getBoundingClientRect();
-    const move = ev => this.setState({ size: Math.max(0, Math.min(1, (ev.clientX - r.left) / r.width)) });
+    const move = ev => {
+      const next = Math.max(0, Math.min(1, (ev.clientX - r.left) / r.width));
+      this.setState({ size: next }, () => this.later());
+    };
     move(e);
     const up = () => {
       window.removeEventListener('pointermove', move);
