@@ -182,20 +182,17 @@
           entry.subs.delete(sub);
         };
       }, []);
-      const defaults = React.useMemo(() => {
-        const d = {};
-        for (const k in entry.propsMeta || {}) {
-          const v = entry.propsMeta?.[k]?.default;
-          if (v !== void 0) d[k] = v;
-        }
-        return d;
-      }, [entry.propsMeta]);
+      const defaults = {};
+      for (const k in entry.propsMeta || {}) {
+        const v = entry.propsMeta?.[k]?.default;
+        if (v !== void 0) defaults[k] = v;
+      }
       return h(Root, { ...defaults, ...entry.propOverrides || {} });
     }
     const ReactDOM = getReactDOM();
     if (ReactDOM.createRoot)
       ReactDOM.createRoot(hostEl).render(h(StandaloneRoot));
-    else ReactDOM.render(h(StandaloneRoot), hostEl);
+    else ReactDOM["render"](h(StandaloneRoot), hostEl);
     return rootName;
   }
 
@@ -1212,13 +1209,13 @@
           filename: url,
           presets: ["react", "typescript"]
         }).code : src;
-        const module = { exports: {} };
+        const loadedModule = { exports: {} };
         const before = new Set(Object.keys(window));
         //! nosemgrep: eval-and-function-constructor
         new Function("React", "module", "exports", "require", code)(
           getReact(),
-          module,
-          module.exports,
+          loadedModule,
+          loadedModule.exports,
           () => ({})
         );
         const globals = {};
@@ -1227,12 +1224,12 @@
             globals[k] = window[k];
           }
         }
-        cache.set(url, { mod: module.exports, globals });
+        cache.set(url, { mod: loadedModule.exports, globals });
         console.info(
           "[dc-runtime] x-import: loaded",
           url,
           "\u2014 exports:",
-          Object.keys(module.exports),
+          Object.keys(loadedModule.exports),
           "window globals:",
           Object.keys(globals)
         );
