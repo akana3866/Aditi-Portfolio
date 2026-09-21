@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 // Project Card Component
 function ProjectCard({ header, title, impact, impactPoints, imageUrl, buttonText = "View project overview", link }) {
@@ -7,8 +8,8 @@ function ProjectCard({ header, title, impact, impactPoints, imageUrl, buttonText
         {/* Left Section - Image */}
         <div className="w-full md:w-1/2 flex items-center justify-center p-4 sm:p-6">
           {imageUrl ? (
-            <div className="w-full aspect-[4/3] rounded-lg overflow-hidden">
-              <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
+            <div className="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+              <Image src={imageUrl} alt={title} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
             </div>
           ) : (
             <div className="w-full aspect-[4/3] bg-gradient-to-br from-yellow-300 via-green-400 to-blue-500 rounded-lg"></div>

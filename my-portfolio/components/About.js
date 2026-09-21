@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 
 export default function About() {
@@ -69,9 +70,11 @@ export default function About() {
           {/* Avatar */}
           <div className="flex-shrink-0 w-full md:w-auto">
             <div className="w-40 h-40 sm:w-48 sm:h-48 md:w-64 md:h-64 mx-auto md:mx-0 rounded-full overflow-hidden">
-              <img 
+              <Image
                 src="/images/avatar-aditi.png" 
                 alt="Aditi" 
+                width={997}
+                height={997}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -113,4 +116,3 @@ export default function About() {
     </div>
   )
 }
-

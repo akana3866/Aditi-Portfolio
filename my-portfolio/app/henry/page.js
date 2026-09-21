@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import Navbar from 'components/Navbar'
 
 export default function HenryCaseStudy() {
@@ -22,7 +23,7 @@ export default function HenryCaseStudy() {
                 Henry AI Shopping Flow
               </h1>
               <div className="rounded-[20px] overflow-hidden">
-            <img src="/images/henry-header.png" alt="Henry" width="100%" height="100%" />
+            <Image src="/images/henry-header.png" alt="Henry" width={3366} height={1500} className="w-full h-auto" priority />
             </div>
             {/* Project Details and Buttons */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
@@ -81,7 +82,7 @@ export default function HenryCaseStudy() {
               <p>
                 When product discovery is unclear, users lose interest, abandon their carts, and leave without converting. And for a growing platform, that means missed revenue and lost engagement.
               </p>
-              <img src="/images/weekend-img.gif" alt="Henry" className="w-full h-auto rounded-lg" />
+              <Image src="/images/weekend-img.gif" alt="Henry" width={480} height={270} className="w-full h-auto rounded-lg" unoptimized />
             </div>
 
           </section>
@@ -112,7 +113,7 @@ export default function HenryCaseStudy() {
             <p>
               When exploring the app and conducting some huerstic analysis on the user flow, I saw two main stopping points:
               </p>
-            <img src="/images/henry-findings.png" alt="Henry" className="w-full h-auto rounded-lg" />
+            <Image src="/images/henry-findings.png" alt="Henry" width={4428} height={1961} className="w-full h-auto rounded-lg" />
               <p>
               Through these findings we can see that Henry was not optimized to help users discover products long enough to lead them to make purchases and this was specifically apparent pages on the homepage and search page
               </p>
@@ -148,7 +149,7 @@ export default function HenryCaseStudy() {
             <div className="flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
               <p>
               To tackle this, I led a brainstorming session with engineers and founders using Crazy Eights and FigJam, coming up with different solutions to tackle the user and business problem.</p>
-              <img src="/images/testing-crazy8.png" alt="Crazy Eights" className="w-full h-auto rounded-lg" />
+              <Image src="/images/testing-crazy8.png" alt="Crazy Eights" width={7500} height={5625} className="w-full h-auto rounded-lg" />
               <p>
               From there, I prototyped and tested multiple ideas, with a focus on simplifying the user journey and reducing the time it takes to find and explore products.</p>
               <p>
@@ -163,7 +164,7 @@ export default function HenryCaseStudy() {
                 <div className="bg-[#44C67F] text-background rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center gap-4 relative">
                   <h3 className="text-4xl md:text-4xl font-medium max-w-md text-center">1. A Smarter Homepage</h3>
                 </div>
-                <img src="/images/wireframes-homepage.png" alt="Wireframes 1" className="w-full h-auto rounded-lg" />
+                <Image src="/images/wireframes-homepage.png" alt="Wireframes 1" width={3081} height={1320} className="w-full h-auto rounded-lg" />
               </div>
               <div className="flex-1 flex flex-col gap-4 text-lg leading-relaxed">
                 <p>After testing multiple layouts, we chose Store Recommendations, which displayed store pages as modal cards with sample products. A/B testing showed users spent more time browsing and exploring, which directly supports business goals by increasing time-on-platform and likelihood of purchase.</p>
@@ -176,7 +177,7 @@ export default function HenryCaseStudy() {
                 <div className="bg-[#44C67F] text-background rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center gap-4 relative">
                   <h3 className="text-4xl md:text-4xl font-medium max-w-md text-center">2. Rethinking AI Search</h3>
                 </div>
-                <img src="/images/wireframes-ai.png" alt="Wireframes 1" className="w-full h-auto rounded-lg" />
+                <Image src="/images/wireframes-ai.png" alt="Wireframes 1" width={3081} height={1305} className="w-full h-auto rounded-lg" />
               </div>
               <div className="flex-1 flex flex-col gap-4 text-lg leading-relaxed">
                 <p>Another challenge was optimizing the AI search interface. We tested horizontal vs. vertical product layouts.</p>
@@ -225,12 +226,12 @@ export default function HenryCaseStudy() {
               <div className="bg-[#44C67F] text-background rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center gap-4 relative">
                   <p className="text-lg text-center">Session length grew by an average of 1–2 minutes indicating users were more engaged on the app</p>
             </div>
-            <img src="/images/solution-homepage.png" alt="Solution Homepage" className="w-full h-auto rounded-lg" />
+            <Image src="/images/solution-homepage.png" alt="Solution Homepage" width={3562} height={2328} className="w-full h-auto rounded-lg" />
             
             <div className="bg-[#44C67F] text-background rounded-2xl p-6 md:p-8 flex flex-col items-center justify-center gap-4 relative">
                   <p className="text-lg text-center">Product exploration increased by 23.2%, interaction more with the AI chat and returned users increased by 10.6%</p>
             </div>
-            <img src="/images/solution-ai.png" alt="AI Solution" className="w-full h-auto rounded-lg" />
+            <Image src="/images/solution-ai.png" alt="AI Solution" width={3569} height={2276} className="w-full h-auto rounded-lg" />
             </div>
             <div className="flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
             <p>
@@ -273,4 +274,3 @@ export default function HenryCaseStudy() {
     </div>
   )
 }
-

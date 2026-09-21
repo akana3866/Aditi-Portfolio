@@ -1,11 +1,13 @@
+import Image from 'next/image'
+
 // Experience Item Component
 function ExperienceItem({ logoUrl,company, role, duration, description}) {
   return (
     <div className="px-2.5 rounded-2xl flex flex-col gap-6">
       <div className="flex items-center gap-4">
         {/* Placeholder for company logo */}
-        <div className="w-12 h-12 rounded-lg flex items-center justify-center">
-        <img src={logoUrl} alt={company} className="w-full h-full object-cover rounded-lg" />
+        <div className="relative w-12 h-12 rounded-lg flex items-center justify-center overflow-hidden">
+        <Image src={logoUrl} alt={company} fill sizes="48px" className="object-cover rounded-lg" />
         </div>
         <div className="flex-1 flex flex-col gap-1">
           <div className="flex items-center gap-4">

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import Navbar from 'components/Navbar'
 
 export default function SpotifyCaseStudy() {
@@ -22,7 +23,7 @@ export default function SpotifyCaseStudy() {
                 Spotify Feature Discovery
               </h1>
               <div className="rounded-[20px] overflow-hidden">
-            <img src="/images/spotify-header.png" alt="Spotify" width="100%" height="100%" />
+            <Image src="/images/spotify-header.png" alt="Spotify" width={3678} height={1500} className="w-full h-auto" priority />
             </div>
             {/* Project Details and Buttons */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
@@ -77,7 +78,7 @@ export default function SpotifyCaseStudy() {
               <p>
                 When these key features go unnoticed, the user experience suffers. This puts user retention at risk and weakens Spotify&apos;s competitive edge.
               </p>
-              <img src="/images/realization.gif" alt="Realization Meme" className="w-full h-auto rounded-lg" />
+              <Image src="/images/realization.gif" alt="Realization Meme" width={938} height={434} className="w-full h-auto rounded-lg" unoptimized />
             </div>
           </section>
 
@@ -146,8 +147,8 @@ export default function SpotifyCaseStudy() {
           <section className="flex flex-col gap-6">
             <h3 className="text-xl sm:text-2xl font-medium">Here are the results:</h3>
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
-              <img src="/images/popular-features.webp" alt="Survey Results" className="w-full sm:w-1/2 h-auto sm:h-96 object-contain rounded-xl" />
-              <img src="/images/known-features.webp" alt="Survey Results" className="w-full sm:w-1/2 h-auto sm:h-96 object-contain rounded-xl" />
+              <Image src="/images/popular-features.webp" alt="Survey Results" width={928} height={741} className="w-full sm:w-1/2 h-auto sm:h-96 object-contain rounded-xl" />
+              <Image src="/images/known-features.webp" alt="Survey Results" width={923} height={878} className="w-full sm:w-1/2 h-auto sm:h-96 object-contain rounded-xl" />
           </div>
             {/* User Research Card */}
           <div className="bg-foreground text-background rounded-2xl p-8 md:p-12 flex flex-col gap-8 relative">
@@ -203,7 +204,7 @@ export default function SpotifyCaseStudy() {
               <p>
                 Why not place advanced features front and center? While this boosts visibility, it risks visual overload. The Baymard Institute notes that cluttered homepages confuse users, and Hick&apos;s Law shows that more choices lead to more friction. Greater visibility could come at the cost of usability.
               </p>
-              <img src="/images/features-homepage.webp" alt="Homepage Features" className="w-full sm:w-1/2 h-auto sm:h-96 object-contain rounded-xl" />
+              <Image src="/images/features-homepage.webp" alt="Homepage Features" width={438} height={489} className="w-full sm:w-1/2 h-auto sm:h-96 object-contain rounded-xl" />
               </div>
             </div>
           </section>
@@ -213,7 +214,7 @@ export default function SpotifyCaseStudy() {
             <div className="flex-1 flex flex-col gap-4 text-base sm:text-lg leading-relaxed">
               <h3 className="text-xl sm:text-2xl font-medium">In-App Popups</h3>
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-8">
-              <img src="/images/app-popups.webp" alt="In-App Popups" className="w-full sm:w-1/2 h-auto sm:h-96 object-contain rounded-xl" />
+              <Image src="/images/app-popups.webp" alt="In-App Popups" width={443} height={495} className="w-full sm:w-1/2 h-auto sm:h-96 object-contain rounded-xl" />
               <p>
                 Spotify uses pop-ups sparingly for things like Wrapped and new releases, and it works because they&apos;re minimal and unobtrusive. But using them more often could disrupt that experience. Nielsen Norman Group ranks pop-ups among the most disliked patterns, making them a poor fit for Spotify&apos;s smooth, immersive design.
               </p>
@@ -229,7 +230,7 @@ export default function SpotifyCaseStudy() {
               <p>
                 This idea involved placing a small, scrollable banner just above the &quot;Made For You&quot; section on the home screen. It uses visual hierarchy and placement rooted in UX principles like the F-pattern and Gestalt. It&apos;s subtle, non-invasive, and blends into the listening experience—without getting in the way.
               </p>
-              <img src="/images/weekly-highlights.webp" alt="Weekly Feature Highlight" className="w-full sm:w-1/2 h-auto sm:h-96 object-contain rounded-xl" />
+              <Image src="/images/weekly-highlights.webp" alt="Weekly Feature Highlight" width={462} height={516} className="w-full sm:w-1/2 h-auto sm:h-96 object-contain rounded-xl" />
               </div>
             </div>
           </section>
@@ -285,8 +286,8 @@ export default function SpotifyCaseStudy() {
               </p>
             </div>
             <div className="flex flex-row items-center justify-between gap-8">
-                <img src="/images/spotify-solution-laptop.webp" alt="Gestalt" className="flex-[2] h-96 object-contain rounded-xl" />
-                <img src="/images/spotify-solution-phone.webp" alt="Gestalt" className="flex-1 h-96 object-contain rounded-xl" />
+                <Image src="/images/spotify-solution-laptop.webp" alt="Gestalt" width={1115} height={667} className="flex-[2] h-96 object-contain rounded-xl" />
+                <Image src="/images/spotify-solution-phone.webp" alt="Gestalt" width={449} height={930} className="flex-1 h-96 object-contain rounded-xl" />
               </div>
             {/* Weekly Feature Highlight Benefits */}
           <section className="flex flex-col gap-6">
@@ -346,4 +347,3 @@ export default function SpotifyCaseStudy() {
     </div>
   )
 }
-
