@@ -17,7 +17,9 @@ export default function Navbar() {
             AK
           </Link>
           <div className="flex items-center gap-4">
-            <ThemeToggle />
+            <div className="self-start -mt-4">
+              <ThemeToggle size={0.26} cord={70} />
+            </div>
             <MusicToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -66,6 +68,10 @@ export default function Navbar() {
 
       {/* Desktop Navbar */}
       <div className="hidden lg:flex w-40 h-screen pb-7 flex-col gap-6 relative sticky top-0">
+        {/* Pull-chain bulb hanging from the top of the screen */}
+        <div className="absolute -top-5 right-1 z-10">
+          <ThemeToggle size={0.3} cord={100} />
+        </div>
         <div className="pl-8 pr-5 py-7 flex flex-col gap-2.5">
           <Link href="/#home" className="text-4xl font-mtry leading-10 hover:opacity-60 transition-opacity">
             AK
@@ -92,9 +98,6 @@ export default function Navbar() {
           </Link>
         </nav>
         <div className="pl-8 pr-5 flex flex-col gap-4">
-          <div className="flex items-center">
-            <ThemeToggle />
-          </div>
           <div className="flex items-center">
             <MusicToggle />
           </div>

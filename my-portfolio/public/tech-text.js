@@ -55,6 +55,7 @@ const TechText = ({
   intro = 'none',
   introDuration = 2,
   guides = false,
+  onLayout = null,
   className = '',
   style
 }) => {
@@ -66,6 +67,7 @@ const TechText = ({
 
   useEffect(() => {
     settingsRef.current = {
+      onLayout,
       text,
       fontFamily,
       fontWeight,
@@ -265,6 +267,7 @@ const TechText = ({
         ].filter(band => band.y1 - band.y0 > 0.5)
       };
       word = next;
+      if (typeof s.onLayout === 'function') s.onLayout(next, { width, height });
 
       const chars = Array.from(s.text);
       const previous = glyphs;
