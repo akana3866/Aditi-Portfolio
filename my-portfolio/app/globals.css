@@ -261,3 +261,191 @@ input[type="reset"],
     0 0 0 1px rgba(255, 255, 255, 0.04),
     0 10px 24px rgba(0, 0, 0, 0.6);
 }
+
+/* ------------------------------------------------------------------ */
+/* Paper lantern (theme toggle)                                        */
+/* ------------------------------------------------------------------ */
+
+.lantern-toggle {
+  position: relative;
+  display: inline-flex;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  border-radius: 50%;
+}
+
+.lantern-toggle:focus-visible .lantern-paper-off {
+  stroke: var(--foreground);
+  stroke-width: 1.5;
+}
+
+.lantern-toggle svg {
+  display: block;
+  overflow: visible;
+}
+
+.lantern-cord {
+  stroke: #161616;
+  transition: stroke 400ms ease;
+}
+
+.dark .lantern-cord {
+  stroke: #3d3b37;
+}
+
+.lantern-halo {
+  opacity: 0;
+  transform: scale(0.6);
+  transform-origin: 100px 98px;
+  transition: opacity 700ms ease-out, transform 700ms ease-out;
+}
+
+.lantern-toggle.is-on .lantern-halo {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 250ms ease-in, transform 500ms cubic-bezier(0.2, 0.9, 0.3, 1.15);
+}
+
+.lantern-toggle.is-on .lantern-fixture {
+  filter: drop-shadow(0 0 28px rgba(255, 215, 140, 0.32)) drop-shadow(0 18px 30px rgba(120, 80, 20, 0.08));
+  transition: filter 300ms ease-in;
+}
+
+.lantern-toggle.is-off .lantern-fixture {
+  filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.22));
+  transition: filter 700ms ease-out;
+}
+
+.lantern-paper-on,
+.lantern-hot {
+  opacity: 0;
+  transition: opacity 750ms ease-out;
+}
+
+.lantern-toggle.is-on .lantern-paper-on {
+  opacity: 1;
+  transition: opacity 220ms ease-in;
+}
+
+.lantern-toggle.is-on .lantern-hot {
+  opacity: 0.95;
+  transition: opacity 300ms ease-in;
+}
+
+.lantern-shade {
+  opacity: 1;
+  transition: opacity 600ms ease;
+}
+
+.lantern-toggle.is-on .lantern-shade {
+  opacity: 0.2;
+}
+
+.lantern-feather {
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+.lantern-toggle.is-on .lantern-feather {
+  opacity: 0.85;
+}
+
+.lantern-grain {
+  opacity: 0.07;
+  transition: opacity 600ms ease;
+}
+
+.lantern-toggle.is-on .lantern-grain {
+  opacity: 0.035;
+}
+
+.lantern-toggle.is-on .lantern-paper-off {
+  stroke-opacity: 0;
+}
+
+.lantern-rib {
+  stroke: rgba(20, 14, 6, 0.11);
+  transition: stroke 500ms ease;
+}
+
+.lantern-toggle.is-on .lantern-rib {
+  stroke: rgba(140, 100, 40, 0.085);
+}
+
+.lantern-seam {
+  stroke: rgba(20, 14, 6, 0.07);
+}
+
+.lantern-toggle.is-on .lantern-seam {
+  stroke: rgba(140, 100, 40, 0.06);
+}
+
+@keyframes lanternFlicker {
+  0% { opacity: 0.25; }
+  9% { opacity: 1; }
+  16% { opacity: 0.6; }
+  28% { opacity: 1; }
+  42% { opacity: 0.8; }
+  58% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+.lantern-toggle.is-flicker .lantern-paper-on,
+.lantern-toggle.is-flicker .lantern-halo,
+.lantern-toggle.is-flicker .lantern-hot {
+  animation: lanternFlicker 800ms linear both;
+}
+
+/* ------------------------------------------------------------------ */
+/* Theme change: light fills (or drains from) the room around the bulb */
+/* ------------------------------------------------------------------ */
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+@keyframes lightSpill {
+  from { clip-path: circle(0px at var(--vt-x, 50%) var(--vt-y, 0%)); }
+  to { clip-path: circle(var(--vt-r, 150vmax) at var(--vt-x, 50%) var(--vt-y, 0%)); }
+}
+
+@keyframes lightDrain {
+  from { clip-path: circle(var(--vt-r, 150vmax) at var(--vt-x, 50%) var(--vt-y, 0%)); }
+  to { clip-path: circle(0px at var(--vt-x, 50%) var(--vt-y, 0%)); }
+}
+
+html[data-theme-transition="on"]::view-transition-old(root) {
+  z-index: 0;
+}
+
+html[data-theme-transition="on"]::view-transition-new(root) {
+  z-index: 1;
+  animation: lightSpill 720ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+html[data-theme-transition="off"]::view-transition-new(root) {
+  z-index: 0;
+}
+
+html[data-theme-transition="off"]::view-transition-old(root) {
+  z-index: 1;
+  animation: lightDrain 720ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lantern-halo,
+  .lantern-paper-on,
+  .lantern-hot {
+    transition: none !important;
+    animation: none !important;
+  }
+}

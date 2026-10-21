@@ -46,19 +46,14 @@ input{font-family:inherit}
   [data-ring]{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:22px!important;min-height:0!important;padding:0 20px}
   [data-ring]>*{position:static!important;transform:none!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;width:auto!important;max-width:none!important}
   [data-ring]>[data-order="1"]{order:1;align-self:flex-start;min-width:200px}
-  [data-ring]>[data-order="2"]{order:2;align-self:flex-end;min-width:220px;max-width:66%!important}
-  [data-ring]>[data-order="4"]{order:3;align-self:stretch}
-  [data-ring]>[data-order="6"]{order:4;align-self:flex-start;margin-top:10px;min-width:88px}
-  [data-ring]>[data-order="3"]{order:5;align-self:flex-end;margin-top:-52px}
-  /* shrink theme toggle icons */
-  [data-ring]>[data-order="3"] > div:last-child{padding:3px!important;gap:1px!important}
-  [data-ring]>[data-order="3"] > div:last-child > div{width:22px!important;height:18px!important}
-  [data-ring]>[data-order="3"] > div:last-child > div span{width:7px!important;height:7px!important;border-width:1.5px!important}
-  /* shrink dev mode rows */
-  [data-ring]>[data-order="6"] > div:last-child{gap:6px!important}
-  [data-ring]>[data-order="6"] > div:last-child > div{gap:6px!important}
-  [data-ring]>[data-order="6"] > div:last-child > div > span:first-child{font-size:10.5px!important}
-  [data-ring]>[data-order="6"] > div:last-child > div > span:last-child{flex:0 0 12px!important;width:12px!important;height:12px!important;border-width:1.5px!important}
+  [data-ring]>[data-order="8"]{order:2;align-self:center;margin:4px 0}
+  [data-ring]>[data-order="2"]{order:3;align-self:flex-end;min-width:220px;max-width:66%!important}
+  [data-ring]>[data-order="4"]{order:4;align-self:stretch}
+  [data-ring]>[data-order="6"]{order:6;align-self:flex-start;margin-top:10px;min-width:88px}
+  [data-ring]>[data-order="3"]{order:-1;align-self:center!important;margin:0 0 2px}
+  /* shrink dev mode switch */
+  [data-ring]>[data-order="6"] .dev-switch-label{font-size:11px!important}
+  [data-ring]>[data-order="6"] .dev-switch{transform:scale(.9);transform-origin:right center}
   /* shrink text input + font size (top row) */
   [data-ring]>[data-order="1"]{min-width:170px!important}
   [data-ring]>[data-order="1"] > div:nth-child(2){padding:6px 9px!important;gap:6px!important}
@@ -74,8 +69,8 @@ input{font-family:inherit}
   [data-ring]>*[data-order] > span:first-child{font-size:9px!important;padding:3px 6px!important;letter-spacing:.08em!important}
   /* push hero further down under the sticky nav */
   #top{padding-top:96px!important}
-  [data-ring]>[data-order="5"]{order:6;align-self:flex-end;min-width:220px;max-width:66%!important;margin-top:10px}
-  [data-ring]>[data-order="7"]{order:7;align-self:flex-start;min-width:180px!important;max-width:200px!important}
+  [data-ring]>[data-order="5"]{order:7;align-self:flex-end;min-width:0;width:172px;max-width:66%!important;margin-top:10px}
+  [data-ring]>[data-order="7"]{order:5;align-self:flex-start;min-width:180px!important;max-width:200px!important}
   /* shrink now-playing card chrome */
   [data-ring]>[data-order="7"] > div:nth-child(2){padding:8px 10px 10px!important;gap:8px!important;border-radius:12px!important}
   [data-ring]>[data-order="7"] > div:nth-child(2) > div:nth-child(1){padding:2px!important;gap:2px!important;border-radius:6px!important}
@@ -97,6 +92,8 @@ input{font-family:inherit}
   [data-ring]>[data-order="4"]>div:first-child>span:nth-child(2),
   [data-ring]>[data-order="4"]>div:last-child{display:none!important}
   [data-ring]>[data-order="4"]{gap:8px!important}
+  [data-frame-measure],[data-baseline]{display:none!important}
+  [data-headline-mobile]{display:block!important;padding:4px 0 2px}
 }
 @media (max-width:640px){
   [data-nav-wrap]{justify-content:center!important;padding:12px 16px!important}
@@ -142,6 +139,69 @@ input{font-family:inherit}
 @media (max-width:400px){
   [data-work-logo]{height:19px!important;max-width:52vw}
 }
+/* ---- Flip clock (local time) ---- */
+.flip-clock{display:flex;gap:6px;perspective:420px}
+.flip-tile{position:relative;display:flex;align-items:center;justify-content:center;width:34px;height:46px;border-radius:7px;background:var(--panel,#FFFEFB);border:1px solid var(--line2,#DFDBD0);font-family:'JetBrains Mono',ui-monospace,monospace;font-size:21px;font-weight:400;line-height:1;color:var(--ink,#1A1A17);overflow:hidden;transform-origin:50% 50%;backface-visibility:hidden;animation:flipIn .5s cubic-bezier(.2,.8,.2,1) both}
+.flip-char{position:relative;z-index:1;transform:translateY(1px)}
+.flip-split{position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line,#E9E5DB);z-index:2}
+@keyframes flipIn{0%{transform:rotateX(-85deg);opacity:.2}100%{transform:rotateX(0);opacity:1}}
+@media (prefers-reduced-motion:reduce){.flip-tile{animation:none!important}}
+
+/* ---- Accent swatch card (Pantone-style chip + hue slider) ---- */
+.swatch-card{display:flex;flex-direction:column;gap:7px;width:100%;padding:7px;border-radius:14px;background:var(--surf,#F7F5F0);border:1px solid var(--line,#E9E5DB)}
+.swatch-chip{display:flex;flex-direction:column;border-radius:8px;background:#FFFEFB;border:1px solid rgba(26,26,23,.08);box-shadow:0 1px 2px rgba(26,26,23,.06),0 12px 22px -16px rgba(26,26,23,.35);overflow:hidden}
+.swatch-color{width:100%;aspect-ratio:1 / .82;transition:background .12s linear}
+.swatch-meta{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:9px 11px 10px;text-align:left}
+.swatch-code{font-family:'Neue Montreal',Helvetica,Arial,sans-serif;font-weight:500;font-size:14.5px;letter-spacing:-.02em;line-height:1.1;color:#1A1A17;white-space:nowrap}
+.swatch-code sup{font-size:7px;font-weight:400;vertical-align:top;position:relative;top:1px;margin:0 3px 0 1px}
+.swatch-name{font-family:'Neue Montreal',Helvetica,Arial,sans-serif;font-size:13px;letter-spacing:-.01em;line-height:1.2;color:#2B2A26;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.swatch-slider{position:relative;display:flex;align-items:center;width:100%;height:26px;padding:0 9px;border-radius:999px;border:1.5px solid var(--line2,#DFDBD0);background:var(--panel,#FFFEFB);cursor:ew-resize}
+.swatch-track{display:block;width:100%;height:6px;border-radius:3px;background:linear-gradient(90deg,hsl(12 86% 46%),hsl(45 86% 46%),hsl(95 60% 40%),hsl(175 70% 38%),hsl(225 80% 52%),hsl(285 60% 50%),hsl(340 78% 48%),hsl(372 86% 46%))}
+.swatch-knob{position:absolute;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;border:2px solid var(--panel,#FFFEFB);box-shadow:0 1px 4px rgba(26,26,23,.3)}
+
+/* ---- Dev Mode switch (Figma-style design / dev toggle) ---- */
+.dev-switch{position:relative;display:inline-flex;flex:0 0 auto;align-items:center;width:46px;height:26px;margin:0;padding:0;border:1.5px solid var(--line2,#DFDBD0);border-radius:999px;background:var(--surf2,#F2F0E9);cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent;transition:background .2s ease,border-color .2s ease,box-shadow .2s ease}
+.dev-switch:hover{border-color:var(--line3,#CDC8BB)}
+.dev-switch[data-on="1"]{background:var(--accent,#D93E11);border-color:var(--accent,#D93E11)}
+.dev-switch:focus-visible{box-shadow:0 0 0 3px var(--accentSoft,#FAE9E1)}
+.dev-switch-knob{position:absolute;top:2px;left:2px;width:19px;height:19px;border-radius:50%;background:var(--panel,#FFFEFB);color:var(--text3,#6C6862);display:flex;align-items:center;justify-content:center;box-shadow:0 1px 2px rgba(26,26,23,.28);transition:transform .22s cubic-bezier(.2,.8,.2,1),color .2s ease}
+.dev-switch[data-on="1"] .dev-switch-knob{transform:translateX(20px);color:var(--accent,#D93E11);background:#FFFEFB}
+.dev-switch:active .dev-switch-knob{width:22px}
+.dev-switch[data-on="1"]:active .dev-switch-knob{transform:translateX(17px)}
+.dev-switch-knob svg{position:absolute;width:12px;height:12px;display:block;transition:opacity .18s ease,transform .22s cubic-bezier(.2,.8,.2,1)}
+.dev-switch-knob .dev-icon-code{opacity:0;transform:rotate(-40deg) scale(.6)}
+.dev-switch-knob .dev-icon-design{opacity:1;transform:none}
+.dev-switch[data-on="1"] .dev-icon-code{opacity:1;transform:none}
+.dev-switch[data-on="1"] .dev-icon-design{opacity:0;transform:rotate(40deg) scale(.6)}
+.dev-switch-knob svg path{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+/* the switch stays put; only the label hops to the other side */
+.dev-row{position:relative;display:flex;align-items:center;min-width:110px;height:26px}
+.dev-switch-label{position:absolute;top:50%;transform:translateY(-50%);width:50px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.02em;color:var(--text2,#55534D);transition:left .22s cubic-bezier(.2,.8,.2,1)}
+
+[data-theme]{transition:background-color .35s ease,color .35s ease}
+/* touch / small screens: native cursor, no follower label */
+@media (hover:none),(pointer:coarse),(max-width:900px){
+  [data-cursor]{display:none!important}
+  html,body,body *,body.has-name,body.has-name *{cursor:auto!important}
+  body.has-name input[type="text"],body.has-name textarea,input[type="text"],textarea{cursor:text!important}
+}
+
+/* ---- Doodle light bulb (theme toggle) ---- */
+.doodle-bulb{position:relative;display:inline-flex;padding:0;margin:0;border:0;background:none;color:inherit;cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent;user-select:none;border-radius:50%}
+.doodle-bulb:focus-visible{box-shadow:0 0 0 3px var(--accentSoft,#FAE9E1)}
+.doodle-bulb svg{display:block;overflow:visible}
+.doodle-stroke{fill:none;stroke:var(--ink,#1A1A17);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s ease}
+.doodle-glass{fill:var(--bg,#FBFAF6);transition:fill .3s ease}
+.doodle-hatch{fill:none;stroke:var(--accent,#D93E11);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .16s linear}
+.doodle-bulb.is-on .doodle-hatch{stroke-dashoffset:0}
+.doodle-ray{fill:none;stroke:var(--ink,#1A1A17);stroke-width:3;stroke-linecap:round;opacity:0;transform:scale(.55);transform-origin:60px 91px;transition:opacity .3s ease,transform .45s cubic-bezier(.2,.9,.3,1.3)}
+.doodle-bulb.is-on .doodle-ray{transition-delay:.55s}
+.doodle-bulb.is-on .doodle-ray{opacity:1;transform:scale(1)}
+.doodle-bulb:hover .doodle-ray{transform:scale(1.06)}
+@media (prefers-reduced-motion:reduce){.doodle-hatch,.doodle-ray{transition:none!important}}
+
+@media (prefers-reduced-motion:reduce){
+}
 </style>
 <script src="./image-slot.js"></script>
 </helmet>
@@ -173,10 +233,10 @@ input{font-family:inherit}
 <section id="top" style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:center;padding:clamp(40px,6vh,72px) clamp(20px,6vw,110px) clamp(96px,14vh,180px);width:100%;max-width:1280px;margin:0 auto">
   
 
-  <div id="play" data-ring="1" style="position: relative; width: 100%; min-height: clamp(760px,88vh,940px); margin-top: 0">
+  <div id="play" data-ring="1" style="position: relative; width: 100%; min-height: clamp(760px,84vh,960px); margin-top: 0">
 
 
-    <div data-order="1" style="position: absolute; left: 19px; top: 115px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; width: clamp(158px,22%,200px)">
+    <div data-order="1" style="position: absolute; left: 19px; top: 72px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; width: clamp(158px,22%,200px)">
       <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">Text Input</span>
       <div style="position:relative;display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:6px;background:var(--panel,#FFFEFB);border:1.5px solid {{ nameBorder }};box-shadow:{{ nameGlow }}">
         <span style="width:9px;height:9px;border-radius:2px;background:var(--accent,#D93E11)"></span>
@@ -187,7 +247,7 @@ input{font-family:inherit}
 
 
 
-    <div data-order="2" style="position:absolute;top:114px;right:0;display:flex;flex-direction:column;gap:8px;align-items:flex-end;width:clamp(158px,22%,200px)">
+    <div data-order="2" style="position:absolute;bottom:52px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;align-items:center;width:clamp(158px,22%,200px)">
       <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">Font Size</span>
       <div onPointerDown="{{ sizeDown }}" style="position:relative;display:flex;align-items:center;gap:9px;width:100%;height:28px;padding:0 10px;border-radius:6px;border:1.5px solid var(--line2,#DFDBD0);background:var(--panel,#FFFEFB);cursor:ew-resize;touch-action:none">
         <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;color:var(--text4,#85817A)">A</span>
@@ -200,41 +260,19 @@ input{font-family:inherit}
     </div>
 
 
-    <div data-order="5" style="position: absolute; top: 672px; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; align-items: flex-end; width: clamp(158px,22%,200px); left: 905px">
+    <div data-order="5" style="position: absolute; right: -24px; bottom: -22px; display: flex; flex-direction: column; gap: 8px; align-items: flex-end; width: clamp(150px,17%,172px)">
       <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">Accent</span>
-      <div onPointerDown="{{ hueDown }}" style="position:relative;display:flex;align-items:center;width:100%;height:28px;padding:0 9px;border-radius:6px;border:1.5px solid var(--line2,#DFDBD0);background:var(--panel,#FFFEFB);cursor:ew-resize;touch-action:none">
-        <span style="width:100%;height:6px;border-radius:3px;background:linear-gradient(90deg,hsl(12 86% 46%),hsl(45 86% 46%),hsl(95 60% 40%),hsl(175 70% 38%),hsl(225 80% 52%),hsl(285 60% 50%),hsl(340 78% 48%),hsl(372 86% 46%))"></span>
-        <span style="position:absolute;left:{{ huePct }};top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--accent,#D93E11);border:2px solid var(--panel,#FFFEFB);box-shadow:0 1px 4px rgba(26,26,23,.3)"></span>
-      </div>
-    </div>
-
-
-
-
-
-
-    <div data-order="6" style="position: absolute; top: 779px; transform: translateY(-100%); display: flex; flex-direction: column; gap: 8px; align-items: flex-end; width: clamp(158px,22%,200px); left: 408px">
-      <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">Dev Mode</span>
-      <div onMouseEnter="{{ specOn }}" onMouseLeave="{{ specOff }}" title="toggle the measurement layer to preview spacing" style="display:flex;flex-direction:column;align-items:flex-end;gap:11px">
-        <div onClick="{{ devOn }}" style="display:flex;align-items:center;gap:11px;cursor:pointer">
-          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;color:var(--text2,#55534D)">on</span>
-          <span style="flex:0 0 19px;width:19px;height:19px;border-radius:50%;border:1.5px solid var(--line3,#D5D0C4);background:{{ devOnFill }};display:block"></span>
+      <div class="swatch-card">
+        <div class="swatch-chip" title="drag the slider to pick a new accent">
+          <div class="swatch-color" style="background:var(--accent,#D93E11)"></div>
+          <div class="swatch-meta">
+            <span class="swatch-code">AK<sup>®</sup> {{ accentCode }}</span>
+            <span class="swatch-name">{{ accentName }}</span>
+          </div>
         </div>
-        <div onClick="{{ devOff }}" style="display:flex;align-items:center;gap:11px;cursor:pointer">
-          <span style="font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;color:var(--text2,#55534D)">off</span>
-          <span style="flex:0 0 19px;width:19px;height:19px;border-radius:50%;border:1.5px solid var(--line3,#D5D0C4);background:{{ devOffFill }};display:block"></span>
-        </div>
-      </div>
-    </div>
-
-    <div data-order="3" style="position: absolute; left: 540px; top: 60px; transform: translateX(-50%); display: flex; flex-direction: column; gap: 8px; align-items: center" data-comment-anchor="84b1192469-div">
-      <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">Theme Toggle</span>
-      <div style="display:flex;gap:2px;padding:4px;border-radius:6px;border:1.5px solid var(--line2,#DFDBD0);background:var(--panel,#FFFEFB)">
-        <div onClick="{{ setLight }}" title="light" style="width:32px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:{{ lightFill }}">
-          <span style="width:11px;height:11px;border-radius:50%;border:2px solid var(--text2,#55534D);display:block"></span>
-        </div>
-        <div onClick="{{ setDark }}" title="dark" style="width:32px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:{{ darkFill }}">
-          <span style="width:12px;height:12px;border-radius:50%;border:2px solid var(--text2,#55534D);border-left-color:transparent;border-bottom-color:transparent;display:block;transform:rotate(-40deg)"></span>
+        <div onPointerDown="{{ hueDown }}" class="swatch-slider" style="touch-action:none">
+          <span class="swatch-track"></span>
+          <span class="swatch-knob" style="left:{{ huePct }};background:var(--accent,#D93E11)"></span>
         </div>
       </div>
     </div>
@@ -242,7 +280,34 @@ input{font-family:inherit}
 
 
 
-    <div data-order="7" style="position: absolute; left: -32px; top: 820px; transform: translateY(-100%); display: flex; flex-direction: column; gap: 8px; align-items: flex-start; width: clamp(196px,22%,232px)">
+
+
+    <div data-order="6" style="position: absolute; top: 234px; left: -52px; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; width: clamp(120px,14%,150px)">
+      <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">Mode</span>
+      <div class="dev-row" title="switch between design mode and dev mode">
+        <span class="dev-switch-label" style="left:{{ devLabelLeft }};text-align:{{ devLabelAlign }}">{{ devLabel }}</span>
+        <button type="button" role="switch" aria-checked="{{ devChecked }}" aria-label="Switch between design mode and dev mode" onClick="{{ toggleInspect }}" class="dev-switch" data-on="{{ devOnAttr }}">
+          <span class="dev-switch-knob">
+            <svg class="dev-icon-code" viewBox="0 0 16 16"><path d="M5.5 4 2 8l3.5 4M10.5 4 14 8l-3.5 4"></path></svg>
+            <svg class="dev-icon-design" viewBox="0 0 16 16"><path d="M3 13l.9-3.4L10.6 2.9a1.3 1.3 0 0 1 1.8 0l.7.7a1.3 1.3 0 0 1 0 1.8L6.4 12.1 3 13z"></path><path d="M9.6 3.9l2.5 2.5"></path><path d="M3.9 9.6l2.5 2.5"></path></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div data-order="3" data-bulb="1" style="position: absolute; left: 50%; top: 18px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center" data-comment-anchor="84b1192469-div">
+      {{ bulb }}
+    </div>
+
+    <div data-order="8" style="position:absolute;top:134px;right:0;display:flex;flex-direction:column;gap:8px;align-items:center">
+      <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">Local Time</span>
+      {{ clock }}
+    </div>
+
+
+
+
+    <div data-order="7" style="position: absolute; left: -32px; bottom: 0; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; width: clamp(196px,22%,232px)">
       <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">Now Playing</span>
 
       <div style="display:flex;flex-direction:column;gap:12px;width:100%;padding:13px 14px 15px;border-radius:16px;background:var(--surf,#F7F5F0);border:1px solid var(--line,#E9E5DB)">
@@ -309,7 +374,7 @@ input{font-family:inherit}
         <span style="position:absolute;right:-4px;top:-4px;width:7px;height:7px;background:var(--panel,#FFFEFB);border:1.5px solid var(--accent,#D93E11)"></span>
         <span style="position:absolute;left:-4px;bottom:-4px;width:7px;height:7px;background:var(--panel,#FFFEFB);border:1.5px solid var(--accent,#D93E11)"></span>
         <span style="position:absolute;right:-4px;bottom:-4px;width:7px;height:7px;background:var(--panel,#FFFEFB);border:1.5px solid var(--accent,#D93E11)"></span>
-        <span data-baseline style="position:absolute;left:0;right:0;bottom:24%;border-top:1px dashed var(--accent,#D93E11);opacity:var(--chip,0)"></span>
+        <span data-baseline style="position:absolute;left:0;right:0;top:{{ baselineTop }};border-top:1px dashed var(--accent,#D93E11);opacity:{{ baselineO }}"></span>
         <span style="position:absolute;left:0;right:0;top:-22px;height:1px;background:var(--accent,#D93E11);opacity:{{ spec }};transition:opacity .16s ease-out"></span>
         <span style="position:absolute;left:0;top:-27px;width:1px;height:11px;background:var(--accent,#D93E11);opacity:{{ spec }};transition:opacity .16s ease-out"></span>
         <span style="position:absolute;right:0;top:-27px;width:1px;height:11px;background:var(--accent,#D93E11);opacity:{{ spec }};transition:opacity .16s ease-out"></span>
@@ -324,6 +389,7 @@ input{font-family:inherit}
           <span aria-hidden="true" style="display:block;visibility:hidden;white-space:nowrap;font-family:'Instrument Serif',Georgia,serif;font-size:{{ headlineSize }};font-weight:400;line-height:1.5;letter-spacing:-.02em">Product designer &amp; developer.</span>
           <div style="position:absolute;inset:0">{{ headline }}</div>
         </div>
+        <div data-headline-mobile="1" style="display:none;max-width:9.5ch;text-align:center;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(26px,calc({{ headlineSize }} * .58),16vw);line-height:1.02;letter-spacing:-.02em;color:var(--ink,#1A1A17);text-wrap:balance;transition:font-size .15s ease">Product designer &amp; developer.</div>
       </div>
 
       <div style="display:flex;gap:6px;opacity:var(--chip,0)">
@@ -554,7 +620,7 @@ input{font-family:inherit}
 
   <div data-scatter style="position:relative;z-index:5;height:{{ scatterH }};margin-top:clamp(10px,2vh,24px);transition:height .34s cubic-bezier(.22,.9,.3,1);pointer-events:none">
     <sc-for list="{{ scatter }}" as="ph" hint-placeholder-count="0">
-      <div onMouseEnter="{{ ph.enter }}" onMouseLeave="{{ ph.leave }}" style="position:absolute;left:{{ ph.x }};top:{{ ph.y }};width:{{ ph.w }};padding:11px 11px 30px;border-radius:3px;background:var(--paper3,#FFFEFB);border:1px solid var(--line2,#DFDBD0);box-shadow:0 2px 6px rgba(60,50,35,.05);--r:{{ ph.rot }};transform:rotate({{ ph.rot }}) scale(1);opacity:0;animation:photoDrop .55s cubic-bezier(.22,.9,.3,1) {{ ph.delay }} both;pointer-events:auto">
+      <div onMouseEnter="{{ ph.enter }}" onMouseLeave="{{ ph.leave }}" style="position:absolute;left:{{ ph.x }};top:{{ ph.y }};width:{{ ph.w }};padding:11px 11px 30px;border-radius:3px;background:var(--paper3,#FFFEFB);border:1px solid var(--line2,#DFDBD0);box-shadow:0 2px 6px rgba(60,50,35,.05);--r:{{ ph.rot }};transform:rotate({{ ph.rot }}) scale(1);opacity:0;will-change:transform,opacity;animation:photoDrop .55s cubic-bezier(.22,.9,.3,1) {{ ph.delay }} both;pointer-events:auto">
         <div style="width:100%;aspect-ratio:4 / 3;border-radius:2px;overflow:hidden;background:var(--surf2,#F2F0E9)">
 {{ ph.slotEl }}
         </div>
@@ -865,8 +931,8 @@ const PLAYLISTS = {
     label: 'jazz house',
     tracks: [
       { title: 'Beauty In Imperfection',  artist: 'gabriel, Two Scents', src: '/music/Beauty In Imperfection.mp3' },
-      { title: 'Saudade Vem Correndo',    artist: 'Stan Getz',        src: '/music/Stan Getz - Saudade Vem Correndo Instrumental [BPM 91 E major].mp3' },
       { title: 'Stay',                    artist: 'Tour-Maubourg',    src: '/music/Stay.mp3' },
+      { title: 'Saudade Vem Correndo',    artist: 'Stan Getz',        src: '/music/Stan Getz - Saudade Vem Correndo Instrumental [BPM 91 E major].mp3' },
       { title: 'De Vere',                 artist: 'Mack Walker',      src: '/music/De Vere.mp3' }
     ]
   },
@@ -901,6 +967,26 @@ const THEMES = {
   }
 };
 
+// 32 accent names around the colour wheel; each entry is the hue where a name begins.
+const ACCENT_NAMES = [
+  [0, 'Burn Rate'], [8, 'Error 500'], [16, 'Ship It'], [26, 'Launch Day'], [32, 'Third Coffee'],
+  [38, 'North Star'], [48, 'Sticky Note'], [58, 'Warning State'], [68, 'Highlighter'],
+  [85, 'Product\u2013Market Fit'], [105, 'All Tests Pass'], [125, 'Touch Grass'], [140, 'Desk Plant'], [148, 'Runway'], [166, 'Success Toast'],
+  [182, 'Deep Work'], [196, 'Localhost'], [202, 'Zoom Fatigue'], [210, 'Hyperlink'], [222, 'Focus Ring'], [229, 'Monday Blues'], [236, 'Blue Sky Thinking'],
+  [250, 'Figma Frame'], [264, 'Unicorn'], [278, 'Design Tokens'], [292, 'Scope Creep'],
+  [306, 'Hotfix'], [312, 'Out of Office'], [318, 'Merge Conflict'], [330, 'Growth Hack'], [343, 'Churn'], [349, 'Out of Credits']
+];
+function accentName(hue) {
+  const h = ((Math.round(hue) % 360) + 360) % 360;
+  let name = ACCENT_NAMES[0][1];
+  for (let i = 0; i < ACCENT_NAMES.length; i++) if (h >= ACCENT_NAMES[i][0]) name = ACCENT_NAMES[i][1];
+  return name;
+}
+function accentCode(hue) {
+  const h = ((Math.round(hue) % 360) + 360) % 360;
+  return String(h).padStart(2, '0') + '-' + (1000 + h * 2);
+}
+
 const RATIOS = [['3 / 2', '3x2'], ['1 / 1', '1x1'], ['16 / 9', '16x9'], ['4 / 5', '4x5']];
 
 // Drop photos into images/ and add them here — each folder reads straight from this map.
@@ -919,6 +1005,9 @@ class Component extends DCLogic {
     size: 0.52,
     ratio: 0,
     name: '',
+    clock: '',
+    bulbDrop: 0,
+    bulbScale: 1,
     nameActive: false,
     hue: 14,
     vibe: 'jazz-house',
@@ -944,7 +1033,8 @@ class Component extends DCLogic {
     pos: 0,
     dur: 0,
     otp: ['', '', '', ''],
-    frame: { w: 0, h: 0, pt: 0, pl: 0 },
+    frame: { w: 0, h: 0, pt: 0, pl: 0, mt: 0 },
+    headBase: 0,
     hoverFolder: null,
     hoverPhoto: null,
     lightbox: null,
@@ -990,82 +1080,15 @@ class Component extends DCLogic {
     }
     this.onScroll();
     this.measure();
-    if ('ResizeObserver' in window) {
-      this.frameResize = new ResizeObserver(() => this.measure());
-      const frameEl = document.querySelector('[data-frame]');
-      const measureEl = document.querySelector('[data-frame-measure]');
-      if (frameEl) this.frameResize.observe(frameEl);
-      if (measureEl) this.frameResize.observe(measureEl);
-    }
-    this._mid = setTimeout(this.measure, 400);
-
-    // a ball hops across "fun", lighting each letter as it lands
-    this.ballTrack = document.querySelector('[data-ball-track]');
-    this.ballLetters = Array.prototype.slice.call(document.querySelectorAll('[data-ball-letter]'));
-    this.ballLetters.forEach(el => { el.dataset.base = el.style.transform || ''; });
-    if (this.ballTrack && this.ballLetters.length) {
-      // a split-flap pass: each letter flips, overshoots, then settles into a slow idle wave
-      this.FUN_TILT = ['-3.5deg', '2.5deg', '-2deg'];
-      // no entrance pass — the letters simply drift, coloured from the start
-      this.flipLetters = () => {
-        this.ballLetters.forEach((el, i) => {
-          el.style.transition = 'color .2s ease-out';
-          el.style.color = 'var(--accentText,#C0380E)';
-          el.style.setProperty('--fr', this.FUN_TILT[i % 3]);
-          el.style.animation = 'funWave 2.9s ease-in-out ' + (i * 0.22).toFixed(2) + 's infinite';
-        });
-      };
-
-
-
-      // hold everything until the sentence is actually on screen
-      this.armAnims = () => {
-        if (this.animsArmed) return;
-        this.animsArmed = true;
-        this.flipLetters();
-        const hl = document.querySelector('[data-hl]');
-        const hlText = document.querySelector('[data-hl-text]');
-        if (hl) hl.style.width = '100%';
-        if (hlText) hlText.style.color = 'var(--accentText,#C0380E)';
-      };
-      const scope = document.querySelector('[data-anim-scope]');
-      if (scope && 'IntersectionObserver' in window) {
-        this.animObs = new IntersectionObserver(entries => {
-          entries.forEach(en => { if (en.isIntersecting) { this.armAnims(); this.animObs.disconnect(); } });
-        }, { threshold: 0.35 });
-        this.animObs.observe(scope);
-      } else {
-        this.armAnims();
-      }
-    }
-
-    // "accessible" letters scatter away from the cursor
-    this.flee = Array.prototype.slice.call(document.querySelectorAll('[data-flee]'));
-    this.flee.forEach(el => {
-      el.dataset.base = el.style.transform || '';
-      el.style.transition = 'transform .28s cubic-bezier(.22,.61,.36,1)';
-      el.style.willChange = 'transform';
-    });
-    this.onFlee = e => {
-      const R = 118;
-      for (let i = 0; i < this.flee.length; i++) {
-        const el = this.flee[i];
-        const r = el.getBoundingClientRect();
-        const dx = (r.left + r.width / 2) - e.clientX;
-        const dy = (r.top + r.height / 2) - e.clientY;
-        const dist = Math.hypot(dx, dy) || 1;
-        if (dist < R) {
-          const push = (1 - dist / R) * 52;
-          const ox = (dx / dist) * push, oy = (dy / dist) * push;
-          const spin = (dx > 0 ? 1 : -1) * (1 - dist / R) * 16;
-          el.style.transform = el.dataset.base + ' translate(' + ox.toFixed(1) + 'px,' + oy.toFixed(1) + 'px) rotate(' + spin.toFixed(1) + 'deg)';
-        } else if (el.style.transform !== el.dataset.base) {
-          el.style.transform = el.dataset.base;
-        }
-      }
-    };
-    this.settleFlee = () => this.flee.forEach(el => { el.style.transform = el.dataset.base; });
-    // Figma-style presence cursor — attaches to the pointer once a name is entered
+    // the bulb's cord runs from the top of the page, so measure where the bulb sits
+    this.measureBulb();
+    window.addEventListener('resize', this.measureBulb);
+    this._bulbT = setTimeout(this.measureBulb, 450);
+    // fetch the folder photos in the background so opening a folder is instant
+    this._warmT = setTimeout(() => Object.keys(this.PHOTOS).forEach(id => this.warmFolder(id)), 1500);
+    // local time flip clock, re-rendered only when the minute changes
+    this.tickClock();
+    this._clockT = setInterval(this.tickClock, 1000);
     this.onCursor = e => {
       if (!this.cursorEl || !document.contains(this.cursorEl)) this.cursorEl = document.querySelector('[data-cursor]');
       if (this.cursorEl) this.cursorEl.style.transform = 'translate3d(' + e.clientX + 'px,' + e.clientY + 'px,0)';
@@ -1189,14 +1212,20 @@ class Component extends DCLogic {
     const rule = `html,body{cursor:url("${svg(20,24,1.1)}") 2 2, auto}\n` +
       `a,button,[role="button"],input,textarea,select,[onclick],[onClick],[onPointerDown],[onMouseDown]{cursor:url("${svg(22,26,1.4)}") 2 2, pointer}\n` +
       `input[type="text"],textarea{cursor:text}\n` +
+      `@media (hover:hover) and (pointer:fine) and (min-width:901px){\n` +
       `body.has-name,body.has-name *{cursor:none!important}\n` +
-      `body.has-name input[type="text"],body.has-name textarea{cursor:text!important}`;
+      `body.has-name input[type="text"],body.has-name textarea{cursor:text!important}\n}`;
     let el = document.getElementById('accent-cursor-style');
     if (!el) { el = document.createElement('style'); el.id = 'accent-cursor-style'; document.head.appendChild(el); }
     el.textContent = rule;
   }
 
   componentWillUnmount() {
+    clearInterval(this._clockT);
+    clearTimeout(this._warmT);
+    if (this._ac) { try { this._ac.close(); } catch (e) {} }
+    clearTimeout(this._bulbT);
+    window.removeEventListener('resize', this.measureBulb);
     window.removeEventListener('scroll', this.onScroll);
     window.removeEventListener('resize', this.measure);
     window.removeEventListener('keydown', this.onViewerKey);
@@ -1229,8 +1258,10 @@ class Component extends DCLogic {
     const cs = getComputedStyle(el);
     const w = Math.round(r.width), h = Math.round(r.height);
     const pt = Math.round(parseFloat(cs.paddingTop)), pl = Math.round(parseFloat(cs.paddingLeft));
+    // where the headline canvas starts inside the frame's padding box (border is 1px)
+    const mt = Math.round(r.top - el.getBoundingClientRect().top - 1);
     const f = this.state.frame;
-    if (w !== f.w || h !== f.h || pt !== f.pt || pl !== f.pl) this.setState({ frame: { w, h, pt, pl } });
+    if (w !== f.w || h !== f.h || pt !== f.pt || pl !== f.pl || mt !== f.mt) this.setState({ frame: { w, h, pt, pl, mt } });
   };
 
   pillBox(el) {
@@ -1421,28 +1452,28 @@ class Component extends DCLogic {
 
   PHOTOS = {
     work: [
-      { src: '/images/work/fermat-offsite.JPG',           caption: 'Fermat offsite' },
-      { src: '/images/work/cocktails-and-claude.png',     caption: 'cocktails & Claude' },
-      { src: '/images/work/fermat-team-building.png',     caption: 'Fermat team building' },
-      { src: '/images/work/design-networking-event.png',  caption: 'design networking event' },
-      { src: '/images/work/roam-community-event.jpg',     caption: 'Roam community event' },
-      { src: '/images/work/config.png',                   caption: 'Config' }
+      { src: '/images/work/web/fermat-offsite.jpg',           caption: 'Fermat offsite' },
+      { src: '/images/work/web/cocktails-and-claude.jpg',     caption: 'cocktails & Claude' },
+      { src: '/images/work/web/fermat-team-building.jpg',     caption: 'Fermat team building' },
+      { src: '/images/work/web/design-networking-event.jpg',  caption: 'design networking event' },
+      { src: '/images/work/web/roam-community-event.jpg',     caption: 'Roam community event' },
+      { src: '/images/work/web/config.jpg',                   caption: 'Config' }
     ],
     life: [
-      { src: '/images/life/us-open.jpg',         caption: 'US Open. I go every year.' },
-      { src: '/images/life/dog.jpg',             caption: 'My dog.' },
-      { src: '/images/life/knicks.jpg',          caption: 'Knicks game.' },
-      { src: '/images/life/housewarming.jpg',    caption: 'Housewarming in my new studio.' },
-      { src: '/images/life/picnic.jpg',          caption: 'One of many picnics.' },
-      { src: '/images/life/concert-gambino.jpg', caption: 'Childish Gambino. Love going to concerts.' }
+      { src: '/images/life/web/us-open.jpg',         caption: 'US Open, I go every year' },
+      { src: '/images/life/web/dog.jpg',             caption: 'My dog' },
+      { src: '/images/life/web/knicks.jpg',          caption: 'Knicks game' },
+      { src: '/images/life/web/housewarming.jpg',    caption: 'Housewarming in my new studio' },
+      { src: '/images/life/web/picnic.jpg',          caption: 'One of many picnics' },
+      { src: '/images/life/web/concert-gambino.jpg', caption: 'Childish Gambino, love going to concerts' }
     ],
     travel: [
-      { src: '/images/travel/florence.png', caption: 'Florence.' },
-      { src: '/images/travel/porto.png',    caption: 'Porto.' },
-      { src: '/images/travel/london.png',   caption: 'London.' },
-      { src: '/images/travel/mallorca.png', caption: 'Mallorca.' },
-      { src: '/images/travel/monaco.png',   caption: 'Monaco.' },
-      { src: '/images/travel/nice.png',     caption: 'Nice.' }
+      { src: '/images/travel/web/florence.jpg', caption: 'Florence' },
+      { src: '/images/travel/web/porto.jpg',    caption: 'Porto' },
+      { src: '/images/travel/web/london.jpg',   caption: 'London' },
+      { src: '/images/travel/web/mallorca.jpg', caption: 'Mallorca' },
+      { src: '/images/travel/web/monaco.jpg',   caption: 'Monaco' },
+      { src: '/images/travel/web/nice.jpg',     caption: 'Nice' }
     ]
   };
 
@@ -1453,14 +1484,13 @@ class Component extends DCLogic {
     return this.SCATTER.map((p, i) => {
       const photo = seeded[i] || {};
       const hovered = this.state.hoverPhoto === (id + i);
-      const slotId = 'photo-' + id + '-' + (i + 1);
-      const slotProps = { id: slotId, shape: 'rounded', radius: '2', style: { width: '100%', height: '100%' }, placeholder: 'drop a photo' };
-      if (photo.src) slotProps.src = photo.src;
       return {
         key: id + i,
-        slot: slotId,
         src: photo.src || '',
-        slotEl: React.createElement('image-slot', slotProps),
+        slotEl: photo.src ? React.createElement('img', {
+          src: photo.src, alt: photo.caption || '', decoding: 'async', loading: 'eager', draggable: false,
+          style: { width: '100%', height: '100%', objectFit: 'cover', display: 'block' }
+        }) : null,
         caption: photo.caption || '',
         captionO: hovered ? 1 : 0,
         enter: () => this.setState({ hoverPhoto: id + i }),
@@ -1474,6 +1504,13 @@ class Component extends DCLogic {
   }
 
   closeViewer = () => this.setState({ viewer: null });
+
+  warmFolder(id) {
+    if (!this._warm) this._warm = {};
+    if (this._warm[id]) return;
+    this._warm[id] = true;
+    (this.PHOTOS[id] || []).forEach(p => { if (p.src) { const im = new Image(); im.decoding = 'async'; im.src = p.src; } });
+  }
 
 
   onViewerKey = e => {
@@ -1496,7 +1533,7 @@ class Component extends DCLogic {
       flapL: on ? 'skew(15deg) scaleY(.6)' : 'none',
       flapR: on ? 'skew(-15deg) scaleY(.6)' : 'none',
       open: this.openFolder(id),
-      enter: () => this.setState({ hoverFolder: id }),
+      enter: () => { this.warmFolder(id); this.setState({ hoverFolder: id }); },
       leave: () => this.setState({ hoverFolder: null }),
       key: e => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.openFolder(id)(); }
@@ -1507,6 +1544,33 @@ class Component extends DCLogic {
   fill(on) { return on ? this.theme().text2 : 'transparent'; }
 
   headlinePx() { return Math.round(30 + this.state.size * 62); }
+
+  tickClock = () => {
+    const d = new Date();
+    let hr = d.getHours();
+    const ap = hr >= 12 ? 'PM' : 'AM';
+    hr = hr % 12 || 12;
+    const next = String(hr).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0') + ap;
+    if (next !== this.state.clock) this.setState({ clock: next });
+  };
+
+  renderClock() {
+    const h = React.createElement;
+    const str = this.state.clock || '--:--';
+    // a tile is keyed by its character, so a changed digit remounts and flips in
+    return h('div', { className: 'flip-clock', role: 'timer', 'aria-label': 'local time ' + str }, Array.from(str).map((ch, i) =>
+      h('span', { key: i + ':' + ch, className: 'flip-tile' + (ch === ':' ? ' is-colon' : '') }, [
+        h('span', { key: 'c', className: 'flip-char' }, ch),
+        h('span', { key: 'l', className: 'flip-split' })
+      ])
+    ));
+  }
+
+  // TechText reports its measured layout; keep the dashed guide on the true baseline
+  onHeadlineLayout = view => {
+    const b = Math.round(view.baseline);
+    if (b !== this.state.headBase) this.setState({ headBase: b });
+  };
 
   sizeDown = e => {
     const track = e.currentTarget.querySelector('span:nth-child(2)');
@@ -1604,6 +1668,153 @@ class Component extends DCLogic {
     this.setState(s => { const otp = s.otp.slice(); otp[i] = v; return { otp }; });
   };
 
+  measureBulb = () => {
+    const el = document.querySelector('[data-bulb]');
+    if (!el) return;
+    const top = Math.max(0, Math.round(el.getBoundingClientRect().top + window.scrollY));
+    const scale = window.innerWidth <= 900 ? 0.8 : 1;
+    if (top !== this.state.bulbDrop || scale !== this.state.bulbScale) this.setState({ bulbDrop: top, bulbScale: scale });
+  };
+
+  // ---- tiny synthesised sounds for the bulb: a switch click, then pencil scribbling ----
+  sfx() {
+    if (!this._ac) {
+      try { this._ac = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return null; }
+    }
+    if (this._ac.state === 'suspended') { try { this._ac.resume(); } catch (e) {} }
+    return this._ac;
+  }
+  noiseBuffer(ac, dur) {
+    const n = Math.max(1, Math.floor(ac.sampleRate * dur));
+    const b = ac.createBuffer(1, n, ac.sampleRate);
+    const d = b.getChannelData(0);
+    for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+    return b;
+  }
+  sfxClick(ac, t, freq, gain, dur) {
+    const src = ac.createBufferSource(); src.buffer = this.noiseBuffer(ac, dur);
+    const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = freq; bp.Q.value = 1.4;
+    const g = ac.createGain(); g.gain.setValueAtTime(gain, t); g.gain.exponentialRampToValueAtTime(0.0005, t + dur);
+    src.connect(bp).connect(g).connect(ac.destination); src.start(t); src.stop(t + dur);
+    // a little body under the click
+    const o = ac.createOscillator(); o.type = 'sine';
+    o.frequency.setValueAtTime(freq / 7, t); o.frequency.exponentialRampToValueAtTime(freq / 16, t + 0.06);
+    const og = ac.createGain(); og.gain.setValueAtTime(gain * 0.5, t); og.gain.exponentialRampToValueAtTime(0.0005, t + 0.07);
+    o.connect(og).connect(ac.destination); o.start(t); o.stop(t + 0.08);
+  }
+  sfxScribble(ac, t0, on) {
+    // one short pencil swish per hatch line, timed to the drawing
+    const n = 16, gap = on ? 0.045 : 0.03;
+    for (let i = 0; i < n; i++) {
+      const t = t0 + i * gap;
+      const src = ac.createBufferSource(); src.buffer = this.noiseBuffer(ac, 0.05);
+      const f = ac.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 2400 + Math.random() * 2200; f.Q.value = 0.9;
+      const g = ac.createGain();
+      g.gain.setValueAtTime(0.0005, t);
+      g.gain.exponentialRampToValueAtTime(on ? 0.07 : 0.05, t + 0.012);
+      g.gain.exponentialRampToValueAtTime(0.0005, t + 0.045);
+      src.connect(f).connect(g).connect(ac.destination); src.start(t); src.stop(t + 0.05);
+    }
+  }
+  sfxLights(on) {
+    const ac = this.sfx();
+    if (!ac) return;
+    const t = ac.currentTime + 0.01;
+    // switch: click-clack, a touch brighter when turning on
+    this.sfxClick(ac, t, on ? 2100 : 1500, 0.45, 0.05);
+    this.sfxClick(ac, t + 0.07, on ? 1400 : 1000, 0.28, 0.04);
+    this.sfxScribble(ac, t + 0.12, on);
+  }
+
+  toggleLights = e => {
+    const el = e.currentTarget;
+    const next = this.state.theme === 'dark' ? 'light' : 'dark';
+    try { this.sfxLights(next === 'light'); } catch (err) {}
+    this.setTheme(next);
+    const g = el.querySelector('[data-bulb-body]');
+    if (g && typeof g.animate === 'function') {
+      g.animate([
+        { transform: 'rotate(0deg)' }, { transform: 'rotate(3deg)', offset: 0.2 }, { transform: 'rotate(-2.2deg)', offset: 0.45 },
+        { transform: 'rotate(1.2deg)', offset: 0.7 }, { transform: 'rotate(0deg)' }
+      ], { duration: 1100, easing: 'ease-in-out' });
+    }
+  };
+
+  bulbKey = e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.toggleLights(e); }
+  };
+
+  // Hand-drawn bulb: ink outline, accent scribble fill + rays when the lights are on.
+  renderBulb() {
+    const h = React.createElement;
+    const s = this.state;
+    const on = s.theme !== 'dark';
+    const scale = s.bulbScale || 1;
+    const drop = (s.bulbDrop || 0) / scale;
+    const W = 120, H = 150;
+    const GLASS = 'M45 50 C41 61 24 68 24 91 a36 36 0 1 0 72 0 C96 68 79 61 75 50 Z';
+    // diagonal scribble lines across the glass, clipped to it
+    const hatch = [];
+    const N = 16;
+    for (let i = 0; i < N; i++) {
+      const c = 10 + i * 7.2;
+      const x0 = c - 44, x1 = c + 36;
+      // alternate direction so the pen zigzags down the bulb without lifting
+      const d = i % 2 ? 'M' + x0 + ' 136 L' + x1 + ' 56' : 'M' + x1 + ' 56 L' + x0 + ' 136';
+      hatch.push(h('path', { key: 'h' + i, className: 'doodle-hatch', d, pathLength: 1, style: { transitionDelay: (on ? i * 45 : (N - 1 - i) * 30) + 'ms' } }));
+    }
+    // short rays fanned around the lower half of the glass
+    const rays = [];
+    const angles = [-12, 22, 56, 90, 124, 158, 192];
+    for (let i = 0; i < angles.length; i++) {
+      const a = (angles[i] * Math.PI) / 180;
+      const r0 = 45, r1 = 53 + (i % 2) * 2;
+      rays.push(h('path', { key: 'r' + i, className: 'doodle-ray', d: 'M' + (60 + Math.cos(a) * r0).toFixed(1) + ' ' + (92 + Math.sin(a) * r0).toFixed(1) + ' L' + (60 + Math.cos(a) * r1).toFixed(1) + ' ' + (92 + Math.sin(a) * r1).toFixed(1) }));
+    }
+    return h('div', {
+      className: 'doodle-bulb ' + (on ? 'is-on' : 'is-off'),
+      role: 'button', tabIndex: 0, 'data-clickable': '1', 'aria-pressed': on,
+      'aria-label': on ? 'Turn the lights off (dark mode)' : 'Turn the lights on (light mode)',
+      title: on ? 'lights off' : 'lights on',
+      onClick: this.toggleLights, onKeyDown: this.bulbKey,
+      style: { width: (W * scale) + 'px', height: (H * scale) + 'px' }
+    },
+      h('svg', { width: W * scale, height: H * scale, viewBox: '0 0 ' + W + ' ' + H, xmlns: 'http://www.w3.org/2000/svg', 'aria-hidden': 'true' }, [
+        h('defs', { key: 'defs' }, [
+          h('filter', { key: 'sk', id: 'dcSketch', x: '-10%', y: '-10%', width: '120%', height: '120%' }, [
+            h('feTurbulence', { key: 0, type: 'fractalNoise', baseFrequency: 0.05, numOctaves: 2, seed: 4, result: 'n' }),
+            h('feDisplacementMap', { key: 1, in: 'SourceGraphic', in2: 'n', scale: 2.4, xChannelSelector: 'R', yChannelSelector: 'G' })
+          ]),
+          h('clipPath', { key: 'clip', id: 'dcGlassClip' }, h('path', { d: GLASS }))
+        ]),
+        h('g', { key: 'body', 'data-bulb-body': '1', style: { transformOrigin: '60px ' + (-drop) + 'px' } }, [
+          // cord from the top of the page
+          h('path', { key: 'cord', className: 'doodle-stroke', d: 'M60 ' + (-drop) + ' C61 ' + (-drop / 2) + ' 59 ' + (-drop / 4) + ' 60 8' }),
+          h('g', { key: 'ink', filter: 'url(#dcSketch)' }, [
+            h('path', { key: 'glass', className: 'doodle-stroke doodle-glass', d: GLASS }),
+            h('g', { key: 'hatch', clipPath: 'url(#dcGlassClip)' }, hatch),
+            h('path', { key: 'glass2', className: 'doodle-stroke', d: GLASS }),
+            // filament
+            h('path', { key: 'w1', className: 'doodle-stroke', d: 'M52 50 L55 70', style: { strokeWidth: 2.2 } }),
+            h('path', { key: 'w2', className: 'doodle-stroke', d: 'M68 50 L65 70', style: { strokeWidth: 2.2 } }),
+            h('path', { key: 'fil', className: 'doodle-stroke', d: 'M54 72 L57 61 L60 73 L63 61 L66 72', style: { strokeWidth: 2.2 } }),
+            // screw cap
+            h('rect', { key: 'cap', className: 'doodle-stroke', x: 46, y: 10, width: 28, height: 40, rx: 7 }),
+            h('path', { key: 'c1', className: 'doodle-stroke', d: 'M47 20 H73', style: { strokeWidth: 2.4 } }),
+            h('path', { key: 'c2', className: 'doodle-stroke', d: 'M47 29 H73', style: { strokeWidth: 2.4 } }),
+            h('path', { key: 'c3', className: 'doodle-stroke', d: 'M47 38 H73', style: { strokeWidth: 2.4 } })
+          ]),
+          h('g', { key: 'rays' }, rays)
+        ])
+      ])
+    );
+  }
+
+  setTheme(next) {
+    this._themeExplicit = true;
+    if (next !== this.state.theme) this.setState({ theme: next });
+  }
+
   renderVals() {
     const t = this.theme();
     const s = this.state;
@@ -1626,6 +1837,11 @@ class Component extends DCLogic {
       devOff: () => this.setState({ inspect: false }),
       devOnFill: s.inspect ? t.accent : 'transparent',
       devOffFill: s.inspect ? 'transparent' : t.accent,
+      devLabel: s.inspect ? 'dev' : 'design',
+      devLabelLeft: s.inspect ? '56px' : '-60px',
+      devLabelAlign: s.inspect ? 'left' : 'right',
+      devChecked: s.inspect,
+      devOnAttr: s.inspect ? '1' : '0',
       spec: (s.inspect || s.specHover) ? 1 : 0,
       // the measurement chips share the band the spacing rails occupy — yield it
       chipRow: (s.inspect && !s.specHover) ? 1 : 0,
@@ -1762,8 +1978,10 @@ class Component extends DCLogic {
       toggleInspect: () => this.setState(p => ({ inspect: !p.inspect })),
       scrollPct: pct + '%',
       scrollLabel: pct + '%',
-      setLight: () => { this._themeExplicit = true; this.setState({ theme: 'light' }); },
-      setDark: () => { this._themeExplicit = true; this.setState({ theme: 'dark' }); },
+      setLight: () => this.setTheme('light'),
+      setDark: () => this.setTheme('dark'),
+      clock: this.renderClock(),
+      bulb: this.renderBulb(),
       lightFill: s.theme === 'light' ? t.surf2 : 'transparent',
       darkFill: s.theme === 'dark' ? t.surf2 : 'transparent',
       pickSpeed: () => this.setState({ pick: 'speed' }),
@@ -1807,15 +2025,18 @@ class Component extends DCLogic {
         reveal: 'letter',
         dashLength: 4,
         dashGap: 2,
-        specks: 15,
+        specks: 0,
         intro: 'none',
         sweep: true,
         speed: 0.18,
         clickKick: true,
-        guides: false
+        guides: false,
+        onLayout: this.onHeadlineLayout
       }),
       headlineSize: Math.round(this.headlinePx() * 1.3) + 'px',
       fontSizeLabel: (2 + s.size * 3.2).toFixed(1) + 'rem',
+      baselineTop: ((s.frame.mt || 0) + (s.headBase || 0)) + 'px',
+      baselineO: s.headBase ? 'var(--chip,0)' : 0,
       frameW: (s.frame.w || 0) + 'px',
       frameH: (s.frame.h || 0) + 'px',
       ratio: RATIOS[s.ratio][0],
@@ -1877,6 +2098,8 @@ class Component extends DCLogic {
       nameGlow: s.nameActive ? '0 0 0 3px ' + t.accentSoft : 'none',
       huePct: 'calc(9px + ' + (s.hue / 360) + ' * (100% - 18px))',
       hueDown: this.setHue,
+      accentName: accentName(s.hue),
+      accentCode: accentCode(s.hue),
       otp0: s.otp[0], otp1: s.otp[1], otp2: s.otp[2], otp3: s.otp[3],
       onOtp0: this.setOtp(0), onOtp1: this.setOtp(1), onOtp2: this.setOtp(2), onOtp3: this.setOtp(3)
     };
