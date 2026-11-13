@@ -122,9 +122,9 @@ input{font-family:inherit}
   [data-about-grid]{display:flex!important;flex-direction:column!important;gap:28px!important}
   [data-about-left]{display:contents!important}
   [data-about-left] > [data-anim-scope]{order:1;max-width:none!important;font-size:clamp(28px,7.5vw,42px)!important}
-  [data-about-right]{order:2}
-  [data-about-folders]{order:3;flex-direction:row!important;align-items:flex-start!important;justify-content:space-around!important;gap:12px!important;margin-top:14px!important;flex-wrap:nowrap!important}
-  [data-about-folders] > div{flex:1 1 0!important;flex-direction:column!important;align-items:center!important;gap:9px!important;min-width:0}
+  [data-about-right]{order:2;align-self:stretch!important}
+  [data-about-folders]{order:3;flex-direction:row!important;align-items:flex-start!important;justify-content:flex-start!important;gap:clamp(16px,5vw,28px)!important;margin-top:14px!important;flex-wrap:nowrap!important}
+  [data-about-folders] > div{flex:0 0 auto!important;flex-direction:column!important;align-items:center!important;gap:9px!important;min-width:0}
   [data-scatter]{height:auto!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:14px!important;padding:0!important}
   [data-scatter] > div{position:static!important;width:auto!important;max-width:none!important;left:auto!important;top:auto!important;padding:9px 9px 24px!important;--r:0deg!important;transform:none!important}
   [data-work-header]{flex-direction:column!important;align-items:flex-start!important;gap:10px!important;min-height:0!important}
@@ -533,7 +533,7 @@ input{font-family:inherit}
 <section id="about" style="position:relative;padding:clamp(40px,7vh,90px) clamp(20px,6vw,110px) clamp(110px,14vh,170px);width:100%;max-width:1280px;margin:0 auto" data-comment-anchor="96711904c4-section">
   <span style="display:inline-flex;padding:4px 8px;border:1px solid var(--line2,#DFDBD0);background:transparent;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3,#6C6862)">About me</span><div style="display:flex;flex-direction:column;gap:clamp(34px,5vh,58px)">
 
-    <div data-about-grid style="display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(26px,4vw,56px);align-items:start">
+    <div data-about-grid style="display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(26px,4vw,56px);align-items:center">
       <div data-about-left style="display:flex;flex-direction:column;gap:20px" data-comment-anchor="f087d60ad9-div">
       <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px">
         
@@ -563,7 +563,10 @@ input{font-family:inherit}
       </span> to everyone.</span>
     </div>
 
-      <div data-about-folders style="display:flex;flex-wrap:wrap;gap:clamp(22px,3vw,40px);margin-top:clamp(56px,9vh,110px)">
+      </div>
+
+      <div data-about-right style="display:flex;flex-direction:column;justify-content:center;align-self:center">
+      <div data-about-folders style="display:flex;flex-wrap:wrap;gap:clamp(22px,3vw,40px);justify-content:flex-end">
         <div style="display:flex;flex-direction:column;align-items:center;gap:11px">
             <div onClick="{{ fLife.open }}" onMouseEnter="{{ fLife.enter }}" onMouseLeave="{{ fLife.leave }}" onKeyDown="{{ fLife.key }}" role="button" tabindex="0" aria-label="Open Life photos" title="Open Life photos" style="position:relative;width:92px;height:73px;cursor:pointer;outline:none;transform:{{ fLife.lift }};transition:transform .22s cubic-bezier(.22,.61,.36,1)">
               <span style="position:absolute;left:0;bottom:99%;width:30px;height:9px;border-radius:5px 5px 0 0;background:{{ fLife.back }}"></span>
@@ -605,19 +608,12 @@ input{font-family:inherit}
           </div>
       </div>
       </div>
-
-      <div data-about-right style="display:flex;flex-direction:column;gap:18px;padding-top:0">
-      
-
-      <p style="margin:0;max-width:52ch;font-size:18px;line-height:1.62;color:var(--text2,#55534D);text-wrap:pretty" data-comment-anchor="0a774264d6-p">Hi, I’m Aditi! I design for people and, more and more, for the AI agents working next to them. Right now I’m figuring out how researchers talk to their digital twins through MCP at August, Fermat’s digital twin research platform. I don’t love handing off a Figma file and hoping for the best, so I ship my designs in code myself. And if the tool I need doesn’t exist yet, I just build it. The stuff that gets me most excited is designing for where tech is going, not where it is right now.</p><p style="margin:0;max-width:52ch;font-size:18px;line-height:1.62;color:var(--text2,#55534D);text-wrap:pretty">When I’m not designing, I’m probably on a tennis court, rigorously trying to win my Fantasy Premier League this season, planning my next trip abroad or replaying Uncharted for the hundredth time. I’ll rewatch any Marvel movie or Friends episode, I always have house music on, and right now I’m deep in the Fourth Wing series. I’m also really into fashion, and lately I’m hooked on knitting.</p>
-      
-      </div>
     </div>
 
 
   </div>
 
-  <div data-scatter style="position:relative;z-index:5;height:{{ scatterH }};margin-top:clamp(10px,2vh,24px);transition:height .34s cubic-bezier(.22,.9,.3,1);pointer-events:none">
+  <div data-scatter style="position:relative;z-index:5;height:{{ scatterH }};margin-top:{{ scatterGap }};transition:height .34s cubic-bezier(.22,.9,.3,1),margin-top .34s cubic-bezier(.22,.9,.3,1);pointer-events:none">
     <sc-for list="{{ scatter }}" as="ph" hint-placeholder-count="0">
       <div onMouseEnter="{{ ph.enter }}" onMouseLeave="{{ ph.leave }}" style="position:absolute;left:{{ ph.x }};top:{{ ph.y }};width:{{ ph.w }};padding:11px 11px 30px;border-radius:3px;background:var(--paper3,#FFFEFB);border:1px solid var(--line2,#DFDBD0);box-shadow:0 2px 6px rgba(60,50,35,.05);--r:{{ ph.rot }};transform:rotate({{ ph.rot }}) scale(1);opacity:0;will-change:transform,opacity;animation:photoDrop .55s cubic-bezier(.22,.9,.3,1) {{ ph.delay }} both;pointer-events:auto">
         <div style="width:100%;aspect-ratio:4 / 3;border-radius:2px;overflow:hidden;background:var(--surf2,#F2F0E9)">
@@ -1888,6 +1884,7 @@ class Component extends DCLogic {
       scatterHint: s.viewer ? 'click the folder again to tidy up' : 'click a folder',
       scatter: this.scatterCards(),
       scatterH: s.viewer ? 'clamp(520px,58vw,760px)' : '0px',
+      scatterGap: s.viewer ? 'clamp(48px,8vh,96px)' : 'clamp(10px,2vh,24px)',
       chipOpacity: s.inspect ? 1 : 0,
       themeName: s.theme,
       inspectFill: s.inspect ? t.navActive : t.panel,

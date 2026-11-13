@@ -3,7 +3,7 @@ import { ThemeProvider } from '../components/ThemeProvider'
 import CustomCursor from '../components/CustomCursor'
 
 export const metadata = {
-  metadataBase: new URL('https://aditikanaujia.xyz'),
+  metadataBase: new URL('https://www.aditikanaujia.com'),
   title: 'Aditi Kanaujia — Portfolio',
   description: 'Product Designer Portfolio',
   icons: {
