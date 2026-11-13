@@ -613,7 +613,7 @@ input{font-family:inherit}
 
   </div>
 
-  <div data-scatter style="position:relative;z-index:5;height:{{ scatterH }};margin-top:clamp(10px,2vh,24px);transition:height .34s cubic-bezier(.22,.9,.3,1);pointer-events:none">
+  <div data-scatter style="position:relative;z-index:5;height:{{ scatterH }};margin-top:{{ scatterGap }};transition:height .34s cubic-bezier(.22,.9,.3,1),margin-top .34s cubic-bezier(.22,.9,.3,1);pointer-events:none">
     <sc-for list="{{ scatter }}" as="ph" hint-placeholder-count="0">
       <div onMouseEnter="{{ ph.enter }}" onMouseLeave="{{ ph.leave }}" style="position:absolute;left:{{ ph.x }};top:{{ ph.y }};width:{{ ph.w }};padding:11px 11px 30px;border-radius:3px;background:var(--paper3,#FFFEFB);border:1px solid var(--line2,#DFDBD0);box-shadow:0 2px 6px rgba(60,50,35,.05);--r:{{ ph.rot }};transform:rotate({{ ph.rot }}) scale(1);opacity:0;will-change:transform,opacity;animation:photoDrop .55s cubic-bezier(.22,.9,.3,1) {{ ph.delay }} both;pointer-events:auto">
         <div style="width:100%;aspect-ratio:4 / 3;border-radius:2px;overflow:hidden;background:var(--surf2,#F2F0E9)">
@@ -1884,6 +1884,7 @@ class Component extends DCLogic {
       scatterHint: s.viewer ? 'click the folder again to tidy up' : 'click a folder',
       scatter: this.scatterCards(),
       scatterH: s.viewer ? 'clamp(520px,58vw,760px)' : '0px',
+      scatterGap: s.viewer ? 'clamp(48px,8vh,96px)' : 'clamp(10px,2vh,24px)',
       chipOpacity: s.inspect ? 1 : 0,
       themeName: s.theme,
       inspectFill: s.inspect ? t.navActive : t.panel,
